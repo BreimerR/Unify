@@ -6,4 +6,4 @@ import lib.oop.classes.StaticClass
 abstract class LanguageStatic : StaticClass()
 
 
-abstract class LanguageClass : Class<LanguageStatic>()
+abstract class LanguageClass :  Class<LanguageStatic>()
