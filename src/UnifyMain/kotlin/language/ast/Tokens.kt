@@ -1,10 +1,11 @@
 package language.ast
 
-import lib.oop.Class
-import lib.oop.StaticClass
 import language.lib.os.File
 import language.tokens.TokenClass
 import language.tokens.TokenStatic
+import lib.oop.classes.Class
+import lib.oop.classes.StaticClass
+import lib.collections.array.plus
 
 
 abstract class TokensStatic : StaticClass() {

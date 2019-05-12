@@ -55,7 +55,6 @@ operator fun <T> Array<T>.minus(i: Int): Array<T> {
     return this.copyOfRange(0, i)
 }
 
-
 operator fun <T> Array<T>.minusAssign(i: Int) {
     minus(i)
 }

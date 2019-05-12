@@ -9,6 +9,7 @@ import platform.posix.fseek
 import lib.os.File as LibFile
 import platform.posix.SEEK_SET
 
+
 class File(var fileName: String, var fileEncoding: String) : LibFile(fileName, fileEncoding) {
 
 
