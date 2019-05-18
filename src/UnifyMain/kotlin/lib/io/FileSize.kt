@@ -1,4 +1,4 @@
-package lib.os
+package lib.io
 
 import lib.oop.classes.Class
 import lib.oop.classes.StaticClass

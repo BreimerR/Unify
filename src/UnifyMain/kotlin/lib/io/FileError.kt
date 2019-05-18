@@ -1,5 +1,3 @@
-package lib.os
-
-
+package lib.io
 
 class FileError(msg: String) : kotlin.Error(msg)

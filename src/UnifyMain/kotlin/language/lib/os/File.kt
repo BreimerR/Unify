@@ -7,8 +7,8 @@ import lib.text.asString
 
 import platform.posix.fgetc
 import platform.posix.fseek
-import lib.os.FileClass as LibFileClass
-import lib.os.FileStatic as LibFileStatic
+import lib.io.FileClass as LibFileClass
+import lib.io.FileStatic as LibFileStatic
 import platform.posix.SEEK_SET
 
 
