@@ -1,14 +1,18 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
+
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+val LSBracket = LSBracketStatic()
 
 
-import unify.factories.tokens.CharTokenFactory
-
-class LSBracket : CharTokenFactory<LSBracket>() {
+class LSBracketStatic : CharacterStatic() {
 
     override val char = '['
 
+    override fun invoke(tokenString: String, l: Int, col: Int): LSBracketClass = LSBracketClass(tokenString, l, col)
+}
 
-    override fun invoke(): LSBracket {
-        return LSBracket(char)
-    }
+class LSBracketClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = LSBracket
 }

@@ -1,14 +1,18 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
+
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+val Question = QuestionStatic()
 
 
-import unify.factories.tokens.CharTokenFactory
-
-class Question : CharTokenFactory<Question>() {
+class QuestionStatic : CharacterStatic() {
 
     override val char = '?'
 
+    override fun invoke(tokenString: String, l: Int, col: Int): QuestionClass = QuestionClass(tokenString, l, col)
+}
 
-    override fun invoke(): Question {
-        return Question(char)
-    }
+class QuestionClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = Question
 }

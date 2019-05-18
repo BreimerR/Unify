@@ -1,14 +1,16 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
 
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
 
-import unify.factories.tokens.CharTokenFactory
-
-class Percent : CharTokenFactory<Percent>() {
-
+class PercentStatic : CharacterStatic() {
     override val char = '%'
 
-
-    override fun invoke(): Percent {
-        return Percent(char)
-    }
+    override fun invoke(tokenString: String, l: Int, col: Int): PercentClass = PercentClass(tokenString, l, col)
 }
+
+class PercentClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = Percent
+}
+
+val Percent = PercentStatic()

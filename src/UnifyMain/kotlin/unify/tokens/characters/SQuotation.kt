@@ -1,13 +1,19 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
+
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+val SQuotation = SQuotationStatic()
 
 
-import unify.factories.tokens.CharTokenFactory
-
-class SQuotation : CharTokenFactory<SQuotation>() {
+class SQuotationStatic : CharacterStatic() {
 
     override val char = '\''
 
-    override fun invoke(): SQuotation {
-        return SQuotation(char)
-    }
+    override fun invoke(tokenString: String, l: Int, col: Int): SQuotationClass = SQuotationClass(tokenString, l, col)
+}
+
+
+class SQuotationClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = SQuotation
 }

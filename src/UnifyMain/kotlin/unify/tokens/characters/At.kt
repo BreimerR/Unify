@@ -6,7 +6,7 @@ import unify.tokens.CharacterStatic
 
 
 class AtStatic : CharacterStatic() {
-    override val char = '*'
+    override val char = '@'
 
     override fun invoke(tokenString: String, l: Int, col: Int): CharacterClass {
         return AtClass(tokenString, l, col)

@@ -1,8 +1,8 @@
 package unify.tokens.characters
 
 import unify.tokens.CharacterClass
+
 import unify.tokens.CharacterStatic
-import unify.tokens.TokenClass
 
 
 class EscapedRStatic : CharacterStatic() {

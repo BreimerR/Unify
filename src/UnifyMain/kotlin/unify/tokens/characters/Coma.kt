@@ -12,7 +12,7 @@ class ComaStatic : CharacterStatic() {
 
 
 class ComaClass(tkString: String, l: Int, col: Int) : CharacterClass(tkString, l, col) {
-    override val self = Colon
+    override val self = Coma
 }
 
 

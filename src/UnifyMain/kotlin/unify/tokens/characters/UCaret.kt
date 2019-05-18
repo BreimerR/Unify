@@ -1,14 +1,20 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
 
 
-import unify.factories.tokens.CharTokenFactory
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
 
-class UCaret : CharTokenFactory<UCaret>() {
+val UCaret = UCaretStatic()
+
+
+class UCaretStatic : CharacterStatic() {
 
     override val char = '^'
 
+    override fun invoke(tokenString: String, l: Int, col: Int): UCaretClass = UCaretClass(tokenString, l, col)
+}
 
-    override fun invoke(): UCaret {
-        return UCaret(char)
-    }
+
+class UCaretClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = UCaret
 }

@@ -1,14 +1,18 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
+
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+val RBracket = RBracketStatic()
 
 
-import unify.factories.tokens.CharTokenFactory
-
-class RBracket : CharTokenFactory<RBracket>() {
+class RBracketStatic : CharacterStatic() {
 
     override val char = ')'
 
+    override fun invoke(tokenString: String, l: Int, col: Int): RBracketClass = RBracketClass(tokenString, l, col)
+}
 
-    override fun invoke(): RBracket {
-        return RBracket(char)
-    }
+class RBracketClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = RBracket
 }

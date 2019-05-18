@@ -1,14 +1,18 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
 
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
 
-import unify.factories.tokens.CharTokenFactory
+val SColon = SColonStatic()
 
-class SColon : CharTokenFactory<SColon>() {
+class SColonStatic : CharacterStatic() {
 
     override val char = ';'
 
+    override fun invoke(tokenString: String, l: Int, col: Int): SColonClass = SColonClass(tokenString, l, col)
+}
 
-    override fun invoke(): SColon {
-        return SColon(char)
-    }
+
+class SColonClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = SColon
 }

@@ -1,14 +1,18 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
+
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+val Space = SpaceStatic()
 
 
-import unify.factories.tokens.CharTokenFactory
-
-class Space : CharTokenFactory<Space>() {
+class SpaceStatic : CharacterStatic() {
 
     override val char = ' '
 
+    override fun invoke(tokenString: String, l: Int, col: Int): SpaceClass = SpaceClass(tokenString, l, col)
+}
 
-    override fun invoke(): Space {
-        return Space(char)
-    }
+class SpaceClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
+    override val self = Space
 }
