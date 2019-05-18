@@ -1,13 +1,14 @@
 package language.tokens
 
-import lib.oop.Class
-import lib.oop.StaticClass
-import language.lib.os.File
+
+import language.lib.os.FileClass
+import lib.oop.classes.Class
+import lib.oop.classes.StaticClass
 
 abstract class TokenStatic : StaticClass() {
-    abstract fun test(file: File): Boolean
+    abstract infix fun test(file: FileClass): Boolean
 
     abstract operator fun invoke(tokenString: String, l: Int, col: Int): TokenClass
 }
 
-abstract class TokenClass : Class<TokenStatic>()
+abstract class TokenClass(open val tkString: String, open val l: Int, open val col: Int) : Class<TokenStatic>()

@@ -1,7 +1,7 @@
 package lib.pattern.patterns
 
-import lib.patternMatcher.items.Item
-import lib.patternMatcher.items.Items
+import lib.pattern.items.Item
+import lib.pattern.items.Items
 
 
 abstract class Pattern<T>(protected open vararg val sections: Item<T>) {

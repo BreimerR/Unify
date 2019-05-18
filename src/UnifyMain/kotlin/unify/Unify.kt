@@ -1,7 +1,6 @@
 package unify
 
 
-import lib.fs.DirClass
 import unify.ast.Tokens
 import language.LanguageClass
 import language.LanguageStatic
@@ -18,11 +17,6 @@ class UnifyClass(args: CLIArgumentsClass) : LanguageClass() {
     override val tokens = Tokens(args)
 
     override val self = Unify
-
-    fun translateTo(language: LanguageClass, outPutDir: DirClass) {
-
-    }
-
 }
 
 val Unify = UnifyStatic()

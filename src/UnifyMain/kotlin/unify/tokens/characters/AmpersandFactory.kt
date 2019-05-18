@@ -1,23 +1,20 @@
 package unify.tokens.characters
 
-import lib.os.File
+import unify.tokens.CharacterClass
 import unify.tokens.CharacterStatic
 
 class AmpersandStatic : CharacterStatic() {
-    override fun invoke(tokenString: String, l: Int, col: Int): AmpersandClass {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    operator fun invoke(): AmpersandClass {
+        return AmpersandClass(char);
     }
 
-    override fun test(file: File): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override val char = '&'
 }
 
-class AmpersandClass : CharacterClass() {
-    override operator fun invoke(tk: String): Ampersand {
-        return Ampersand(char)
-    }
-
-
-    override var char = '&'
+class AmpersandClass(override val char: Char) : CharacterClass(char) {
+    override val self = Ampersand
 }
+
+
+var Ampersand = AmpersandStatic()

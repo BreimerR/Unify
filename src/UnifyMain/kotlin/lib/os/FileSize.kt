@@ -1,7 +1,7 @@
-package file
+package lib.os
 
-import lib.oop.Class
-import lib.oop.StaticClass
+import lib.oop.classes.Class
+import lib.oop.classes.StaticClass
 
 open class FileSizeStatic : StaticClass() {
     operator fun invoke(s: Long): FileSizeClass = FileSizeClass(s)

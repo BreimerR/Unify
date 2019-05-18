@@ -1,14 +1,19 @@
-package unify.factories.tokens.characters
+package unify.tokens.characters
 
 
-import unify.factories.tokens.CharTokenFactory
 
-class TabFactory : CharTokenFactory<Tab>() {
+import unify.tokens.CharacterClass
+import unify.tokens.CharacterStatic
+
+class TabStatic : CharacterStatic() {
 
     override val char = '\t'
-
-
-    override fun invoke(): Tab {
-        return Tab(char)
-    }
 }
+
+class TabClass : CharacterClass() {
+    override val self = Tab
+
+}
+
+
+val Tab = TabStatic()

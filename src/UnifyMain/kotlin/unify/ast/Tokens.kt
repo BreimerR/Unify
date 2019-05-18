@@ -1,8 +1,7 @@
 package unify.ast
 
-import unify.tokens.characters.Colon
-import unify.tokens.characters.SColon
 import lib.cli.CLIArgumentsClass
+import unify.tokens.characters.Colon
 import language.ast.TokensClass as LangTokens
 import language.ast.TokensStatic as LangTokensStatic
 
@@ -11,7 +10,7 @@ class TokensStatic : LangTokensStatic() {
     operator fun invoke(args: CLIArgumentsClass): TokensClass = TokensClass(args)
 
     override val tokenClasses = arrayOf(
-            arrayOf(Colon, SColon)
+            arrayOf(Colon)
     )
 
 }

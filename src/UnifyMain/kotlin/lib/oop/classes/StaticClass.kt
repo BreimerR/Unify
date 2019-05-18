@@ -1,5 +1,5 @@
 package lib.oop.classes
 
+import kotlin.reflect.KClass
 
-
-abstract class StaticClass {}
+abstract class StaticClass

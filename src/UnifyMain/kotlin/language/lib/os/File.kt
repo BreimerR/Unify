@@ -1,17 +1,26 @@
 package language.lib.os
 
 
-import lib.math.long
 import lib.math.charVal
+import lib.math.long
 import lib.text.asString
+
 import platform.posix.fgetc
 import platform.posix.fseek
-import lib.os.File as LibFile
+import lib.os.FileClass as LibFileClass
+import lib.os.FileStatic as LibFileStatic
 import platform.posix.SEEK_SET
 
 
-class File(var fileName: String, var fileEncoding: String) : LibFile(fileName, fileEncoding) {
+class FileStatic : LibFileStatic() {
+    operator fun invoke(fullFilePathWithExtension: String): FileClass {
+        return FileClass(fullFilePathWithExtension)
+    }
+}
 
+class FileClass(var fullFilePathWithExtension: String, var encoding: String = "UTF-8", dirSeparator: String = "/") : LibFileClass(fullFilePathWithExtension) {
+
+    override val self = File
 
     val futureChar: Char
         get() {
@@ -22,18 +31,19 @@ class File(var fileName: String, var fileEncoding: String) : LibFile(fileName, f
             return char.charVal
         }
 
-    val copy: File
+    val copy: FileClass
         get() {
-            val copy = File(fileName, fileEncoding)
+            val copy = File(fullFilePathWithExtension)
             copy.file = file
             copy.i = i
             return copy
         }
 
-    fun open(mode: String = "r", action: (File) -> Unit) {
+
+    fun open(mode: String = "r", action: FileClass.() -> Unit) {
         open(mode)
-        // this will never be null since we are throwing error  file not found
-        action(this)
+        
+        this.apply(action)
     }
 
 
@@ -45,3 +55,7 @@ class File(var fileName: String, var fileEncoding: String) : LibFile(fileName, f
         moveCursor(-charCount, i)
     }
 }
+
+
+var File = FileStatic()
+

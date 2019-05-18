@@ -1,17 +1,17 @@
 package lib.cli
 
 import lib.math.isEven
-import lib.oop.Class
-import lib.oop.StaticClass
+import lib.oop.classes.Class
+import lib.oop.classes.StaticClass
 import lib.collections.array.invoke
 
 
-class CLIArgumentsStatic : StaticClass<CLIArgumentsClass>() {
+class CLIArgumentsStatic : StaticClass() {
     operator fun invoke(arguments: Array<String>): CLIArgumentsClass = CLIArgumentsClass(arguments)
 }
 
 
-class CLIArgumentsClass(arguments: Array<String>) : Class() {
+class CLIArgumentsClass(arguments: Array<String>) : Class<CLIArgumentsStatic>() {
     override val self = CLIArguments
 
     var args = mapOf<String, String>()

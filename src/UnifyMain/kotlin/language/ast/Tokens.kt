@@ -1,17 +1,17 @@
 package language.ast
 
+
 import language.lib.os.File
+import lib.oop.classes.Class
 import language.tokens.TokenClass
 import language.tokens.TokenStatic
-import lib.oop.classes.Class
 import lib.oop.classes.StaticClass
-import lib.collections.array.plus
+import unify.tokens.characters.TabStatic
+import unify.tokens.characters.NewLineStatic
 
 
 abstract class TokensStatic : StaticClass() {
     abstract val tokenClasses: Array<out Array<out TokenStatic>>
-
-
 }
 
 abstract class TokensClass : Class<TokensStatic>() {
@@ -22,33 +22,41 @@ abstract class TokensClass : Class<TokensStatic>() {
 
     abstract val fileEncoding: String
 
-    var tokens: Array<out TokenStatic> = arrayOf()
+    var tokens = arrayOf<TokenClass>()
+
+    init {
+        initializeTokens()
+    }
 
     // find tokens
-    fun initializeTokens() {
+    private fun initializeTokens() {
 
-        val file = File(fileName, fileEncoding)
+        val file = File(fileName)
 
         var line = 1
         var col = 1
 
-        file.open { it: File ->
+        val t = this
+
+        file.open {
             var tk: TokenClass? = null
+
             while (true) {
                 val cI = file.i
                 var till = 0
 
-                factoriesArray@ for (factories in self.tokenClasses) {
-                    for (factory in factories) {
-                        val test = factory.test(file)
+                // pattern recognition starts form here
+                factoriesArray@ for (classes in t.self.tokenClasses) {
+                    for (klass in classes) {
+                        val test = klass test file
                         till = file.i
                         if (test) {
                             val s = file.getString(cI, till)
 
-                            tk = factory(s, line, col)
+                            tk = klass(s, line, col)
 
-                            when (tk) {
-                                is NewLine -> {
+                            when (klass) {
+                                is NewLineStatic -> {
                                     line += 1
                                     col = 1
                                 }
@@ -57,7 +65,7 @@ abstract class TokensClass : Class<TokensStatic>() {
                             }
 
                             break@factoriesArray
-                        } else file.cursorAt(cI)
+                        } else file.placeCursorAt(cI)
                     }
                 }
 
@@ -67,10 +75,9 @@ abstract class TokensClass : Class<TokensStatic>() {
 
                 tk = null
 
-                if (file.atEnd) {
+                if (atEnd) {
                     break
                 }
-
 
             }
         }

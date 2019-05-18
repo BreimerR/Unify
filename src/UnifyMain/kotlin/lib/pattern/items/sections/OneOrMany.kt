@@ -1,6 +1,6 @@
 package lib.pattern.items.sections
 
-import lib.patternMatcher.items.Item
+import lib.pattern.items.Item
 import lib.pattern.patterns.Pattern
 
 
