@@ -1,9 +1,8 @@
 package unify.tokens
 
 
-import language.lib.os.File
-import language.lib.os.FileClass
 import lib.text.asString
+import language.lib.os.FileClass
 
 fun Regex.Companion.char(char: Char): Regex = Regex(char.asString)
 
