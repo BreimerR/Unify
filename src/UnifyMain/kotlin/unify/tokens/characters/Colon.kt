@@ -1,7 +1,7 @@
 package unify.tokens.characters
 
-import unify.tokens.CharacterClass
-import unify.tokens.CharacterStatic
+import unify.tokens.tokens.CharacterClass
+import unify.tokens.tokens.CharacterStatic
 
 class ColonStatic : CharacterStatic() {
     override fun invoke(tokenString: String, l: Int, col: Int): ColonClass = ColonClass(tokenString, l, col)

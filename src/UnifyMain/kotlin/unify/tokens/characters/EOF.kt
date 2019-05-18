@@ -1,8 +1,8 @@
 package unify.tokens.characters
 
 import lib.math.charVal
-import unify.tokens.CharacterClass
-import unify.tokens.CharacterStatic
+import unify.tokens.tokens.CharacterClass
+import unify.tokens.tokens.CharacterStatic
 
 
 val EOF = EOFStatic()

@@ -1,7 +1,7 @@
 package unify.tokens.characters
 
-import unify.tokens.CharacterClass
-import unify.tokens.CharacterStatic
+import unify.tokens.tokens.CharacterClass
+import unify.tokens.tokens.CharacterStatic
 
 class LBraceStatic : CharacterStatic() {
 

@@ -1,4 +1,4 @@
-package unify.tokens
+package unify.tokens.tokens
 
 
 import lib.text.asString

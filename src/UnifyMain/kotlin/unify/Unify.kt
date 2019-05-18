@@ -4,6 +4,7 @@ package unify
 import unify.ast.Tokens
 import language.LanguageClass
 import language.LanguageStatic
+import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 
 
@@ -20,3 +21,10 @@ class UnifyClass(args: CLIArgumentsClass) : LanguageClass() {
 }
 
 val Unify = UnifyStatic()
+
+
+fun main(arguments: Array<String>) {
+    val unify = Unify(CLIArguments(arguments))
+
+
+}
