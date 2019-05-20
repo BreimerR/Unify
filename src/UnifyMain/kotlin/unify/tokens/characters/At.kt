@@ -14,7 +14,7 @@ class AtStatic : CharacterStatic() {
 }
 
 
-class AtClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col){
+class AtClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
     override val self = At
 
 }

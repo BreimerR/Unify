@@ -12,3 +12,7 @@ val String.toArray: Array<Char>
 
         return chars
     }
+
+fun String.each(action: (Char) -> Unit) {
+    this.forEach(action)
+}

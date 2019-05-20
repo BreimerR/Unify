@@ -1,7 +1,7 @@
 package language.ast
 
 
-import language.lib.os.File
+import language.lib.io.File
 import lib.oop.classes.Class
 import language.tokens.TokenClass
 import language.tokens.TokenStatic

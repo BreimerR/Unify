@@ -1,4 +1,4 @@
-package language.lib.os
+package language.lib.io
 
 
 import lib.math.charVal
@@ -42,7 +42,7 @@ class FileClass(var fullFilePathWithExtension: String, var encoding: String = "U
 
     fun open(mode: String = "r", action: FileClass.() -> Unit) {
         open(mode)
-        
+
         this.apply(action)
     }
 

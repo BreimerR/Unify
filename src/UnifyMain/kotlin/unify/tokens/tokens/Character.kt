@@ -2,7 +2,7 @@ package unify.tokens.tokens
 
 
 import lib.text.asString
-import language.lib.os.FileClass
+import language.lib.io.FileClass
 
 fun Regex.Companion.char(char: Char): Regex = Regex(char.asString)
 

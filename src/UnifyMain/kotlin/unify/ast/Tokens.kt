@@ -1,15 +1,14 @@
 package unify.ast
 
-import lib.cli.CLIArgumentsClass
-import unify.tokens.characters.*
-import unify.tokens.operators.*
 import unify.tokens.strings.*
+import unify.tokens.operators.*
+import unify.tokens.characters.*
 import language.ast.TokensClass as LangTokens
 import language.ast.TokensStatic as LangTokensStatic
 
 
 class TokensStatic : LangTokensStatic() {
-    operator fun invoke(args: CLIArgumentsClass): TokensClass = TokensClass(args)
+    operator fun invoke(fileName: String, fileEncoding: String): TokensClass = TokensClass(fileName, fileEncoding)
 
     override val tokenClasses = arrayOf(
             arrayOf(
@@ -72,13 +71,8 @@ class TokensStatic : LangTokensStatic() {
 
 }
 
-class TokensClass(args: CLIArgumentsClass) : LangTokens() {
+class TokensClass(override val fileName: String, override val fileEncoding: String) : LangTokens() {
     override val self = Tokens
-    // mainFileName
-    override val fileName = args["-fileName"]
-
-    override val fileEncoding = args["-fileEncoding"]
-
 
 }
 

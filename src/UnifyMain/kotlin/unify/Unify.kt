@@ -6,6 +6,7 @@ import language.LanguageClass
 import language.LanguageStatic
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
+import unify.ast.Statements
 
 
 class UnifyStatic : LanguageStatic() {
@@ -15,9 +16,12 @@ class UnifyStatic : LanguageStatic() {
 }
 
 class UnifyClass(args: CLIArgumentsClass) : LanguageClass() {
-    override val tokens = Tokens(args)
+    // Tokenize
+    override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
 
     override val self = Unify
+
+    val statements = Statements(tokens)
 }
 
 val Unify = UnifyStatic()

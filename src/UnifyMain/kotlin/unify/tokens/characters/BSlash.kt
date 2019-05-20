@@ -12,9 +12,9 @@ class BSlashStatic : CharacterStatic() {
 }
 
 
-class BSlashClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString,l,col){
+class BSlashClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
     override val self = BSlash
 }
 
 
-val BSlash =  BSlashStatic()
+val BSlash = BSlashStatic()

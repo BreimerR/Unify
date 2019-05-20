@@ -1,7 +1,7 @@
 package language.tokens
 
 
-import language.lib.os.FileClass
+import language.lib.io.FileClass
 import lib.oop.classes.Class
 import lib.oop.classes.StaticClass
 

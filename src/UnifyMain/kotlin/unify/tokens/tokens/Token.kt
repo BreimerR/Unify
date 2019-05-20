@@ -1,7 +1,7 @@
 package unify.tokens.tokens
 
 import lib.text.asString
-import language.lib.os.FileClass
+import language.lib.io.FileClass
 import language.tokens.TokenStatic  as LTokenStatic
 import language.tokens.TokenClass as LTokenClass
 
