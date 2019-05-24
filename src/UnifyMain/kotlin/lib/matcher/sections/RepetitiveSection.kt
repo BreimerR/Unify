@@ -1,10 +1,14 @@
 package lib.matcher.sections
 
-class RepetitiveSectionClass : SectionClass() {
+import platform.posix.INFINITY
+
+
+open class RepetitiveSectionClass<Item>(override val sectionItem: Item, val minCount: Float = 0F, val maxCount: Float = INFINITY) : SectionClass<Item>(sectionItem) {
+    override val self = RepetitiveSection
+
 
 }
 
-
-class RepetitiveSectionStatic : SectionStatic()
+open class RepetitiveSectionStatic : SectionStatic()
 
 val RepetitiveSection = RepetitiveSectionStatic()

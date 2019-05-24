@@ -1,20 +1,25 @@
 package lib.matcher.sections
 
-import lib.oop.classes.Class
-import lib.oop.classes.StaticClass
 
-open class SectionStatic : StaticClass() {
-    operator fun <Item> invoke(item: Item): SectionClass<Item> {
+import lib.matcher.TestableClass
+import lib.matcher.TestableStatic
+
+open class SectionStatic : TestableStatic() {
+    open operator fun <Item : TestableClass> invoke(item: Item): SectionClass<Item> {
         return SectionClass(item)
     }
 }
 
-open class SectionClass<Item>(val sectionItem: Item) : Class<SectionStatic>() {
+open class SectionClass<Item>(open val sectionItem: Item) : TestableClass() {
     override val self = Section
+
+    override fun test(): Boolean {
+
+        return false
+    }
 
 
 }
-
 
 /**TODO
  * define sections

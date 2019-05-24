@@ -1,15 +1,17 @@
 package lib.regex
 
+import lib.collections.array.each
+import lib.text.each
 import lib.matcher.MatcherClass
 import lib.matcher.MatcherStatic
-import lib.collections.array.invoke
-import lib.text.each
+import lib.matcher.TestableClass
 import lib.matcher.sections.Section
 import lib.matcher.sections.SectionClass
+import lib.matcher.sections.OneOrManySection
 
 class RegexClass(vararg items: SectionClass<ItemClass>) : MatcherClass<MatcherStatic>() {
 
-    val sections = arrayOf<SectionClass<ItemClass>>()
+    val sections = arrayOf<TestableClass>()
 
     infix fun test(case: String): Boolean {
         // break down to comparable parts
@@ -21,13 +23,20 @@ class RegexClass(vararg items: SectionClass<ItemClass>) : MatcherClass<MatcherSt
 
     constructor(pattern: String) : this(*Regex.prepItems(pattern))
 
-    infix fun match(case: String) {
+    infix fun match(case: String): MatchedClass {
         // each pattern section should test and claim a section
         // breakdown to individual parts
         val items = Items(case)
         // test individual parts against predefined order of arrangement
         // i want to test and claim at the same time
 
+        var test = sections[0].test(items);
+        // for each section test items advancing items index
+        sections.each(1) { section: TestableClass ->
+            test = test && section.test(items)
+        }
+
+        return Matched()
     }
 
     fun addSection(vararg item: SectionClass<ItemClass>) {
@@ -64,7 +73,9 @@ val Regex = RegexStatic()
 fun main() {
     val regex = Regex("email=([a-zA-Z0-9_]+)(@)([a-zA-Z0-9]*)\\.(com|org|[a-zA-Z]{3})")
 
-    regex.addSection("email")
+    regex.addSection("email=")
+
+    regex.addSection(OneOrManySection(Item('a')))
 
     /**
      * return a simple boolean of weather or not the whole thing matches

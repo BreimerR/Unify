@@ -1,10 +1,7 @@
 package lib.matcher
 
-import lib.oop.classes.Class
-import lib.oop.classes.StaticClass
-
-abstract class ItemClass<T> : Class<ItemStatic>() {
+abstract class ItemClass<T> : TestableClass() {
     abstract val value: T
 }
 
-abstract class ItemStatic : StaticClass()
+abstract class ItemStatic : TestableStatic()
