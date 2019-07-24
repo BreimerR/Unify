@@ -1,4 +1,5 @@
-package lib.regex
+package regex
+
 
 import lib.matcher.MatchedClass as LMatchedClass
 import lib.matcher.MatchedStatic as LMatchedStatic

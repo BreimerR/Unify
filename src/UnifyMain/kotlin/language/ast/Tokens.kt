@@ -2,84 +2,85 @@ package language.ast
 
 
 import language.lib.io.File
-import lib.oop.classes.Class
-import language.tokens.TokenClass
 import language.tokens.TokenStatic
-import lib.oop.classes.StaticClass
+import language.tokens.TokenStatic.Class as Token
+import lib.matcher.items.ItemsStatic
 import unify.tokens.characters.TabStatic
 import unify.tokens.characters.NewLineStatic
 
 
-abstract class TokensStatic : StaticClass() {
+abstract class TokensStatic : ItemsStatic<Token>() {
     abstract val tokenClasses: Array<out Array<out TokenStatic>>
-}
 
-abstract class TokensClass : Class<TokensStatic>() {
 
-    abstract override val self: TokensStatic
+    abstract class Class : ItemsStatic.Class<Token>() {
 
-    abstract val fileName: String
+        abstract override val self: TokensStatic
 
-    abstract val fileEncoding: String
+        abstract val fileName: String
 
-    var tokens = arrayOf<TokenClass>()
+        abstract val fileEncoding: String
 
-    init {
-        initializeTokens()
-    }
+        var tokens = arrayOf<Token>()
 
-    // find tokens
-    private fun initializeTokens() {
+        init {
+            initializeTokens()
+        }
 
-        val file = File(fileName)
+        // find tokens
+        private fun initializeTokens() {
 
-        var line = 1
-        var col = 1
+            val file = File(fileName)
 
-        val t = this
+            var line = 1
+            var col = 1
 
-        file.open {
-            var tk: TokenClass? = null
+            val t = this
 
-            while (true) {
-                val cI = file.i
-                var till = 0
+            file.open {
+                var tk: TokenClass? = null
 
-                // pattern recognition starts form here
-                factoriesArray@ for (classes in t.self.tokenClasses) {
-                    for (klass in classes) {
-                        val test = klass test file
-                        till = file.i
-                        if (test) {
-                            val s = file.getString(cI, till)
+                while (true) {
+                    val cI = file.i
+                    var till = 0
 
-                            tk = klass(s, line, col)
+                    // pattern recognition starts form here
+                    factoriesArray@ for (classes in t.self.tokenClasses) {
+                        for (klass in classes) {
+                            val test = klass test file
+                            till = file.i
+                            if (test) {
+                                val s = file.getString(cI, till)
 
-                            when (klass) {
-                                is NewLineStatic -> {
-                                    line += 1
-                                    col = 1
+                                tk = klass(s, line, col)
+
+                                when (klass) {
+                                    is NewLineStatic -> {
+                                        line += 1
+                                        col = 1
+                                    }
+                                    is TabStatic -> col += 4
+                                    else -> col += s.length
                                 }
-                                is TabStatic -> col += 4
-                                else -> col += s.length
-                            }
 
-                            break@factoriesArray
-                        } else file.placeCursorAt(cI)
+                                break@factoriesArray
+                            } else file.placeCursorAt(cI)
+                        }
                     }
+
+                    if (tk == null) throw Error("No token declared for ${file.getString(cI, till)}")
+
+                    tokens + tk
+
+                    tk = null
+
+                    if (atEnd) {
+                        break
+                    }
+
                 }
-
-                if (tk == null) throw Error("No token declared for ${file.getString(cI, till)}")
-
-                tokens + tk
-
-                tk = null
-
-                if (atEnd) {
-                    break
-                }
-
             }
         }
     }
 }
+

@@ -1,20 +1,63 @@
 package lib.matcher.sections
 
-import lib.matcher.TestableClass
 
-/**@description
- * This class offers the capability to test cases
- * for existence of either case 1,2 ......n where n is a finite
- * */
+import lib.matcher.TestableStatic
+import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-class AlternativeSectionStatic : SectionStatic() {
-    override fun <Item : TestableClass> invoke(item: Item): SectionClass<Item> {
-        TODO("Implement this section return super.invoke(item)")
+abstract class AlternativeSectionStatic<T> : SectionStatic<T>() {
+
+    abstract class Class<I>(
+            vararg items: TestableStatic.Class<I>,
+            override val name: String? = null,
+            self: AlternativeSectionStatic<I>) :
+            SectionStatic.Class<I>(*items, name = name, self = self) {
+
+        // we dont want to find the first match but the best case match
+        override infix fun test(items: ItemsClass<I>): Boolean {
+            return test(items, sections)
+        }
+
+        protected fun test(items: ItemsClass<I>, sections: Array<out TestableStatic.Class<I>>): Boolean {
+            val i = items.i
+
+            var w = 0
+
+            var fI = i
+
+            sections.forEach { section ->
+                sI = items.i
+
+                val test = section test items
+
+                fI = items.i
+
+                if (test && w < items.i) w = items.i
+
+                items.i = i
+            }
+
+
+            val test = when {
+                w == 0 -> {
+                    items.i = fI
+                    false
+                }
+                w > 0 -> {
+                    items.i = w
+                    true
+                }
+                else -> false
+            }
+
+
+            if (test) collect(items, sI, name)
+
+            return test
+        }
     }
 }
 
-class AlternativeSectionClass<Item>(override val sectionItem: Item) : SectionClass<Item>(sectionItem) {
-    override val self = AlternativeSection
-}
 
-val AlternativeSection = AlternativeSectionStatic()
+
+
+

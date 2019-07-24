@@ -1,12 +1,27 @@
 package lib.matcher.sections
 
+import lib.matcher.TestableStatic
+import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-/** @Class_Description
- * This is for cases where we have a......z but we want to get all alphabets that are not z
- * anything else but the provided item
- * */
-class NotSectionStatic : SectionStatic()
 
-class NotSectionCalss<Item>(override val sectionItem: Item) : SectionClass<Item>(sectionItem)
+abstract class NotSectionStatic<T> : SectionStatic<T>() {
 
-val NotSection = NotSectionStatic()
+    abstract class Class<I>(vararg items: TestableStatic.Class<I>, name: String? = null, self: NotSectionStatic<I>) :
+            SectionStatic.Class<I>(*items, name = name, self = self) {
+
+        // search algo required here to make the loop not linear exactly for performance boost
+        override fun test(items: ItemsClass<I>): Boolean {
+            sections.forEach {
+                if (it test items) return false
+            }
+
+            return true
+        }
+    }
+}
+
+
+
+
+
+
