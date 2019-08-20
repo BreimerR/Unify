@@ -12,10 +12,10 @@ abstract class RepetitiveSectionStatic<T>(open val minCount: Int = 0, open val m
     abstract override operator fun invoke(vararg items: TestableStatic.Class<T>, name: String?): Class<T>
 
     abstract class Class<I>(
-            section: TestableStatic.Class<I>,
+            vararg section: TestableStatic.Class<I>,
             name: String?, open val minCount: Int,
-            open val maxCount: Int, self: RepetitiveSectionStatic<I>) :
-            SectionStatic.Class<I>(section, name = name, self = self) {
+            open val maxCount: Int, self: RepetitiveSectionStatic<I>
+    ) : SectionStatic.Class<I>(*section, name = name, self = self) {
 
         var tCounts = 0
         var mCounts = 0

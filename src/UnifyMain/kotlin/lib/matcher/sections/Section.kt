@@ -10,24 +10,26 @@ package lib.matcher.sections
  * repetitive section one or many should extend here and also zero or many should extend from here
  * */
 import lib.matcher.TestableStatic
-import lib.matcher.items.ItemClass
 import lib.matcher.items.ItemsStatic
+import lib.matcher.items.ItemStatic.Class as ItemClass
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
-
 
 abstract class SectionStatic<T> : TestableStatic() {
 
     abstract operator fun invoke(vararg items: TestableStatic.Class<T>, name: String? = null): Class<T>
 
-    abstract class Class<T>(vararg sectionItems: TestableStatic.Class<T>, open val name: String? = null, override val self: SectionStatic<T>) : TestableStatic.Class<T>() {
+    abstract class Class<T>(
+            vararg sectionItems: TestableStatic.Class<T>,
+            open val name: String? = null,
+            override val self: lib.matcher.sections.SectionStatic<T>
+
+    ) : TestableStatic.Class<T>() {
 
         lateinit var items: ItemsClass<T>
 
         var sI = 0
 
         var eI: Int? = null
-
-        var section: Class<T>? = null
 
         private var obtained: Array<Pair<String?, Array<ItemClass<T>>>>? = null
 
@@ -37,17 +39,9 @@ abstract class SectionStatic<T> : TestableStatic() {
 
         protected val sections = sectionItems
 
-        inline val close: Unit
-            get() {
-                closed = true
-            }
-
-        inline val open: Unit
-            get() {
-                closed = false
-            }
-
-        var closed = true
+        override fun test(item: T): Boolean {
+            return item == items.nextItem?.value
+        }
 
         override infix fun test(items: ItemsClass<T>): Boolean {
             this.items = items
@@ -75,6 +69,14 @@ abstract class SectionStatic<T> : TestableStatic() {
             collect(items, i, name)
 
             return true
+        }
+
+        // Collecting
+        fun collect() {
+
+        }
+        override fun collect(sI: Int, items: ItemsStatic.Class<T>): Array<Pair<String?, IntRange>> {
+            return ranges
         }
 
         open fun collect(items: ItemsStatic.Class<T>, i: Int, name: String? = null) {

@@ -1,13 +1,18 @@
 package lib.matcher.items
 
+import lib.oop.classes.StaticClass
 import lib.collections.array.length
 import lib.oop.classes.Class as SClass
-import lib.oop.classes.StaticClass
+import lib.matcher.items.ItemStatic.Class as ItemClass
 
+// regex char is item string is whole items
+// language string is item statement is whole items
 
-abstract class ItemsStatic<T> : StaticClass() {
+abstract class ItemsStatic : StaticClass() {
 
-    abstract class Class<T>(open val items: Array<out ItemClass<T>>) : SClass<ItemsStatic<T>>() {
+    abstract class Class<T>(open val items: Array<out ItemClass<T>>) : SClass<ItemsStatic>() {
+
+        constructor(vararg items: ItemClass<T>) : this(items)
 
         var i = 0
 

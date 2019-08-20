@@ -8,10 +8,6 @@ abstract class OneOrManySectionStatic<T>(minCount: Int = 1) : RepetitiveSectionS
 
     abstract fun invoke(item: TestableStatic.Class<T>, name: String?, maxCount: Int = this.maxCount): Class<T>
 
-    /*= Class(item, name, maxCount = this.maxCount)*/
-
-    /*= Class(Section(*items), name, maxCount = this.maxCount)*/
-
-    open class Class<T>(section: TestableStatic.Class<T>, name: String?, override val maxCount: Int, self: OneOrManySectionStatic<T>) :
-            RepetitiveSectionStatic.Class<T>(section, name, self.minCount, maxCount, self)
+    open class Class<T>(vararg section: TestableStatic.Class<T>, name: String?, self: OneOrManySectionStatic<T>, maxCount: Int = 10000) :
+            RepetitiveSectionStatic.Class<T>(*section, name = name, minCount = self.minCount, maxCount = maxCount, self = self)
 }

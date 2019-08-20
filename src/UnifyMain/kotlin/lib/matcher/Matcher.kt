@@ -1,8 +1,8 @@
-package matcher
+package lib.matcher
 
-import lib.matcher.TestableStatic
-import libs.oop.classes.StaticClass
+
 import lib.matcher.sections.SectionStatic
+import lib.oop.classes.StaticClass
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 import lib.matcher.TestableStatic.Class as TestableClass
 
@@ -13,7 +13,7 @@ abstract class MatcherStatic<in T> : StaticClass() {
 
     // TODO TestableClass<T>
     // secure comparison requirements of the library.
-    abstract class Class<T>(vararg val sections: TestableClass<T>) : libs.oop.classes.Class<MatcherStatic<T>>() {
+    abstract class Class<T>(vararg val sections: TestableClass<T>) : lib.oop.classes.Class<MatcherStatic<T>>() {
 
         lateinit var items: ItemsClass<T>
 
@@ -41,8 +41,6 @@ abstract class MatcherStatic<in T> : StaticClass() {
          *      // unnamed search
          *      2:"some mor"
          * }*/
-
-
         infix fun test(items: ItemsClass<T>): Boolean {
 
             this.items = items
@@ -52,13 +50,11 @@ abstract class MatcherStatic<in T> : StaticClass() {
             sections.forEach { section ->
                 sI = items.i
                 if (section test items) {
-                    collect(sI, section)
+                    ranges += section.collect(sI,items)
                 } else return false
             }
 
-            if (items.hasRemItems) {
-                return false
-            }
+            if (items.hasRemItems) return false
 
             return true
         }
@@ -69,18 +65,10 @@ abstract class MatcherStatic<in T> : StaticClass() {
                     ranges += section.ranges
                 }
                 else -> ranges += null to sI..items.i
+
+                // doing a collection for testable
             }
         }
 
-
-        /* operator fun get(name: String): Array<T> {
-              TODO("Implement getter function with named indexes")
-          }
-
-          operator fun get(inedx: Int) {
-              TODO("Implement getter function with indexes")
-          }*/
     }
 }
-
-

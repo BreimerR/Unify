@@ -16,6 +16,12 @@ class FileStatic : LibFileStatic() {
     operator fun invoke(fullFilePathWithExtension: String): FileClass {
         return FileClass(fullFilePathWithExtension)
     }
+
+
+    fun open(fileName: String, mode: String = "r", action: FileClass.() -> Unit) {
+
+        this(fileName).open(mode, action)
+    }
 }
 
 class FileClass(var fullFilePathWithExtension: String, var encoding: String = "UTF-8", dirSeparator: String = "/") : LibFileClass(fullFilePathWithExtension) {
@@ -43,7 +49,7 @@ class FileClass(var fullFilePathWithExtension: String, var encoding: String = "U
     fun open(mode: String = "r", action: FileClass.() -> Unit) {
         open(mode)
 
-        this.apply(action)
+        apply(action)
     }
 
 
