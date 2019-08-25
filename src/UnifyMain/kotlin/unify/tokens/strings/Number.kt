@@ -11,13 +11,7 @@ class NumberStatic : StringTokenStatic() {
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
     class Class(tokenString: String, l: Int, col: Int) : StringTokenClass(tokenString, l, col) {
-        override fun test(items: ItemsStatic.Class<String>): Boolean {
-            return false
-        }
-
-        override fun compare(value: String?): Boolean {
-            return false
-        }
+        override fun test(items: ItemsStatic.Class<String>) = false
 
         override val self = Number
     }

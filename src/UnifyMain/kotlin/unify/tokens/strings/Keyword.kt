@@ -5,7 +5,7 @@ import lib.text.asString
 import unify.tokens.tokens.StringTokenClass
 import unify.tokens.tokens.StringTokenStatic
 
-class KeywordStatic : IdentifierStatic() {
+class KeywordStatic(val value: String = "") : IdentifierStatic() {
 
     var keywords: String = "(infix|prefix|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo)"
 
@@ -20,13 +20,7 @@ class KeywordStatic : IdentifierStatic() {
     }
 
     class Class(tokenString: String, l: Int, col: Int) : IdentifierStatic.Class(tokenString, l, col) {
-        override fun test(items: ItemsStatic.Class<String>): Boolean {
-            return false
-        }
-
-        override fun compare(value: String?): Boolean {
-            return false
-        }
+        override fun test(items: ItemsStatic.Class<String>) = false
 
         override val self = Keyword
 

@@ -21,68 +21,75 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
     operator fun invoke(fileName: String, fileEncoding: String): Class = Class(fileName, fileEncoding)
 
+    val operators = arrayOf(
+            DColon,
+            DoOperator,
+            ElvisOperator,
+            MinusEquals,
+            MlCommentEndOperator,
+            MLCommentOperator,
+            NotEqual,
+            PlusEquals,
+            ReturnOperator,
+            SCommentOperator,
+            TimesEquals
+    )
+    val stringTokens = arrayOf(
+            Keyword,
+            Identifier,
+            Number
+    )
+    val characters = arrayOf(
+            Ampersand,
+            Asterisk,
+            At,
+            BSlash,
+            BTick,
+            Colon,
+            Coma,
+            Dollar,
+            Dot,
+            DQuotes,
+            EOF,
+            Equals,
+            EscapedR,
+            Exclamation,
+            FSlash,
+            GThan,
+            Hash,
+            LBrace,
+            LBracket,
+            LSBracket,
+            LThan,
+            Minus,
+            NewLine,
+            Percent,
+            Pipe,
+            Plus,
+            Question,
+            RBracket,
+            RBrace,
+            RSBracket,
+            SColon,
+            SLine,
+            Space,
+            SQuotes,
+            Tab,
+            UCaret,
+            Underscore
+    )
+
     override val tokenClasses
         get() = arrayOf(
-                * arrayOf(
-                        DColon,
-                        DoOperator,
-                        ElvisOperator,
-                        MinusEquals,
-                        MlCommentEndOperator,
-                        MLCommentOperator,
-                        NotEqual,
-                        PlusEquals,
-                        ReturnOperator,
-                        SCommentOperator,
-                        TimesEquals
-                ),
-                *arrayOf(
-                        Keyword,
-                        Identifier,
-                        Number
-                ),
-                * arrayOf(
-                        Ampersand,
-                        Asterisk,
-                        At,
-                        BSlash,
-                        BTick,
-                        Colon,
-                        Coma,
-                        Dollar,
-                        Dot,
-                        DQuotes,
-                        EOF,
-                        Equals,
-                        EscapedR,
-                        Exclamation,
-                        FSlash,
-                        GThan,
-                        Hash,
-                        LBrace,
-                        LBracket,
-                        LSBracket,
-                        LThan,
-                        Minus,
-                        NewLine,
-                        Percent,
-                        Pipe,
-                        Plus,
-                        Question,
-                        RBracket,
-                        RBrace,
-                        RSBracket,
-                        SColon,
-                        SLine,
-                        Space,
-                        SQuotes,
-                        Tab,
-                        UCaret,
-                        Underscore
-                )
+                *operators,
+                *stringTokens,
+                *characters
         )
 
     class Class(override val fileName: String, override val fileEncoding: String) : LangTokens(Tokens) {
+
+        override val self: TokensStatic = Tokens
+
         override val tokens: Array<out language.tokens.TokenStatic.Class> by lazy {
             var field = arrayOf<language.tokens.TokenStatic.Class>()
 
@@ -109,7 +116,7 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
                                     line += 1
                                 }
                                 isTab(clazz) -> {
-                                    col += 3
+                                    col += this@Class.self.tabSize - 1
                                 }
                                 else -> col += s.length
                             }
@@ -126,7 +133,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
             field
         }
 
-
         override fun isTab(klass: language.tokens.TokenStatic): Boolean = klass is TabStatic
 
         override fun isNewLine(klass: language.tokens.TokenStatic): Boolean = klass is NewLineStatic
@@ -136,8 +142,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
                 printLn(token, token.value)
             }
         }
-
-        fun collect(items: ItemsStatic.Class<Char>, start: Int, end: Int) = items[start..end].toTypedArray().string
 
     }
 
