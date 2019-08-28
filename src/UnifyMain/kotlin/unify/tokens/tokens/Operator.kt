@@ -43,10 +43,6 @@ abstract class OperatorStatic : TokenStatic() {
             return false
         }
 
-        override fun compare(value: String?): Boolean {
-            return false
-        }
-
     }
 }
 

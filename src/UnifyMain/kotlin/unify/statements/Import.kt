@@ -6,5 +6,3 @@ import lib.matcher.items.ItemsStatic
 import unify.tokens.characters.LBracket
 import unify.tokens.strings.IdentifierStatic
 
-
-val Identifier = unify.tokens.strings.Identifier

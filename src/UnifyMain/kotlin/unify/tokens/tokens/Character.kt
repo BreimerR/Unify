@@ -36,8 +36,6 @@ abstract class CharacterStatic : TokenStatic() {
             return char == items.nextItem?.value
         }
 
-        override fun compare(value: String?): Boolean = char == value
-
     }
 }
 

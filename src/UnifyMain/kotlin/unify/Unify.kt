@@ -1,11 +1,13 @@
 package unify
 
 import language.LanguageStatic
+import language.sections.Section
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import lib.matcher.TestableStatic
 import unify.ast.Tokens
 import unify.ast.TokensStatic
+import unify.tokens.strings.Identifier
 
 
 class UnifyStatic : LanguageStatic() {
@@ -29,10 +31,8 @@ fun main(arguments: Array<String>) {
     val unify = Unify(CLIArguments(arguments))
 }
 
-fun parser(tokens: TokensStatic.Class, section: TestableStatic.Class<String>) {
-    if (section parse tokens) {
-
-    } else throw Error("Parse Error found")
+class Function {
+    val sections = Section(Identifier, Section())
 }
 
 
