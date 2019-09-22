@@ -6,7 +6,6 @@ import lib.matcher.TestableStatic
 
 abstract class ItemStatic : TestableStatic() {
 
-
     abstract class Class<T>(open val value: T) : TestableStatic.Class<T>() {
         override fun test(item: T) = false
 

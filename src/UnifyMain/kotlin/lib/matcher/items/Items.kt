@@ -18,7 +18,6 @@ abstract class ItemsStatic : StaticClass() {
 
         var i = 0
 
-
         var currentItem: ItemClass<T>? = null
 
         val nextItem: ItemClass<T>?
@@ -39,7 +38,6 @@ abstract class ItemsStatic : StaticClass() {
             get() {
                 return items.length != 0 && i < items.length
             }
-
 
         operator fun get(index: Int): ItemClass<T> = items[index]
 

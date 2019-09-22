@@ -5,8 +5,6 @@ import language.tokens.TokenStatic
 import lib.matcher.items.ItemsStatic
 import language.tokens.TokenStatic.Class as Token
 
-const val TAG = "TOKEN"
-
 abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
     abstract val tokenClasses: Array<out TokenStatic>

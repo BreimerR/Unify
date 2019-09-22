@@ -4,6 +4,11 @@ import language.LanguageStatic
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
+import unify.sections.*
+import unify.tokens.characters.*
+import unify.tokens.strings.Identifier
+import unify.tokens.strings.Keyword
+import unify.tokens.strings.KeywordStatic
 
 
 class UnifyStatic : LanguageStatic() {
@@ -24,10 +29,22 @@ val Unify = UnifyStatic()
 
 fun main(arguments: Array<String>) {
     // tokens ready
-    val unify = Unify(CLIArguments(arguments))
+    val un = Unify(CLIArguments(arguments))
 
+    val type = Section(
+            LThan,
+            RepetitiveBySectionStatic(Coma, Identifier),
+            GThan
+    )
 
-    // test instances against something
+    val klass = Section(
+            KeywordStatic("class"),
+            OneOrManySection(Space),
+            Identifier,
+            OptionalSection(type)
+    )
+
+    println(klass.test(un.tokens))
 
 }
 

@@ -6,8 +6,12 @@ import lib.matcher.items.ItemsStatic
 
 
 class CharItemStatic : ItemStatic() {
+    override fun test(items: TokensStatic.Class): Boolean {
+        return false
+    }
 
     operator fun invoke(char: Char): Class = Class(char)
+
 
     class Class(char: Char) : ItemStatic.Class<Char>(char) {
 

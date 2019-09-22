@@ -2,6 +2,7 @@ package unify.tokens.tokens
 
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.ast.TokensStatic
 
 
 abstract class OperatorStatic : TokenStatic() {
@@ -35,6 +36,16 @@ abstract class OperatorStatic : TokenStatic() {
         }
 
         return s.isNotEmpty()
+    }
+
+
+    override fun test(items: TokensStatic.Class): Boolean {
+
+        items.nextItem?.let {
+            return it.value == tokenString
+        }
+
+        return false
     }
 
     // operators are key words and thus static no regular expression required

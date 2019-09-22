@@ -1,10 +1,7 @@
 package unify.tokens.tokens
 
 
-import lib.io.FileClass
-import lib.matcher.items.ItemsStatic
 import lib.math.charVal
-import lib.text.chars
 
 class EOFStatic : CharacterStatic() {
     override val char = (-1).charVal

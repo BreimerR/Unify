@@ -5,6 +5,7 @@ import lib.text.asString
 import language.lib.io.FileClass
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.ast.TokensStatic
 
 fun Regex.Companion.char(char: Char): Regex = Regex(char.asString)
 
@@ -21,6 +22,18 @@ abstract class CharacterStatic : TokenStatic() {
         items.nextItem?.let {
             return it.value == char
         }
+        return false
+    }
+
+    override fun test(items: TokensStatic.Class): Boolean {
+        items.nextItem?.let {
+
+            val string = it.value
+
+            return string.length == 1 && string[0] == char
+
+        }
+
         return false
     }
 
