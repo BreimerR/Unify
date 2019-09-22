@@ -12,6 +12,9 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
     abstract val tokenClasses: Array<out TokenStatic>
 
     abstract class Class(override val self: TokensStatic<out Token>) : ItemsStatic.Class<String>() {
+
+        override val items get() = tokens
+
         abstract val fileName: String
 
         abstract val fileEncoding: String

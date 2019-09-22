@@ -7,15 +7,16 @@ import lib.matcher.sections.NotSectionStatic.Class as NotSectionClass
 
 class NotSectionStatic : LNotSectionStatic<String>() {
     override fun invoke(vararg items: TestableStatic.Class<String>, name: String?): Class {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return Class(*items, name = name)
     }
 
-    class Class(vararg items: TestableStatic.Class<String>, name: String? = null, self: NotSectionStatic) :
-            NotSectionClass<String>(*items, name = name, self = self)
+    class Class(vararg items: TestableStatic.Class<String>, name: String? = null) :
+            NotSectionClass<String>(*items, name = name, self = NotSection)
 
 }
 
 
+val NotSection = NotSectionStatic()
 
 
 

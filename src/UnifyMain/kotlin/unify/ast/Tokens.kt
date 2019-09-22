@@ -21,70 +21,78 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
     operator fun invoke(fileName: String, fileEncoding: String): Class = Class(fileName, fileEncoding)
 
-    val operators = arrayOf(
-            DColon,
-            DoOperator,
-            ElvisOperator,
-            MinusEquals,
-            MlCommentEndOperator,
-            MLCommentOperator,
-            NotEqual,
-            PlusEquals,
-            ReturnOperator,
-            SCommentOperator,
-            TimesEquals
-    )
-    val stringTokens = arrayOf(
-            Keyword,
-            Identifier,
-            Number
-    )
-    val characters = arrayOf(
-            Ampersand,
-            Asterisk,
-            At,
-            BSlash,
-            BTick,
-            Colon,
-            Coma,
-            Dollar,
-            Dot,
-            DQuotes,
-            EOF,
-            Equals,
-            EscapedR,
-            Exclamation,
-            FSlash,
-            GThan,
-            Hash,
-            LBrace,
-            LBracket,
-            LSBracket,
-            LThan,
-            Minus,
-            NewLine,
-            Percent,
-            Pipe,
-            Plus,
-            Question,
-            RBracket,
-            RBrace,
-            RSBracket,
-            SColon,
-            SLine,
-            Space,
-            SQuotes,
-            Tab,
-            UCaret,
-            Underscore
-    )
+    val operators by lazy {
+        arrayOf(
+                DColon,
+                DoOperator,
+                ElvisOperator,
+                MinusEquals,
+                MlCommentEndOperator,
+                MLCommentOperator,
+                NotEqual,
+                PlusEquals,
+                ReturnOperator,
+                SCommentOperator,
+                TimesEquals
+        )
+    }
+    val stringTokens by lazy {
+        arrayOf(
+                Keyword,
+                Identifier,
+                Number
+        )
+    }
+    val characters by lazy {
+        arrayOf(
+                Ampersand,
+                Asterisk,
+                At,
+                BSlash,
+                BTick,
+                Colon,
+                Coma,
+                Dollar,
+                Dot,
+                DQuotes,
+                EOF,
+                Equals,
+                EscapedR,
+                Exclamation,
+                FSlash,
+                GThan,
+                Hash,
+                LBrace,
+                LBracket,
+                LSBracket,
+                LThan,
+                Minus,
+                NewLine,
+                Percent,
+                Pipe,
+                Plus,
+                Question,
+                RBracket,
+                RBrace,
+                RSBracket,
+                SColon,
+                SLine,
+                Space,
+                SQuotes,
+                Tab,
+                UCaret,
+                Underscore
+        )
+    }
 
-    override val tokenClasses
-        get() = arrayOf(
+    override val tokenClasses by lazy {
+        arrayOf(
                 *operators,
                 *stringTokens,
                 *characters
         )
+    }
+
 
     class Class(override val fileName: String, override val fileEncoding: String) : LangTokens(Tokens) {
 
@@ -97,38 +105,44 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
             var line = 1
 
             File.open(fileName) {
+
                 val items = Characters(chars)
 
                 var i = 0
 
-                while (items.hasRemItems) {
+                fWhile@ while (items.hasRemItems) {
+
                     var tk: language.tokens.TokenStatic.Class? = null
 
-                    fLoop@ for (clazz in this@Class.self.tokenClasses) {
-                        if (clazz test items) {
-                            val s = items[i..items.i].toTypedArray().string
-                            tk = clazz(s, line, col)
-                            i = items.i
-                            field += tk
-                            when {
-                                isNewLine(clazz) -> {
-                                    col = 1
-                                    line += 1
-                                }
-                                isTab(clazz) -> {
-                                    col += this@Class.self.tabSize - 1
-                                }
-                                else -> col += s.length
-                            }
 
-                            break@fLoop
-                        } else items.i = i
+                    fLoop@ for (clazz in this@Class.self.tokenClasses) {
+                        @Suppress("SENSELESS_COMPARISON")
+                        if (clazz != null) {
+                            if (clazz test items) {
+
+                                val s = items[i..items.i].toTypedArray().string
+                                tk = clazz(s, line, col)
+                                i = items.i
+                                field += tk
+                                when {
+                                    isNewLine(clazz) -> {
+                                        col = 1
+                                        line += 1
+                                    }
+                                    isTab(clazz) -> {
+                                        col += this@Class.self.tabSize - 1
+                                    }
+                                    else -> col += s.length
+                                }
+
+                                break@fLoop
+                            } else items.i = i
+                        } else throw Error("Malformed token class")
                     }
 
                     if (tk == null) throw Error("NO token found")
                 }
             }
-
 
             field
         }

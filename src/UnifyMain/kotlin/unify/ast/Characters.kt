@@ -16,11 +16,6 @@ class CharItemStatic : ItemStatic() {
         override fun test(items: ItemsStatic.Class<Char>): Boolean {
             return false
         }
-
-        override fun compare(value: Char?): Boolean {
-            return false
-        }
-
     }
 }
 

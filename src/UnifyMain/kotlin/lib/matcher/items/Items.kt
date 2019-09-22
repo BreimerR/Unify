@@ -10,7 +10,9 @@ import lib.matcher.items.ItemStatic.Class as ItemClass
 
 abstract class ItemsStatic : StaticClass() {
 
-    abstract class Class<T>(open val items: Array<out ItemClass<T>>) : SClass<ItemsStatic>() {
+    abstract class Class<T>(items: Array<out ItemClass<T>>) : SClass<ItemsStatic>() {
+
+        abstract val items: Array<out ItemClass<T>>
 
         constructor(vararg items: ItemClass<T>) : this(items)
 
@@ -34,7 +36,7 @@ abstract class ItemsStatic : StaticClass() {
             }
 
         val hasRemItems: Boolean
-            get () {
+            get() {
                 return items.length != 0 && i < items.length
             }
 
