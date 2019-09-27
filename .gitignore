@@ -1,4 +1,5 @@
 .idea
 build
-/.gradle/
-/src/helpers/venv/
+
+
+/src/helpers/

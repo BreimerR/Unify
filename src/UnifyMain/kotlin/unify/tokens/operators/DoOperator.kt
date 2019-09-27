@@ -1,17 +1,17 @@
+
 package unify.tokens.operators
 
-import unify.tokens.tokens.OperatorClass
 import unify.tokens.tokens.OperatorStatic
 
+
+val DoOperator = DoOperatorStatic()
+
+
 class DoOperatorStatic : OperatorStatic() {
-    override fun invoke(tokenString: String, l: Int, col: Int): DoOperatorClass = DoOperatorClass(tokenString, l, col)
 
     override var tokenString: String = "->"
 
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class DoOperatorClass(tokenString: String, l: Int, col: Int) : OperatorClass(tokenString, l, col) {
-    override val self = DoOperator
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,DoOperator) 
 }
-
-val DoOperator = DoOperatorStatic()

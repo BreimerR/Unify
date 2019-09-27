@@ -1,21 +1,17 @@
+
 package unify.tokens.operators
 
-
-import unify.tokens.tokens.OperatorClass
 import unify.tokens.tokens.OperatorStatic
+
+
+val ReturnOperator = ReturnOperatorStatic()
 
 
 class ReturnOperatorStatic : OperatorStatic() {
 
     override var tokenString: String = "=>"
 
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-    override fun invoke(tokenString: String, l: Int, col: Int): ReturnOperatorClass = ReturnOperatorClass(tokenString, l, col)
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,ReturnOperator) 
 }
-
-
-class ReturnOperatorClass(tokenString: String, l: Int, col: Int) : OperatorClass(tokenString, l, col) {
-    override val self = ReturnOperator
-}
-
-val ReturnOperator = ReturnOperatorStatic()

@@ -1,17 +1,17 @@
+
 package unify.tokens.operators
 
-import unify.tokens.tokens.OperatorClass
 import unify.tokens.tokens.OperatorStatic
+
+
+val TimesEquals = TimesEqualsStatic()
+
 
 class TimesEqualsStatic : OperatorStatic() {
 
     override var tokenString: String = "*="
 
-    override fun invoke(tokenString: String, l: Int, col: Int): TimesEqualsClass = TimesEqualsClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class TimesEqualsClass(tokenString: String, l: Int, col: Int) : OperatorClass(tokenString, l, col) {
-    override val self = TimesEquals
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,TimesEquals) 
 }
-
-val TimesEquals = TimesEqualsStatic()

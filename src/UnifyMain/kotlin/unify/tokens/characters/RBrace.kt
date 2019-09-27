@@ -1,17 +1,17 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
-import unify.tokens.tokens.CharacterStatic
 
+import unify.tokens.tokens.CharacterStatic
 
 val RBrace = RBraceStatic()
 
+
 class RBraceStatic : CharacterStatic() {
+
     override val char = '}'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): RBraceClass = RBraceClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class RBraceClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = RBrace
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, RBrace)
 }

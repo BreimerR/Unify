@@ -1,17 +1,17 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
+
+val LBrace = LBraceStatic()
+
 
 class LBraceStatic : CharacterStatic() {
 
     override val char = '{'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): LBRaceClass = LBRaceClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class LBRaceClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = LBrace
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, LBrace)
 }
-
-val LBrace = LBraceStatic()

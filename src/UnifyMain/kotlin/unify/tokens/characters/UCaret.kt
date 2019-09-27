@@ -1,7 +1,7 @@
+
 package unify.tokens.characters
 
 
-import unify.tokens.tokens.CharacterClass
 import unify.tokens.tokens.CharacterStatic
 
 val UCaret = UCaretStatic()
@@ -11,10 +11,7 @@ class UCaretStatic : CharacterStatic() {
 
     override val char = '^'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): UCaretClass = UCaretClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-
-class UCaretClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = UCaret
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, UCaret)
 }

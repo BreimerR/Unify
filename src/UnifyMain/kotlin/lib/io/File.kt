@@ -16,20 +16,26 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
     override val self = File
 
     var start = 0
+    val seek
+        get() = SEEK_CUR
+
     var end = SEEK_END
     var i = 0
 
     var file: CPointer<FILE>? = null
 
+    var currentChar: Char? = null
+
     val nextChar: Char
-        get () {
-            val char = fgetc(file).charVal
+        get() {
+            currentChar = fgetc(file).charVal
             // update current char index
+
+            if (currentChar == (-1).charVal) atEnd = true
+
             i += 1
 
-            if (char == (-1).charVal) atEnd = true
-
-            return char
+            return currentChar!!
         }
 
     val prevChar: Char
@@ -37,7 +43,6 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
             fseek(file, -1, i)
             val char = fgetc(file).charVal
             fseek(file, 1, SEEK_SET)
-            atEnd = false
             return char
         }
 
@@ -49,7 +54,6 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
 
     fun open(mode: String = "r") {
         file = fopen(fullFilePathWithExtension, mode)
-
         if (file == null) throw FileError("File $fullFilePathWithExtension does not exist")
     }
 
@@ -80,12 +84,6 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
     // SEEK_SET = beginning of the file
     fun moveCursor(to: Int, from: Int = i) {
         fseek(file, from.long, to)
-
-        if (atEnd) {
-            if (to < i) {
-                atEnd = false
-            }
-        }
 
         i = to
     }
@@ -132,15 +130,25 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
         }
 
     override fun toString(): String {
-        var content = ""
+        return chars.string
+    }
 
-        while (!atEnd) {
-            content += nextChar
+
+    val chars: Array<Char>
+        get() {
+            var f = arrayOf<Char>()
+
+            while (!atEnd) f += nextChar
+
+            return f
         }
 
-        return content;
-    }
 }
 
+
+val Array<Char>.string: String
+    get() {
+        return this.joinToString("")
+    }
 
 val File = FileStatic()

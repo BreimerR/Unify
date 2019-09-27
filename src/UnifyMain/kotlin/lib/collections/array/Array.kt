@@ -59,4 +59,10 @@ operator fun <T> Array<T>.minusAssign(i: Int) {
     minus(i)
 }
 
+operator fun <T> Array<T>.get(intRange: IntRange): List<T> {
+    return intRange.map {
+        this[it]
+    }
+}
+
 fun <T> Array<T>.pop(): Array<T> = minus(1)

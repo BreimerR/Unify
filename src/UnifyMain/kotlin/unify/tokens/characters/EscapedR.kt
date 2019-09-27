@@ -1,19 +1,17 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
 
 import unify.tokens.tokens.CharacterStatic
 
+val EscapedR = EscapedRStatic()
+
 
 class EscapedRStatic : CharacterStatic() {
+
     override val char = '\r'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): EscapedRClass = EscapedRClass(tokenString, l, col)
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
+
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, EscapedR)
 }
-
-
-class EscapedRClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = EscapedR
-}
-
-val EscapedR = EscapedRStatic()

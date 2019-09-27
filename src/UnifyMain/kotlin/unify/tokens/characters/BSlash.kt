@@ -1,20 +1,17 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
+
+val BSlash = BSlashStatic()
 
 
 class BSlashStatic : CharacterStatic() {
-    override val char = '\\'
 
+    override val char = '/'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): CharacterClass = BSlashClass(tokenString, l, col)
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
+
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, BSlash)
 }
-
-
-class BSlashClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString,l,col){
-    override val self = BSlash
-}
-
-
-val BSlash =  BSlashStatic()

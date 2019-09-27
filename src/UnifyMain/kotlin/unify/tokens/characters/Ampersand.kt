@@ -1,19 +1,19 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
+import lib.matcher.items.ItemsStatic
 import unify.tokens.tokens.CharacterStatic
 
+val Ampersand = AmpersandStatic()
+
+
 class AmpersandStatic : CharacterStatic() {
-    override fun invoke(tokenString: String, l: Int, col: Int): AmpersandClass {
-        return AmpersandClass(tokenString, l, col)
-    }
+
 
     override val char = '&'
+
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
+
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, Ampersand)
 }
-
-class AmpersandClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = Ampersand
-}
-
-
-var Ampersand = AmpersandStatic()

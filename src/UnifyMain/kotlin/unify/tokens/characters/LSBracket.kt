@@ -1,6 +1,7 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
 
 val LSBracket = LSBracketStatic()
@@ -10,9 +11,7 @@ class LSBracketStatic : CharacterStatic() {
 
     override val char = '['
 
-    override fun invoke(tokenString: String, l: Int, col: Int): LSBracketClass = LSBracketClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class LSBracketClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = LSBracket
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, LSBracket)
 }

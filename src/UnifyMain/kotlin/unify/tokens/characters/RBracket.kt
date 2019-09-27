@@ -1,6 +1,7 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
 
 val RBracket = RBracketStatic()
@@ -10,9 +11,7 @@ class RBracketStatic : CharacterStatic() {
 
     override val char = ')'
 
-    override fun invoke(tokenString: String, l: Int, col: Int): RBracketClass = RBracketClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class RBracketClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = RBracket
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, RBracket)
 }

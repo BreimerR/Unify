@@ -1,14 +1,15 @@
 package language
 
-import language.ast.TokensClass
-import lib.oop.classes.Class
+
+import lib.oop.classes.Class as SClass
+import language.ast.TokensStatic
 import lib.oop.classes.StaticClass
 
-abstract class LanguageStatic : StaticClass()
+abstract class LanguageStatic : StaticClass() {
 
-
-abstract class LanguageClass : Class<LanguageStatic>() {
-    abstract val tokens: TokensClass
-
-
+    abstract class Class : SClass<LanguageStatic>() {
+        abstract val tokens: TokensStatic.Class
+    }
 }
+
+

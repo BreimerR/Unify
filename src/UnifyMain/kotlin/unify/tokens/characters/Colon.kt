@@ -1,17 +1,17 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
 
+val Colon = ColonStatic()
+
+
 class ColonStatic : CharacterStatic() {
-    override fun invoke(tokenString: String, l: Int, col: Int): ColonClass = ColonClass(tokenString, l, col)
 
     override val char = ':'
+
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
+
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, Colon)
 }
-
-class ColonClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = Colon
-}
-
-
-val Colon = ColonStatic()

@@ -1,18 +1,17 @@
+
 package unify.tokens.operators
 
-import unify.tokens.tokens.OperatorClass
 import unify.tokens.tokens.OperatorStatic
+
+
+val SCommentOperator = SCommentOperatorStatic()
 
 
 class SCommentOperatorStatic : OperatorStatic() {
 
     override var tokenString: String = "//"
 
-    override fun invoke(tokenString: String, l: Int, col: Int): SCommentOperatorClass = SCommentOperatorClass(tokenString, l, col)
-}
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-class SCommentOperatorClass(tokenString: String, l: Int, col: Int) : OperatorClass(tokenString, l, col) {
-    override val self = SCommentOperator
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,SCommentOperator) 
 }
-
-val SCommentOperator = SCommentOperatorStatic()

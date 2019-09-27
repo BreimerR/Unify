@@ -1,6 +1,7 @@
+
 package unify.tokens.characters
 
-import unify.tokens.tokens.CharacterClass
+
 import unify.tokens.tokens.CharacterStatic
 
 val Pipe = PipeStatic()
@@ -10,10 +11,7 @@ class PipeStatic : CharacterStatic() {
 
     override val char = '|'
 
+    override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-    override fun invoke(tokenString: String, l: Int, col: Int): PipeClass = PipeClass(tokenString, l, col)
-}
-
-class PipeClass(tokenString: String, l: Int, col: Int) : CharacterClass(tokenString, l, col) {
-    override val self = Pipe
+    class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, Pipe)
 }
