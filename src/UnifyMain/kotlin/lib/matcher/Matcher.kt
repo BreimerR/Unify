@@ -1,7 +1,8 @@
 package lib.matcher
 
 
-import lib.matcher.sections.SectionStatic
+import lib.matcher.items.ItemsStatic
+import lib.matcher.sections.Section
 import lib.oop.classes.StaticClass
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 import lib.matcher.TestableStatic.Class as TestableClass
@@ -9,13 +10,12 @@ import lib.matcher.TestableStatic.Class as TestableClass
 // A standard way to results for a particular search
 // Searches must be type sensitive i.e regex searcher can not be used to generate
 // tokens parser
-abstract class MatcherStatic<in T> : StaticClass() {
+abstract class MatcherStatic<out T> : StaticClass() {
 
-    // TODO TestableClass<T>
-    // secure comparison requirements of the library.
-    abstract class Class<T>(vararg val sections: TestableClass<T>) : lib.oop.classes.Class<MatcherStatic<T>>() {
 
-        lateinit var items: ItemsClass<T>
+    abstract class Class<T>(vararg val sections: TestableStatic<T>) : lib.oop.classes.Class<MatcherStatic<T>>() {
+
+        lateinit var items: ItemsStatic.Class<T>
 
         var results: Array<List<T>>? = null
             get() {
@@ -41,7 +41,7 @@ abstract class MatcherStatic<in T> : StaticClass() {
          *      // unnamed search
          *      2:"some mor"
          * }*/
-        infix fun test(items: ItemsClass<T>): Boolean {
+        infix fun test(items: ItemsStatic.Class<T>): Boolean {
 
             this.items = items
 
@@ -50,7 +50,7 @@ abstract class MatcherStatic<in T> : StaticClass() {
             sections.forEach { section ->
                 sI = items.i
                 if (section test items) {
-                    ranges += section.collect(sI,items)
+                    ranges += section.collect(sI, items)
                 } else return false
             }
 
@@ -59,9 +59,9 @@ abstract class MatcherStatic<in T> : StaticClass() {
             return true
         }
 
-        protected open fun collect(sI: Int, section: TestableStatic.Class<T>) {
+        protected open fun collect(sI: Int, section: TestableStatic<T>) {
             when (section) {
-                is SectionStatic.Class<T> -> {
+                is Section -> {
                     ranges += section.ranges
                 }
                 else -> ranges += null to sI..items.i

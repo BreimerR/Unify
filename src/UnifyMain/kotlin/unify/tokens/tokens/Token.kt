@@ -7,6 +7,7 @@ import language.tokens.TokenStatic  as LTokenStatic
 import language.tokens.TokenStatic.Class as LTokenClass
 
 abstract class TokenStatic : LTokenStatic() {
+
     abstract override operator fun invoke(tokenString: String, l: Int, col: Int): Class
 
     abstract val regex: Regex
@@ -56,7 +57,6 @@ abstract class TokenStatic : LTokenStatic() {
 
         return s.isNotEmpty()
     }
-
 
     abstract class Class(tkString: String, override val l: Int, override val col: Int) :
             LTokenClass(tkString, l, col)

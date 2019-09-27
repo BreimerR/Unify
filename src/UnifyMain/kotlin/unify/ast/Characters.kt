@@ -5,10 +5,15 @@ import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 
 
-class CharItemStatic : ItemStatic() {
-    override fun test(items: TokensStatic.Class): Boolean {
+class CharItemStatic : ItemStatic<Char>() {
+    override fun collect(sI: Int, items: ItemsStatic.Class<Char>): Array<Pair<String?, IntRange>> {
+        TODO("Implement collect: Characters.kt")
+    }
+
+    override fun test(items: ItemsStatic.Class<Char>): Boolean {
         return false
     }
+
 
     operator fun invoke(char: Char): Class = Class(char)
 
@@ -17,9 +22,6 @@ class CharItemStatic : ItemStatic() {
 
         override val self = CharItem
 
-        override fun test(items: ItemsStatic.Class<Char>): Boolean {
-            return false
-        }
     }
 }
 

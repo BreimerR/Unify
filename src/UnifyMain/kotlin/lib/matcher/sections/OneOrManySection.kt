@@ -1,13 +1,11 @@
 package lib.matcher.sections
 
 import lib.matcher.TestableStatic
+import kotlin.math.max
 
-abstract class OneOrManySectionStatic<T>(minCount: Int = 1) : RepetitiveSectionStatic<T>(minCount = minCount) {
-
-    abstract override fun invoke(vararg items: TestableStatic.Class<T>, name: String?): Class<T>
-
-    abstract fun invoke(item: TestableStatic.Class<T>, name: String?, maxCount: Int = this.maxCount): Class<T>
-
-    open class Class<T>(vararg section: TestableStatic.Class<T>, name: String?, self: OneOrManySectionStatic<T>, maxCount: Int = 10000) :
-            RepetitiveSectionStatic.Class<T>(*section, name = name, minCount = self.minCount, maxCount = maxCount, self = self)
-}
+class OneOrManySection<T>(
+        vararg sections: TestableStatic<T>,
+        name: String? = null,
+        minCount: Int = 1,
+        maxCount: Int = 50000) :
+        RepetitiveSection<T>(*sections, name = name, minCount = minCount, maxCount = maxCount)

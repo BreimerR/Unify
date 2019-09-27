@@ -25,7 +25,7 @@ abstract class CharacterStatic : TokenStatic() {
         return false
     }
 
-    override fun test(items: TokensStatic.Class): Boolean {
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
         items.nextItem?.let {
 
             val string = it.value
@@ -43,12 +43,7 @@ abstract class CharacterStatic : TokenStatic() {
             open val char: String,
             override val l: Int,
             override val col: Int,
-            override val self: TestableStatic) :
-            TokenStatic.Class(char, l, col) {
-        override fun test(items: ItemsStatic.Class<String>): Boolean {
-            return char == items.nextItem?.value
-        }
-
-    }
+            override val self: TestableStatic<String>) :
+            TokenStatic.Class(char, l, col)
 }
 

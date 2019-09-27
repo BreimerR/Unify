@@ -3,44 +3,26 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 
 
-abstract class RepetitiveBySectionStatic<T> : SectionStatic<T>() {
-    abstract val Repetitive: RepetitiveSectionStatic<T>
+class RepetitiveBySection<T> : Section<T> {
 
-    abstract operator fun invoke(section: TestableStatic.Class<T>,
-                                 by: TestableStatic.Class<T>,
-                                 name: String?, maxCount: Int): Class<T>
+    constructor(
+            section: TestableStatic<T>,
+            by: TestableStatic<T>,
+            name: String? = null) :
+            super(section, RepetitiveSection(by, section), name = name)
 
+    constructor(
+            section: TestableStatic<T>,
+            by: TestableStatic<T>,
+            name: String? = null,
+            maxCount: Int) :
+            super(section, RepetitiveSection(by, section, maxCount = maxCount), name = name)
 
-    abstract operator fun invoke(section: TestableStatic.Class<T>,
-                                 by: TestableStatic.Class<T>,
-                                 name: String?, minCount: Int, maxCount: Int): Class<T>
-
-    abstract override operator fun invoke(vararg items: TestableStatic.Class<T>, name: String?): Class<T>
-
-
-    abstract class Class<T> :
-            SectionStatic.Class<T> {
-        constructor(
-                section: TestableStatic.Class<T>,
-                by: TestableStatic.Class<T>,
-                name: String?,
-                self: RepetitiveBySectionStatic<T>) : super(section, self.Repetitive(by, section), name = name, self = self)
-
-        constructor(
-                section: TestableStatic.Class<T>,
-                by: TestableStatic.Class<T>,
-                name: String?,
-                maxCount: Int,
-                self: RepetitiveBySectionStatic<T>) :
-                super(section, self.Repetitive(by, section, maxCount = maxCount), name = name, self = self)
-
-        constructor(
-                section: TestableStatic.Class<T>,
-                by: TestableStatic.Class<T>,
-                name: String?,
-                minCount: Int,
-                maxCount: Int,
-                self: RepetitiveBySectionStatic<T>) :
-                super(section, self.Repetitive(by, section, minCount = minCount, maxCount = maxCount), name = name, self = self)
-    }
+    constructor(
+            section: TestableStatic<T>,
+            by: TestableStatic<T>,
+            name: String? = null,
+            minCount: Int,
+            maxCount: Int) :
+            super(section, RepetitiveSection(by, section, minCount = minCount, maxCount = maxCount), name = name)
 }

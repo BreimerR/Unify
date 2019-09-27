@@ -39,9 +39,10 @@ abstract class OperatorStatic : TokenStatic() {
     }
 
 
-    override fun test(items: TokensStatic.Class): Boolean {
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
 
         items.nextItem?.let {
+
             return it.value == tokenString
         }
 
@@ -49,12 +50,9 @@ abstract class OperatorStatic : TokenStatic() {
     }
 
     // operators are key words and thus static no regular expression required
-    abstract class Class(tokenString: String, l: Int, col: Int, override val self: TestableStatic) : TokenStatic.Class(tokenString, l, col) {
-        override fun test(items: ItemsStatic.Class<String>): Boolean {
-            return false
-        }
+    abstract class Class(tokenString: String, l: Int, col: Int, override val self: TestableStatic<String>) :
+            TokenStatic.Class(tokenString, l, col)
 
-    }
 }
 
 fun printLn(vararg message: Any?) = println(message.joinToString("\t"))

@@ -4,10 +4,9 @@ import language.LanguageStatic
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
-import unify.sections.*
+import lib.matcher.sections.*
 import unify.tokens.characters.*
 import unify.tokens.strings.Identifier
-import unify.tokens.strings.Keyword
 import unify.tokens.strings.KeywordStatic
 
 
@@ -33,7 +32,7 @@ fun main(arguments: Array<String>) {
 
     val type = Section(
             LThan,
-            RepetitiveBySectionStatic(Coma, Identifier),
+            RepetitiveBySection(Coma, Identifier),
             GThan
     )
 
@@ -45,6 +44,7 @@ fun main(arguments: Array<String>) {
     )
 
     println(klass.test(un.tokens))
+
 
 }
 

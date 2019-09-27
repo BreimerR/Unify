@@ -11,7 +11,7 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
     var keywords: String = "(infix|prefix|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo)"
 
 
-    override fun test(items: TokensStatic.Class): Boolean {
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
         val test = super.test(items)
 
         if (test) {
@@ -36,12 +36,7 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
     }
 
     class Class(tokenString: String, l: Int, col: Int) : IdentifierStatic.Class(tokenString, l, col) {
-        override fun test(items: ItemsStatic.Class<String>) = false
-
         override val self = Keyword
-
-        infix fun iS(string: String) = value == string
-
     }
 
 }

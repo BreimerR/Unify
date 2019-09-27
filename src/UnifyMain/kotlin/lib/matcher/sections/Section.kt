@@ -14,92 +14,65 @@ import lib.matcher.items.ItemsStatic
 import lib.matcher.items.ItemStatic.Class as ItemClass
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-abstract class SectionStatic<T> : TestableStatic() {
+open class Section<T>(vararg val sections: TestableStatic<T>, val name: String? = null) : TestableStatic<T>() {
 
-    abstract operator fun invoke(vararg items: TestableStatic.Class<T>, name: String? = null): Class<T>
+    var sI: Int = 0
 
-    abstract class Class<T>(
-            vararg sectionItems: TestableStatic.Class<T>,
-            open val name: String? = null,
-            override val self: lib.matcher.sections.SectionStatic<T>
+    lateinit var items: ItemsClass<T>
 
-    ) : TestableStatic.Class<T>() {
+    var eI: Int? = null
 
-        lateinit var items: ItemsClass<T>
+    private var obtained: Array<Pair<String?, Array<ItemClass<T>>>>? = null
 
-        var sI = 0
-
-        var eI: Int? = null
-
-        private var obtained: Array<Pair<String?, Array<ItemClass<T>>>>? = null
-
-        // name type range
-        open var ranges = arrayOf<Pair<String?, IntRange>>()
+    // name type range
+    var ranges = arrayOf<Pair<String?, IntRange>>()
 
 
-        protected val sections = sectionItems
-
-        override fun test(item: T): Boolean {
-            return item == items.nextItem?.value
-        }
-
-        override infix fun test(items: ItemsClass<T>): Boolean {
-            this.items = items
-
-            val i = items.i
-
-            for (section in sections) {
-                sI = items.i
-
-                if (section test items) {
-                    if (section is Class<T>) {
-                        val sR = section.ranges
-                        collect(section.ranges)
-
-                        var t = true
-
-                        if (section is OptionalSectionStatic.Class<T>) t = section.test
-
-                        if (t) collect(sR.first().second.first, sR.last().second.last, section.name)
-
-                    } else collect(items, sI)
-                } else return false
-            }
-
-            collect(items, i, name)
-
-            return true
-        }
-
-        // Collecting
-        fun collect() {
-
-        }
-        override fun collect(sI: Int, items: ItemsStatic.Class<T>): Array<Pair<String?, IntRange>> {
-            return ranges
-        }
-
-        open fun collect(items: ItemsStatic.Class<T>, i: Int, name: String? = null) {
-            collect(i, items.i, name)
-        }
-
-        fun collect(ranges: Array<Pair<String?, IntRange>>) {
-            this.ranges += ranges
-        }
-
-        open fun collect(start: Int, end: Int, name: String? = null) {
-            ranges += name to start..end
-        }
-
-        fun test(test: TestableStatic.Class<T>, case: ItemsStatic.Class<T>): Boolean {
-            return test test case
-        }
-
+    fun collect(start: Int, end: Int, name: String? = null) {
+        ranges += name to start..end
     }
-}
 
-/**@description
- * @param sectionItems  this are the haystacks that want to get from an item order
- * @param name:String? = null this is the name that we can use to infer a specific
- * section of a pattern from the matched items
- * */
+
+    override infix fun test(items: ItemsStatic.Class<T>): Boolean {
+
+        this.items = items
+
+        val i = items.i
+
+        for (section in sections) {
+            sI = items.i
+
+            if (section test items) {
+                if (section is Section<T>) {
+                    val sR = section.ranges
+
+                    collect(section.ranges)
+
+                    var t = true
+
+                    if (section is OptionalSection<T>) t = section.test
+
+                    if (t) collect(sR.first().second.first, sR.last().second.last, section.name)
+
+                } else collect(items, sI)
+            } else return false
+        }
+
+        collect(items, i, name)
+
+        return true
+    }
+
+    override fun collect(sI: Int, items: ItemsStatic.Class<T>): Array<Pair<String?, IntRange>> {
+        return ranges
+    }
+
+    open fun collect(items: ItemsStatic.Class<T>, i: Int, name: String? = null) {
+        collect(i, items.i, name)
+    }
+
+    fun collect(ranges: Array<Pair<String?, IntRange>>) {
+        this.ranges += ranges
+    }
+
+}

@@ -4,28 +4,20 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-abstract class ZeroOrManySectionStatic<T> : RepetitiveSectionStatic<T>() {
+class ZeroOrManySectionStatic<T> : RepetitiveSection<T> {
 
-    abstract fun invoke(vararg items: TestableStatic.Class<T>, name: String?, maxCount: Int = this.maxCount): Class<T>
+    constructor(vararg section: TestableStatic<T>)
+            : super(*section, minCount = 0)
 
-    abstract override fun invoke(vararg items: TestableStatic.Class<T>, name: String?): Class<T>
+    constructor(vararg sections: TestableStatic<T>, name: String? = null, maxCount: Int)
+            : super(*sections, name = name, minCount = 0, maxCount = maxCount)
 
-    abstract fun invoke(item: TestableStatic.Class<T>, name: String?, maxCount: Int = this.maxCount): Class<T>
+    override fun test(items: ItemsClass<T>): Boolean {
+        val i = items.i
 
-    abstract override operator fun invoke(item: TestableStatic.Class<T>, name: String?, minCount: Int, maxCount: Int): Class<T>
+        if (!super.test(items)) items.i = i
 
-    abstract override operator fun invoke(vararg item: TestableStatic.Class<T>, name: String?, minCount: Int, maxCount: Int): Class<T>
-
-
-    abstract class Class<T>(vararg section: TestableStatic.Class<T>, name: String?, maxCount: Int, self: ZeroOrManySectionStatic<T>) :
-            RepetitiveSectionStatic.Class<T>(*section, name = name, minCount = 0, maxCount = maxCount, self = self) {
-
-        override fun test(items: ItemsClass<T>): Boolean {
-            val i = items.i
-
-            if (!super.test(items)) items.i = i
-
-            return true
-        }
+        return true
     }
+
 }
