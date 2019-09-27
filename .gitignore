@@ -1,5 +1,5 @@
-.idea
-build
-
-
 /src/helpers/
+/.gradle/
+/.idea/
+/build/
+/gradle/
