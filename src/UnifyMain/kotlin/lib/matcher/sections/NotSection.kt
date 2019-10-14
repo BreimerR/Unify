@@ -1,6 +1,5 @@
 package lib.matcher.sections
 
-
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 

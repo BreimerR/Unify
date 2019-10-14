@@ -1,13 +1,14 @@
-package unify.parsers
+package unify.parsers.expressions
 
 import language.parsers.Parser
 import lib.matcher.sections.AlternativeSection
-import unify.tokens.strings.Identifier
+import unify.parsers.NumberParser
+import unify.parsers.ReferenceParser
 
 class ExpressionParser : Parser(
         AlternativeSection(
                 NumberParser(),
-                Identifier
+                ReferenceParser()
         ),
         name = "EXPRESSION"
 ) {

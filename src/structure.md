@@ -174,3 +174,39 @@ gender = "Breimer"
 
 ```
 
+
+## Class 
+
+```Unify
+class Foo{
+
+}
+```
+
+### Internal Classes
+
+```Unify
+class Foo{
+    class Bar{
+
+    }
+}
+```
+
+#### Internal instance classes
+Feature not well organised but to be looked into 
+
+```Unify
+class User{
+    
+    instance class Gun{
+           
+    }
+}
+
+user = new User()
+
+new user.Gun()
+
+
+```
