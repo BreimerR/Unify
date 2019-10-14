@@ -9,12 +9,13 @@ package lib.matcher.sections
  * could be out there
  * repetitive section one or many should extend here and also zero or many should extend from here
  * */
+import lib.collections.array.length
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 import lib.matcher.items.ItemStatic.Class as ItemClass
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-open class Section<T>(vararg val sections: TestableStatic<T>, val name: String? = null) : TestableStatic<T>() {
+open class Section<T>(open vararg val sections: TestableStatic<T>, val name: String? = null) : TestableStatic<T>() {
 
     var sI: Int = 0
 
@@ -30,6 +31,8 @@ open class Section<T>(vararg val sections: TestableStatic<T>, val name: String? 
 
     fun collect(start: Int, end: Int, name: String? = null) {
         ranges += name to start..end
+
+        items.i = end
     }
 
 
@@ -39,28 +42,29 @@ open class Section<T>(vararg val sections: TestableStatic<T>, val name: String? 
 
         val i = items.i
 
-        for (section in sections) {
-            sI = items.i
 
-            if (section test items) {
-                if (section is Section<T>) {
-                    val sR = section.ranges
+        return if (sections.length > 0) {
+            for (section in sections) {
+                sI = items.i
 
-                    collect(section.ranges)
+                if (section test items) {
+                    if (section is Section<T>) {
+                        val sR = section.ranges
 
-                    var t = true
+                        // collect(section.ranges)
 
-                    if (section is OptionalSection<T>) t = section.test
+                        var t = true
 
-                    if (t) collect(sR.first().second.first, sR.last().second.last, section.name)
+                        if (section is OptionalSection<T>) t = section.test
 
-                } else collect(items, sI)
-            } else return false
-        }
+                        //if (t) collect(sR.first().second.first, sR.last().second.last, section.name)
 
-        collect(items, i, name)
-
-        return true
+                    } //else collect(items, sI)
+                } else return false
+            }
+            // collect(items, i, name)
+            true
+        } else false
     }
 
     override fun collect(sI: Int, items: ItemsStatic.Class<T>): Array<Pair<String?, IntRange>> {

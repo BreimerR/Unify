@@ -1,0 +1,103 @@
+/**
+ * @property array pageErrors;
+ * @property string view
+ */
+class Base
+{
+    /**
+     * @param array $data
+     * @param null $value
+     */
+
+    package(data = [], value = null)
+    {
+        !is_string(data) ?: data = {$data:value};
+        count($data) ?: data.each((key,value)-> this.$key = value);
+        // count($data) ?: data.each(() -> this.$key = value);
+    }
+
+    /**
+     * @param String $key
+     * @return array|mixed|null
+     */
+    final  getData($key = null) => key === null ? this._data : this.$key;
+    //final  getData($key = null) => key === null ? this._data : this[key];
+
+    /**
+     * @param array $data
+     * @param null $value
+     */
+     // this returns a value
+    pkg($data = array(), $value = null) -> this.package($data, $value);
+
+    pushData(data = [], value)
+    {
+        !isString(data) ?: data = {$data:$value};
+
+        if (count(data)) {
+            data.each(()->{
+                  if (isSet(this.$key)) {
+                        Array.make(this.$array)
+                        isArray(value) ?  this.$key.merge(value) : this.$key.push(value);
+
+                  } else $this->$key = $value;
+            });
+        }
+    }
+
+    /**
+     * @param $name
+     * @param $error
+     */
+
+    /**
+    * @return bool
+    */
+    get errorExists => empty($this->getData('error)'));
+
+    /**
+    * @return bool
+    */
+    get errExists => self.errorExists;
+
+    protected {
+
+       /**
+        * @param $error
+        * @param string $name
+        */
+
+        set data(data = []):null ->  !data.length ?: this._data = data;
+        // or  setData($data = []) ->  !data.length ?: this._data = data;
+        // setData($data=[]){  !data.length ?: this._data = data}
+
+        addPageError(error, name = "view") -> this.pageErrorHandler(name, error);
+
+        set data((String) key,String name ,Object value) => this.data[$key][$name] = $value;
+
+
+         /**
+         * @return bool
+         */
+        get pageErrorExists => this.pageErrors !== null;
+
+       pageErrorHandler(name,error){
+            !(this.pageErrors == null) ?: this.pageErrors = [];
+
+            isSet(this->getData('pageErrors')[name]) ?: this._data['pageErrors'][name] = [];
+
+           // array_push($this->_data['pageErrors'][$name], $error);
+           this._data.pageError.$name.push($error);
+       }
+
+    }
+
+    private {
+        /**
+         * @param array $data
+         */
+
+        data = [];
+    }
+
+}

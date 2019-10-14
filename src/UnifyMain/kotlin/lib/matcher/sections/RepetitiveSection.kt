@@ -5,7 +5,7 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-open class RepetitiveSection<T>(vararg sections: TestableStatic<T>, name: String? = null, open val minCount: Int = 0, open val maxCount: Int = 10000000) :
+open class RepetitiveSection<T>(vararg sections: TestableStatic<T>, name: String? = null, val minCount: Int = 0, open val maxCount: Int = 10000000) :
         Section<T>(*sections, name = name) {
 
     var tCounts = 0

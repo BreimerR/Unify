@@ -1,5 +1,6 @@
 package lib.collections.array
 
+
 infix fun Array<String>.joinBy(separator: String): String {
     return this.joinToString(separator)
 }

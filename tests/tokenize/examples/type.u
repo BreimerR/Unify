@@ -1,0 +1,5 @@
+class A<T> : B<T> :: V, C, D
+
+val a :Array<>
+
+

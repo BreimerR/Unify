@@ -12,14 +12,12 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
 
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
-        val test = super.test(items)
 
-        if (test) {
-
+        if (super.test(items)) {
             items.currentItem?.value?.let {
-                return test && it matches keywords.toRegex()
+                //return test && it matches keywords.toRegex()
+                return it == value
             }
-
         }
 
         return false

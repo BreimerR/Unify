@@ -20,7 +20,7 @@ abstract class ItemsStatic : StaticClass() {
 
         var currentItem: ItemClass<T>? = null
 
-        val nextItem: ItemClass<T>?
+        open val nextItem: ItemClass<T>?
             get() {
                 if (hasRemItems) {
                     val res = items[i]

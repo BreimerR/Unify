@@ -1,0 +1,96 @@
+/** @description
+ * @param fileName is a fileName and a file name can not contain forwardSlash
+ */
+
+abstract Language(protected String code,protected String fileName:/[char!\/]*/,Parser ...parsers){
+	// this is a property that requires being declared by the implementers
+	abstract Token[] tokens
+
+	init{
+
+		/** TODO
+		 * // call
+		 * this.tokenize,
+		 * this.code = code
+		 */
+	}
+
+
+
+	tokenize:Tokens (String ...code){}
+
+	static get parser:Parser {
+		/*Test if parser shouldParse if so return that parser*/
+	}
+
+	 abstract __call:Boolean()
+}
+
+abstract Statement(Token ...tokens){
+	static abstract (Tokens|String)[] segments
+}
+
+class ClassStatement :: Statement{
+	static Tokens[] segments
+}
+
+
+class Unify(String code,String fileName:/<name>[a-zA-Z]/)::Language{
+	Tokens[] tokens;
+
+	init{
+
+		/** TODO
+		 * call super(code,fileName,TopLevelParser)
+		 * // this.parse should return ast array
+		 * this.parse()
+		 */
+	}
+
+	push(Statement ...sections){
+		/*this.ast.push(...sections)*/
+	}
+
+	tokenize{
+
+	}
+
+	parse{
+
+	}
+}
+
+
+abstract Parser{
+	abstract Boolean considerSpaces
+
+    // array where the following types are allowed
+	abstract Array<Parser|Token|String> sections:"da";
+
+	/*shouldParse (Tokens tokens,sections = self.sections)*/
+	shouldParse(Tokens tokens);
+
+	static shouldParse(TokensCopy tokens){
+
+	}
+
+	/*sections = this.sections*/
+	static runTest(Tokens tokens )
+
+	static parse:Ast(Tokens tokens)
+
+	static test:Boolean(Tokens[] tokens,Parser|Token section)
+
+	call();
+}
+
+
+closed class ClassBodyParser :: Parser {
+	/** TODO ADD FEATURE
+	 *  this is since the type has already been declared in
+	 *  the abstract class
+	 *  sections = ""
+	 */
+
+
+}

@@ -1,0 +1,19 @@
+// assignment is either an initialization or reassignment
+
+name = "Breimer"
+
+String name = "Breimer"
+
+Int ge = 12
+
+
+/// if name is not set then set and use the variable
+if(name =  12){
+
+}
+
+// assign the value of true or false to the variable name
+// which may or may not exist
+if(name = 12 == 20){
+
+}

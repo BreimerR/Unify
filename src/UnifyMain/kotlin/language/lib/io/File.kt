@@ -24,7 +24,8 @@ class FileStatic : LibFileStatic() {
     }
 }
 
-class FileClass(var fullFilePathWithExtension: String, var encoding: String = "UTF-8", dirSeparator: String = "/") : LibFileClass(fullFilePathWithExtension) {
+class FileClass(private var fullFilePathWithExtension: String, var encoding: String = "UTF-8", dirSeparator: String = "/") :
+        LibFileClass(fullFilePathWithExtension) {
 
     override val self = File
 

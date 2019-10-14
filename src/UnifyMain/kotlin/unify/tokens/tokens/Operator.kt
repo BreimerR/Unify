@@ -9,7 +9,7 @@ abstract class OperatorStatic : TokenStatic() {
     abstract val tokenString: String
 
     override val regex: Regex
-        get() = Regex(tokenString)
+        get() = Regex("^$tokenString$")
 
     override fun test(items: ItemsStatic.Class<Char>): Boolean {
 

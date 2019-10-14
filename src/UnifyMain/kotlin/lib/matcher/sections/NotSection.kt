@@ -11,7 +11,11 @@ class NotSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
     // search algo required here to make the loop not linear exactly for performance boost
     override fun test(items: ItemsClass<T>): Boolean {
         sections.forEach {
-            if (it test items) return false
+            val i = items.i
+            if (it test items) {
+                items.i = i
+                return false
+            }
         }
 
         return true

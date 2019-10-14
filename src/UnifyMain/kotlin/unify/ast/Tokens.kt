@@ -1,19 +1,18 @@
 package unify.ast
 
 
-import language.lib.io.File
-import lib.collections.array.length
 import lib.io.string
-import lib.matcher.items.ItemStatic
-import lib.matcher.items.ItemsStatic
-import platform.posix.SEEK_CUR
-import platform.posix.fileno
-import unify.tokens.strings.*
-import unify.tokens.operators.*
+import language.lib.io.File
 import unify.tokens.characters.*
-import unify.tokens.tokens.*
-import language.ast.TokensStatic.Class as LangTokens
+import unify.tokens.strings.Keyword
+import unify.tokens.strings.Number
+import unify.tokens.tokens.EOF
+import unify.tokens.tokens.printLn
+import unify.tokens.strings.Identifier
+import unify.tokens.tokens.TokenStatic
+import unify.tokens.tokens.OperatorStatic
 import language.ast.TokensStatic as LangTokensStatic
+import language.ast.TokensStatic.Class as LangTokens
 
 
 class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
@@ -21,19 +20,23 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
     operator fun invoke(fileName: String, fileEncoding: String): Class = Class(fileName, fileEncoding)
 
-    val operators by lazy {
-        arrayOf(
+    private val operators by lazy {
+        arrayOf<OperatorStatic>(
+                /*AndOperator,
                 DColon,
                 DoOperator,
+                Ellipsis,
                 ElvisOperator,
+                ReturnOperator,
+                EqualsToOperator,
                 MinusEquals,
                 MlCommentEndOperator,
                 MLCommentOperator,
                 NotEqual,
+                OrOperator,
                 PlusEquals,
-                ReturnOperator,
                 SCommentOperator,
-                TimesEquals
+                TimesEquals*/
         )
     }
     val stringTokens by lazy {
@@ -151,7 +154,8 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
         override fun isNewLine(klass: language.tokens.TokenStatic): Boolean = klass is NewLineStatic
 
-        init {
+
+        private fun printTokens() {
             for (token in tokens) {
                 printLn(token, token.value)
             }

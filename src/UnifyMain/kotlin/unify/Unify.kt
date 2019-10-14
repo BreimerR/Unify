@@ -1,16 +1,27 @@
 package unify
 
 import language.LanguageStatic
+import language.parsers.Parser
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
-import lib.matcher.sections.*
-import unify.tokens.characters.*
-import unify.tokens.strings.Identifier
-import unify.tokens.strings.KeywordStatic
+import unify.parsers.EOFParser
+import unify.parsers.FunctionParser
+import unify.parsers.comments.MultiLineCommentParser
+import unify.parsers.comments.SingleLineCommentParser
+import unify.parsers.operators.SCommentOperatorParser
 
 
 class UnifyStatic : LanguageStatic() {
+
+    override val parsers by lazy {
+        arrayOf(
+                MultiLineCommentParser(),
+                SingleLineCommentParser(),
+                FunctionParser(),
+                EOFParser()
+        )
+    }
 
     operator fun invoke(args: CLIArgumentsClass): Class = Class(args)
 
@@ -18,9 +29,12 @@ class UnifyStatic : LanguageStatic() {
 
         override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
 
-        override val self = Unify
+        override val self by lazy {
+            Unify
+        }
 
     }
+
 
 }
 
@@ -30,22 +44,6 @@ fun main(arguments: Array<String>) {
     // tokens ready
     val un = Unify(CLIArguments(arguments))
 
-    val type = Section(
-            LThan,
-            RepetitiveBySection(Coma, Identifier),
-            GThan
-    )
-
-    val klass = Section(
-            KeywordStatic("class"),
-            OneOrManySection(Space),
-            Identifier,
-            OptionalSection(type)
-    )
-
-    println(klass.test(un.tokens))
-
+    un.parse()
 
 }
-
-

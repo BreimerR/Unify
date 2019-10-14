@@ -14,7 +14,6 @@ class NumberStatic : StringTokenStatic() {
 
     override var regex = Regex("[0-9][0-9]*")
 
-
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
     class Class(tokenString: String, l: Int, col: Int) : StringTokenClass(tokenString, l, col) {

@@ -47,7 +47,7 @@ class AlternativeSection<T>(vararg sections: TestableStatic<T>, name: String? = 
         }
 
 
-        if (test) collect(items, sI, name)
+        // if (test) collect(items, sI, name)
 
         return test
     }

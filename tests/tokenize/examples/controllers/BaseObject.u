@@ -1,0 +1,10 @@
+class Test{
+
+	private currentDesign;
+
+	get design => currentDesign;
+
+	set design (Int design) => currentDesign = design;
+
+
+}

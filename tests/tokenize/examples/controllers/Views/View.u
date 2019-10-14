@@ -1,0 +1,23 @@
+trait Draggable{
+
+}
+class View{
+    get age (){
+    }
+
+
+}
+
+
+class Widget{
+
+}
+
+
+class Button{
+
+}
+
+class Card (View) {
+
+}

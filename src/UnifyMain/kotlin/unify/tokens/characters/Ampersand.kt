@@ -2,14 +2,12 @@
 package unify.tokens.characters
 
 
-import lib.matcher.items.ItemsStatic
 import unify.tokens.tokens.CharacterStatic
 
 val Ampersand = AmpersandStatic()
 
 
 class AmpersandStatic : CharacterStatic() {
-
 
     override val char = '&'
 
