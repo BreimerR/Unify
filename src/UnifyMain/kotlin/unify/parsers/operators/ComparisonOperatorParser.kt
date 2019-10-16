@@ -1,7 +1,7 @@
 package unify.parsers.operators
 
 import language.parsers.Parser
-import lib.matcher.sections.AlternativeSection
+import language.sections.AlternativeSection
 import unify.parsers.EqualsToOperatorParser
 
 

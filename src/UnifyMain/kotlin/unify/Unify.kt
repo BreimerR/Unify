@@ -1,24 +1,21 @@
 package unify
 
 import language.LanguageStatic
-import language.parsers.Parser
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
 import unify.parsers.EOFParser
-import unify.parsers.FunctionParser
+import unify.parsers.comments.CommentsParser
+import unify.parsers.statements.FunctionParser
 import unify.parsers.comments.MultiLineCommentParser
 import unify.parsers.comments.SingleLineCommentParser
-import unify.parsers.operators.SCommentOperatorParser
 
 
 class UnifyStatic : LanguageStatic() {
 
     override val parsers by lazy {
         arrayOf(
-                MultiLineCommentParser(),
-                SingleLineCommentParser(),
-                FunctionParser(),
+                CommentsParser(),
                 EOFParser()
         )
     }

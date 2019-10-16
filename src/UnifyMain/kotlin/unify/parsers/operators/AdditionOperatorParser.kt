@@ -1,7 +1,8 @@
 package unify.parsers.operators
 
 import language.parsers.Parser
-import lib.matcher.sections.Section
+import language.sections.Section
+
 import unify.tokens.characters.Plus
 
 class AdditionOperatorParser : Parser(

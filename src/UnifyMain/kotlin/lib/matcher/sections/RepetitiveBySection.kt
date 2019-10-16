@@ -3,7 +3,7 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 
 
-class RepetitiveBySection<T> : Section<T> {
+open class RepetitiveBySection<T> : Section<T> {
 
     constructor(
             section: TestableStatic<T>,

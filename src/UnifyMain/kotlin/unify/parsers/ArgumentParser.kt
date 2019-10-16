@@ -1,7 +1,7 @@
 package unify.parsers
 
 import language.parsers.Parser
-import lib.matcher.sections.AlternativeSection
+import language.sections.AlternativeSection
 
 class ArgumentParser : Parser(
         AlternativeSection(

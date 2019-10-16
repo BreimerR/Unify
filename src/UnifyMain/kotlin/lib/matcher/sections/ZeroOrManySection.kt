@@ -4,10 +4,10 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-class ZeroOrManySection<T> : RepetitiveSection<T> {
+open class ZeroOrManySection<T> : RepetitiveSection<T> {
 
-    constructor(vararg section: TestableStatic<T>)
-            : super(*section, minCount = 0)
+    constructor(vararg section: TestableStatic<T>, name: String? = null)
+            : super(*section, minCount = 0, name = name)
 
     constructor(vararg sections: TestableStatic<T>, name: String? = null, maxCount: Int)
             : super(*sections, name = name, minCount = 0, maxCount = maxCount)

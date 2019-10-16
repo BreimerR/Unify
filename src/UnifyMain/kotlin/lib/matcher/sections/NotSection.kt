@@ -4,7 +4,7 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
 
-class NotSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
+open class NotSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
         Section<T>(*sections, name = name) {
 
     // search algo required here to make the loop not linear exactly for performance boost

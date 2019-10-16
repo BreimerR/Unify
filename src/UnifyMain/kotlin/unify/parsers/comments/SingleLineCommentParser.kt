@@ -1,26 +1,26 @@
 package unify.parsers.comments
 
 import language.parsers.Parser
-import lib.matcher.sections.*
+import language.sections.NotSection
+import language.sections.Section
+import language.sections.ZeroOrManySection
 import unify.parsers.operators.SCommentOperatorParser
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.Space
 import unify.tokens.characters.Tab
 
 class SingleLineCommentParser : Parser(
-        ZeroOrManySection(
-                AlternativeSection(
-                        NewLine,
-                        Space,
-                        Tab
-                )
-        ),
         SCommentOperatorParser(),
         ZeroOrManySection(
+                // ont section taking too long
                 NotSection(
-                        NewLine
-                )
+                        NewLine,
+                        considerSpaces = true
+                ),
+                considerSpaces = true
         ),
-        name = "SINGLE_LINE_COMMENT"
+        Section(NewLine, considerSpaces = true),
+        name = "SINGLE_LINE_COMMENT",
+        considerSpaces = false
 )
 

@@ -1,9 +1,8 @@
 package unify.parsers
 
 import language.parsers.Parser
-import lib.matcher.sections.OneOrManySection
-import lib.matcher.sections.OptionalSection
-import lib.matcher.sections.RepetitiveBySection
+import language.sections.OptionalSection
+import language.sections.RepetitiveBySection
 import unify.tokens.characters.Coma
 import unify.tokens.characters.GThan
 import unify.tokens.characters.LThan

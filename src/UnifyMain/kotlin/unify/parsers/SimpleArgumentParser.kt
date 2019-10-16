@@ -1,11 +1,10 @@
 package unify.parsers
 
 import language.parsers.Parser
-import lib.matcher.sections.AlternativeSection
-import lib.matcher.sections.OptionalSection
-import lib.matcher.sections.Section
+import language.sections.AlternativeSection
+import language.sections.OptionalSection
+import language.sections.Section
 import unify.tokens.strings.Identifier
-import unify.tokens.strings.KeywordStatic
 
 class SimpleArgumentParser : Parser(
         OptionalSection(
@@ -20,7 +19,6 @@ class SimpleArgumentParser : Parser(
                         Section(Identifier, name = "NAME")
                 ),
                 Section(Identifier, name = "NAME")
-        )
-) {
-    override val considerSpaces = false
-}
+        ),
+        considerSpaces = false
+)

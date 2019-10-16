@@ -6,7 +6,7 @@ import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-class AlternativeSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
+open class AlternativeSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
         Section<T>(*sections, name = name) {
 
     // we dont want to find the first match but the best case match

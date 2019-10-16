@@ -1,9 +1,9 @@
-package unify.parsers
+package unify.parsers.statements
 
 import language.parsers.Parser
-import lib.matcher.sections.AlternativeSection
-import lib.matcher.sections.Section
-import unify.tokens.strings.Identifier
+import language.sections.Section
+import lib.matcher.items.ItemsStatic
+import unify.parsers.MethodParser
 import unify.tokens.strings.KeywordStatic
 
 class FunctionParser : Parser(
@@ -11,7 +11,6 @@ class FunctionParser : Parser(
         Section(KeywordStatic("func"), name = "KEYWORD"),
         // return type
         MethodParser(),
-        name = "FUNCTION"
-) {
-    override val considerSpaces = false
-}
+        name = "FUNCTION",
+        considerSpaces = false
+)

@@ -1,19 +1,25 @@
 package language.parsers
 
-import lib.matcher.sections.Section
+import language.sections.Section
+import lib.matcher.sections.Section as LSection
+
 
 open class Parser(
-        vararg sections: Section<String>,
-        name: String? = null
-) : Section<String>(*sections, name = name) {
+        vararg parseSections: LSection<String>,
+        name: String? = null,
+        considerSpaces: Boolean = false
+) : Section(
+        *parseSections,
+        name = name,
+        considerSpaces = considerSpaces
+)
 
-    open val considerSpaces = true
+inline fun <reified T> Array<out T>.unshift(item: T): Array<T> {
+    var res = arrayOf(item)
 
-/*
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-        val i = items.i
-        val test = super.test(items)
-        items.i = i
-        return test
-    }*/
+    this.forEach {
+        res += it
+    }
+
+    return res
 }

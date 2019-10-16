@@ -30,13 +30,6 @@ abstract class LanguageStatic : StaticClass() {
             }
 
         fun parse() {
-            val i = tokens.i
-            while (tokens.hasRemItems) {
-                println(tokens.nextItem)
-            }
-
-            tokens.i = i
-
             while (tokens.hasRemItems) {
                 println(parser)
             }

@@ -1,8 +1,7 @@
 package unify.parsers
 
 import language.parsers.Parser
-import lib.matcher.sections.RepetitiveBySection
-import lib.matcher.sections.Section
+import language.sections.RepetitiveBySection
 import unify.tokens.characters.Coma
 
 class ArgumentsArrayParser : Parser(
@@ -12,9 +11,13 @@ class ArgumentsArrayParser : Parser(
                 /** TODO
                  * typeDeclaration mutabilityState argument
                  * */
+                /** TODO
+                 * typeDeclaration mutabilityState argument
+                 * */
 
                 ArgumentParser(),
-                Coma
+                Coma,
+                considerSpaces = false
         ),
         name = "ARGUMENTS_LIST"
 ) {

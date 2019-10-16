@@ -1,8 +1,8 @@
 package unify.parsers
 
 import language.parsers.Parser
-import lib.matcher.sections.OptionalSection
-import lib.matcher.sections.Section
+import language.sections.OptionalSection
+import language.sections.Section
 import unify.tokens.characters.Dot
 import unify.tokens.strings.Number
 

@@ -1,8 +1,11 @@
 package unify.parsers.comments
 
+
 import language.parsers.Parser
-import lib.matcher.sections.NotSection
-import lib.matcher.sections.ZeroOrManySection
+import language.sections.AlternativeSection
+import language.sections.NotSection
+import language.sections.ZeroOrManySection
+import unify.parsers.EOFParser
 import unify.parsers.operators.MlCommentEndOperatorParser
 import unify.parsers.operators.MlCommentStartOperatorParser
 
@@ -10,11 +13,16 @@ class MultiLineCommentParser : Parser(
         MlCommentStartOperatorParser(),
         ZeroOrManySection(
                 NotSection(
-                        MlCommentEndOperatorParser()
-                )
+                        AlternativeSection(
+                                MlCommentEndOperatorParser(),
+                                EOFParser(),
+                                considerSpaces = false
+                        ),
+                        considerSpaces = false
+                ),
+                considerSpaces = false
         ),
         MlCommentEndOperatorParser(),
-        name = "MULTILINE_COMMENT"
-) {
-    override val considerSpaces = false
-}
+        name = "MULTILINE_COMMENT",
+        considerSpaces = false
+)
