@@ -3,7 +3,7 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-class OptionalSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
+open class OptionalSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
         Section<T>(*sections, name = name) {
 
     var test = false
