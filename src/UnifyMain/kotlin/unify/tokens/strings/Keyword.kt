@@ -1,27 +1,25 @@
 package unify.tokens.strings
 
+import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import lib.text.asString
-import unify.ast.TokensStatic
-import unify.tokens.tokens.StringTokenClass
-import unify.tokens.tokens.StringTokenStatic
 
 class KeywordStatic(val value: String = "") : IdentifierStatic() {
 
     var keywords: String = "(infix|prefix|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo)"
 
 
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
+    override fun test(item: ItemStatic.Class<String>?): Boolean {
 
-        if (super.test(items)) {
-            items.currentItem?.value?.let {
-                //return test && it matches keywords.toRegex()
-                return it == value
-            }
+        var bool = item is Class
+
+        item?.value?.let {
+            bool = bool && it == value
         }
 
-        return false
+        return bool
     }
+
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 

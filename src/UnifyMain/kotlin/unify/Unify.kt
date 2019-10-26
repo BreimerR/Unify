@@ -1,46 +1,47 @@
 package unify
 
 import language.LanguageStatic
+import language.ast.TokensStatic
+import language.parsers.ParserStatic
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
+import lib.cli.CLIArgumentsStatic
+import lib.matcher.TestableStatic
+import lib.matcher.sections.SectionStatic
 import unify.ast.Tokens
-import unify.parsers.EOFParser
-import unify.parsers.comments.CommentsParser
-import unify.parsers.statements.FunctionParser
-import unify.parsers.comments.MultiLineCommentParser
-import unify.parsers.comments.SingleLineCommentParser
 
 
 class UnifyStatic : LanguageStatic() {
 
-    override val parsers by lazy {
-        arrayOf(
-                CommentsParser(),
-                EOFParser()
-        )
+    private val parsers = arrayOf<ParserStatic>()
+
+    operator fun invoke(vararg sections: TestableStatic<String>, name: String?): Class {
+        return Class()
     }
 
-    operator fun invoke(args: CLIArgumentsClass): Class = Class(args)
+    operator fun invoke(args: CLIArgumentsClass): Class {
+        return Class(parsers, args)
+    }
 
     class Class(args: CLIArgumentsClass) : LanguageStatic.Class() {
 
+        override val self = Unify
+
         override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
-
-        override val self by lazy {
-            Unify
-        }
-
     }
-
-
 }
+
 
 val Unify = UnifyStatic()
 
-fun main(arguments: Array<String>) {
-    // tokens ready
-    val un = Unify(CLIArguments(arguments))
+fun main(args: Array<String>) {
+    // initialize arguments in a convenient readable mode
+    val cli = CLIArguments(args)
 
-    un.parse()
+    val unify = Unify(cli)
+
+    while (unify.tokens.hasRemItems) {
+        println(unify.tokens.nextItem)
+    }
 
 }

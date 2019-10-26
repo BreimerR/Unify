@@ -13,9 +13,5 @@ abstract class TokenStatic : ItemStatic<String>() {
 
     abstract operator fun invoke(tokenString: String, l: Int, col: Int): Class
 
-    override fun collect(sI: Int, items: ItemsStatic.Class<String>): Array<Pair<String?, IntRange>> {
-        TODO("Implement collect: language.tokens.Token.kt") //To change body of created functions use File | Settings | File Templates.
-    }
-
     abstract class Class(tkString: String, open val l: Int, open val col: Int) : ItemStatic.Class<String>(tkString)
 }

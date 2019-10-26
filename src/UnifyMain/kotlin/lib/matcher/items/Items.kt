@@ -10,6 +10,12 @@ import lib.matcher.items.ItemStatic.Class as ItemClass
 
 abstract class ItemsStatic : StaticClass() {
 
+    /** @DESCRIPTION
+     * In this case ItemClass<T> is a Single token from the defined language
+     * in our case it is a token from Unify tokenizer
+     * other languages can have tokens as ItemClass<Char>
+     *
+     * */
     abstract class Class<T>(items: Array<out ItemClass<T>>) : SClass<ItemsStatic>() {
 
         abstract val items: Array<out ItemClass<T>>

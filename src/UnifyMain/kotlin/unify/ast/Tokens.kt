@@ -154,7 +154,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
         override fun isNewLine(klass: language.tokens.TokenStatic): Boolean = klass is NewLineStatic
 
-
         private fun printTokens() {
             for (token in tokens) {
                 printLn(token, token.value)

@@ -1,25 +1,15 @@
 package language.parsers
 
-import language.sections.Section
-import lib.matcher.sections.Section as LSection
+import language.sections.SectionStatic
 
 
-open class Parser(
-        vararg parseSections: LSection<String>,
-        name: String? = null,
-        considerSpaces: Boolean = false
-) : Section(
-        *parseSections,
-        name = name,
-        considerSpaces = considerSpaces
-)
+class ParserStatic : SectionStatic() {
 
-inline fun <reified T> Array<out T>.unshift(item: T): Array<T> {
-    var res = arrayOf(item)
-
-    this.forEach {
-        res += it
+    class Class : SectionStatic.Class() {
+        override val self = Parser;
     }
 
-    return res
 }
+
+
+val Parser = ParserStatic()

@@ -1,40 +1,21 @@
 package language
 
 
-import lib.oop.classes.Class as SClass
-import language.ast.TokensStatic
-import language.parsers.Parser
-import lib.oop.classes.StaticClass
+import lib.matcher.MatcherStatic
+import language.parsers.ParserStatic
+import language.ast.TokensStatic.Class as TokensClass
 
-abstract class LanguageStatic : StaticClass() {
 
-    abstract val parsers: Array<Parser>
+// TODO look into organization once this makes proper sense
+//  at one point or the other just where it will start to work right
 
-    abstract class Class : SClass<LanguageStatic>() {
-        abstract val tokens: TokensStatic.Class
 
-        private val parser: Parser
-            get() {
+abstract class LanguageStatic : MatcherStatic<String>() {
 
-                for (parser in self.parsers) {
-                    val i = tokens.i
-                    val spacesState = tokens.considerSpaces
-                    tokens.considerSpaces = parser.considerSpaces
-                    if (parser test tokens) {
-                        tokens.considerSpaces = spacesState
-                        return parser
-                    } else tokens.i = i
-                }
-
-                throw Error("No valid parser")
-            }
-
-        fun parse() {
-            while (tokens.hasRemItems) {
-                println(parser)
-            }
-        }
+    abstract class Class(vararg val sections: ParserStatic) : MatcherStatic.Class<String>() {
+        abstract val tokens: TokensClass
     }
+
 }
 
 
