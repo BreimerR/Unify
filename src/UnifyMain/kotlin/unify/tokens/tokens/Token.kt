@@ -12,29 +12,6 @@ abstract class TokenStatic : LTokenStatic() {
 
     abstract val regex: Regex
 
-
-    /**TODO
-     * test is not as per requirements
-     * */
-    override fun test(file: FileClass): Boolean {
-        // get the next char
-        var string = arrayOf(file.nextChar)
-
-
-        val bool = string.asString matches regex
-
-        var runner = true
-
-        while (runner) {
-            string += file.nextChar
-            runner = string.asString matches regex
-
-            if (!runner) file.placeCursorAt(file.i - 1)
-        }
-
-        return bool
-    }
-
     override fun test(items: ItemsStatic.Class<Char>): Boolean {
 
         var s = ""

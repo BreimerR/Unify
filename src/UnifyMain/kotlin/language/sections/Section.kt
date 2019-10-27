@@ -1,86 +1,38 @@
 package language.sections
 
-import language.ast.TokensStatic
-import lib.cli.CLIArguments
-import lib.cli.CLIArgumentsClass
-import lib.oop.classes.StaticClass
-import unify.ast.Tokens
-import lib.oop.classes.Class as OClass
+import lib.matcher.TestableStatic
+import lib.matcher.items.ItemsStatic
 
-abstract class TestableStatic<T> : StaticClass() {
-
-    abstract class Class<T> : OClass<TestableStatic<T>>()
-}
-
-open class ItemStatic<T> : TestableStatic<T>()
+open class SectionStatic<T> : TestableStatic {
 
 
-open class ItemsStatic<T> : TestableStatic<T>() {
+    open operator fun invoke(vararg sections: TestableStatic.Class<T>): Class<T> = Class(*sections)
 
-    class Class<T>(override val self: TestableStatic<T>) : TestableStatic.Class<T>()
-}
-
-class Token : ItemStatic<String>()
-
-
-class TokensStatic : ItemsStatic<String>()
-
-
-open class SectionStatic<T> : TestableStatic<T>() {
-
-    abstract class Class<T> : TestableStatic.Class<T>()
-}
-
-
-open class ParserStatic : SectionStatic<String>()
-
-open class IntegerParserStatic : ParserStatic()
-
-val IntegerParser = IntegerParserStatic()
-
-open class EOFParserStatic : ParserStatic()
-
-val EOFParser = EOFParserStatic()
-
-abstract class LanguageStatic : SectionStatic<String>() {
-
-    abstract class Class : SectionStatic.Class<String>() {
-
-        abstract val sections: Array<ParserStatic>
-
-        abstract val tokens: TokensStatic.Class
-
-    }
-
-}
-
-
-class UnifyStatic : LanguageStatic() {
-
-    operator fun invoke(args: CLIArgumentsClass): Class = Class(args)
-
-    class Class(args: CLIArgumentsClass) : LanguageStatic.Class() {
+    open class Class<T>(vararg val sections: TestableStatic.Class<T>) : TestableStatic.Class<T>() {
 
         override val self by lazy {
-            Unify
+            Section
         }
 
-        override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
+        override infix fun test(items: ItemsStatic.Class<T>): Boolean {
 
-        override val sections = arrayOf(
-                IntegerParser,
-                EOFParser
-        )
+            sections.forEach {
+
+                if (it fail items)
+                    return false
+                else {
+                    // code for collection
+
+                }
+            }
+
+            return true
+        }
+
 
     }
 }
 
+val Section = SectionStatic<String>()
 
-val Unify = UnifyStatic()
 
-fun mains(arguments: Array<String>) {
-    val args = CLIArguments(arguments)
-
-    val unify = Unify(args)
-
-}

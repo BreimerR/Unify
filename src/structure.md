@@ -210,3 +210,96 @@ new user.Gun()
 
 
 ```
+
+
+
+## Abstraction
+### Abstract Classes
+
+```Unify
+
+abstract class User{
+    
+}
+
+```
+### Interfaces
+
+```Unify
+interface Foo{
+    speedUp()
+}
+
+// impl
+class Bar :: Foo {
+    
+    // differentiate between first implementation and override of a function
+    impl speedUp(){
+        
+    }
+}
+```
+
+#### Generic classes
+
+
+```Unify
+
+class  Foo<V>{
+
+}
+```
+
+### Generic type in nested classes
+- A type used by master class will be available for the children clases
+    ```Unify
+    class Foo<T>{
+        
+        // T is available for V to use as inherit from
+        class Bar<V : T>{
+            
+            // V used below makes sense
+            class FooBar<U : V>{
+                    
+            }
+        }
+    }  
+  
+    // TODO
+    // T is not describable as an interface or class
+    class Foos<T>{
+        
+        class Bar<V :: T>{
+  
+        }
+    } 
+    ```
+  
+ ### If
+ 
+ 
+ ```Unify
+if(Boolean){
+
+} 
+```
+
+#### Else
+
+```Unify
+if(Boolean){
+
+} else{
+
+}
+```
+
+#### Else if
+
+```Unify
+if(Boolean) {
+
+} else if(Boolean){
+
+}
+```

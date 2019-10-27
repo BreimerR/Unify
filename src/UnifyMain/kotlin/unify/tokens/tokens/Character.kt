@@ -16,24 +16,10 @@ abstract class CharacterStatic : TokenStatic() {
     override val regex: Regex
         get() = Regex.char(char)
 
-    override fun test(file: FileClass) = file.nextChar == char
-
     override fun test(items: ItemsStatic.Class<Char>): Boolean {
         items.nextItem?.let {
             return it.value == char
         }
-        return false
-    }
-
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-        items.nextItem?.let {
-
-            val string = it.value
-
-            return string.length == 1 && string[0] == char
-
-        }
-
         return false
     }
 
@@ -43,7 +29,20 @@ abstract class CharacterStatic : TokenStatic() {
             open val char: String,
             override val l: Int,
             override val col: Int,
-            override val self: TestableStatic<String>) :
-            TokenStatic.Class(char, l, col)
+            override val self: CharacterStatic) :
+            TokenStatic.Class(char, l, col) {
+
+        override fun test(items: ItemsStatic.Class<String>): Boolean {
+            items.nextItem?.let {
+
+                val string = it.value
+
+                return string.length == 1 && string[0] == self.char
+
+            }
+
+            return false
+        }
+    }
 }
 

@@ -12,7 +12,7 @@ import language.ast.TokensStatic.Class as TokensClass
 
 abstract class LanguageStatic : MatcherStatic<String>() {
 
-    abstract class Class(vararg val sections: ParserStatic) : MatcherStatic.Class<String>() {
+    abstract class Class(vararg  sections: ParserStatic) : MatcherStatic.Class<String>(*sections) {
         abstract val tokens: TokensClass
     }
 

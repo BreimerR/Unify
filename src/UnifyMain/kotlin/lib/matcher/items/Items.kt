@@ -8,7 +8,7 @@ import lib.matcher.items.ItemStatic.Class as ItemClass
 // regex char is item string is whole items
 // language string is item statement is whole items
 
-abstract class ItemsStatic : StaticClass() {
+abstract class ItemsStatic : StaticClass {
 
     /** @DESCRIPTION
      * In this case ItemClass<T> is a Single token from the defined language

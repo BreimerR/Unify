@@ -1,19 +1,19 @@
 package lib.matcher
 
 import lib.matcher.items.ItemsStatic
-import lib.oop.classes.StaticClass
-import unify.ast.TokensStatic
-import lib.oop.classes.Class as OClass
-import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-interface TestableStatic<T> {
+interface TestableStatic {
 
-    infix fun test(items: ItemsStatic.Class<T>): Boolean
+    abstract class Class<T> {
 
-    // abstract fun collect(sI: Int, items: ItemsClass<T>): Array<Pair<String?, IntRange>>
+        abstract val self: TestableStatic
 
-    interface Class<T>
+        abstract infix fun test(items: ItemsStatic.Class<T>): Boolean
 
+        infix fun fail(items: ItemsStatic.Class<T>): Boolean {
+            return !test(items)
+        }
+    }
 }
 
 

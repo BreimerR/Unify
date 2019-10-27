@@ -1,13 +1,8 @@
 from File import File
 
-cSample = """
-package unify.tokens.characters
-
+cSample = """package unify.tokens.characters
 
 import unify.tokens.tokens.CharacterStatic
-
-val %s = %sStatic()
-
 
 class %sStatic : CharacterStatic() {
 
@@ -17,16 +12,13 @@ class %sStatic : CharacterStatic() {
 
     class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, %s)
 }
-"""
-
-oSample = """
-package unify.tokens.operators
-
-import unify.tokens.tokens.OperatorStatic
-
 
 val %s = %sStatic()
+"""
 
+oSample = """package unify.tokens.operators
+
+import unify.tokens.tokens.OperatorStatic
 
 class %sStatic : OperatorStatic() {
 
@@ -34,8 +26,16 @@ class %sStatic : OperatorStatic() {
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
-    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,%s) 
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,%s) {
+        override fun testItem(item: ItemStatic.Class<String>?): Boolean {
+            return if (item != null)
+                item is Class
+            else false
+        }
+    }
 }
+
+val %s = %sStatic()
 """
 
 operators = {
