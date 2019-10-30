@@ -15,7 +15,7 @@ open class Section(vararg sections: TestableStatic<String>, val considerSeparati
             val test = super.test(items)
             items.considerSeparation = considerSeparation
 
-            return test
+            test
         } else false
 
     }

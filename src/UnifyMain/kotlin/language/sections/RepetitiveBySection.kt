@@ -5,14 +5,8 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 import lib.matcher.sections.RepetitiveSectionStatic
 
-class RepetitiveBySection : lib.matcher.sections.RepetitiveBySection<String> {
-
-    var considerSeparation: Boolean = false
-
-    constructor(vararg sections: TestableStatic<String>, considerSeparation: Boolean = false, minCount: Int = 0, maxCount: Int = RepetitiveSectionStatic.maxCount) :
-            super(*sections, minCount = minCount, maxCount = maxCount) {
-        this.considerSeparation = considerSeparation
-    }
+class RepetitiveBySection(vararg sections: TestableStatic<String>, var considerSeparation: Boolean = false, minCount: Int = 0, maxCount: Int = RepetitiveSectionStatic.maxCount) :
+        lib.matcher.sections.RepetitiveBySection<String>(*sections, minCount = minCount, maxCount = maxCount) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -25,6 +19,5 @@ class RepetitiveBySection : lib.matcher.sections.RepetitiveBySection<String> {
         } else false
     }
 
-    constructor(vararg sections: TestableStatic<String>, by: TestableStatic<String>) : super(*sections, by = by)
 
 }

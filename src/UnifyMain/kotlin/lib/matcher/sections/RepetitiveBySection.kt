@@ -1,20 +1,17 @@
 package lib.matcher.sections
 
-import lib.collections.array.pop
+import lib.collections.array.get
 import lib.collections.array.last
 import lib.matcher.TestableStatic
 
-abstract class RepetitiveBySection<T>(vararg sections: TestableStatic<T>, minCount: Int = 1, maxCount: Int) : RepetitiveSectionStatic<T>(
-        SectionStatic(
-                *sections.pop,
+open class RepetitiveBySection<T>(vararg sections: TestableStatic<T>, minCount: Int = 1, maxCount: Int) : RepetitiveSectionStatic<T>(
+        *sections[0..sections.size - 2].toTypedArray(),
+        ZeroOrManyStatic(
                 sections.last,
-                ZeroOrManyStatic(
-                        *sections.pop,
-                        sections.last,
-                        maxCount = maxCount
-                )
-        ),
-        minCount = minCount) {
+                *sections[0..sections.size - 2].toTypedArray(),
+                maxCount = maxCount
+        )
+) {
 
     constructor(
             vararg sections: TestableStatic<T>,

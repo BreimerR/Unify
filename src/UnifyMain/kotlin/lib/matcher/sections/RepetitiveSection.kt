@@ -3,7 +3,7 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-abstract class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 0, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
+open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 0, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
 
     var tCounts = 0
 

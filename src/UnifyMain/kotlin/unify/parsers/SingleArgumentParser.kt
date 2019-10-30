@@ -5,7 +5,7 @@ import language.sections.Section
 import unify.tokens.strings.Identifier
 
 class SingleArgumentParser : ParserStatic(
-        TypeDeclarationParser(),
+        Section(Identifier),
         Section(Identifier)
 ) {
 }
