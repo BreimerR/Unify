@@ -7,13 +7,13 @@ import lib.matcher.items.ItemsStatic
 class CharItemStatic : ItemStatic<Char>() {
 
     override fun test(items: ItemsStatic.Class<Char>): Boolean {
-        return false
+        return true
     }
 
     operator fun invoke(char: Char): Class = Class(char)
 
-
     class Class(char: Char) : ItemStatic.Class<Char>(char) {
+
 
         override val self = CharItem
 

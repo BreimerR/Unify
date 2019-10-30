@@ -66,4 +66,14 @@ operator fun <T> Array<T>.get(intRange: IntRange): List<T> {
     }
 }
 
+/** @Description
+ * remove the last item from an array
+ * */
 fun <T> Array<T>.pop(): Array<T> = minus(1)
+
+
+val <T> Array<T>.last: T get() = last()
+
+val <T> Array<T>.pop: Array<T> get() = pop()
+
+

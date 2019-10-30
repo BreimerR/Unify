@@ -1,53 +1,20 @@
 package language.sections
 
+import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-class OptionalSectionStatic<T> : SectionStatic<T>() {
 
-    override operator fun invoke(vararg sections: TestableStatic.Class<T>): Class<T> = Class(*sections)
+class OptionalSection(vararg sections: TestableStatic<String>, private val considerSeparation: Boolean = false) : lib.matcher.sections.OptionalSectionStatic<String>(*sections) {
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
+        return if (items is TokensStatic.Class) {
+            val considerSeparation = items.considerSeparation
+            items.considerSeparation = this.considerSeparation
+            val test = super.test(items)
+            items.considerSeparation = considerSeparation
 
-    class Class<T>(vararg sections: TestableStatic.Class<T>) : SectionStatic.Class<T>(*sections) {
-
-        override val self by lazy {
-            OptionalSection
-        }
-
-        var test: Boolean = true
-
-        // 170902
-        override fun test(items: ItemsStatic.Class<T>): Boolean {
-
-            val i = items.i
-
-            for (section in sections) {
-
-                test = section test items
-
-                if (test) {
-                    when (section) {
-                        is Class<T> -> {
-                            test = section.test
-                        }
-
-                        is RepetitiveSectionStatic.Class<T> -> {
-                            test = section.test
-                        }
-                    }
-
-                    if (test) continue
-                }
-
-                break
-            }
-
-            if (!test) items.i = i
-
-            return true
-        }
-
-
+            test
+        } else false
     }
 }
 
-val OptionalSection = OptionalSectionStatic<String>()

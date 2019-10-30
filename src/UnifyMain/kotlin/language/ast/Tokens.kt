@@ -23,8 +23,6 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
         abstract val tokens: Array<out Token>
 
-        var considerSpaces = true
-
         // TODO use this instead of consider spaces variable
         var considerSeparation = true
 
@@ -37,7 +35,7 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
                 @Suppress("RecursivePropertyAccessor")
 
-                return if (considerSpaces) {
+                return if (considerSeparation) {
                     token
                 } else if (token != null && isSeparation(token)) {
                     nextItem

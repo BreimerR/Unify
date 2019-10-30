@@ -10,7 +10,7 @@ class DirClass(loc: String) : Class<DirStatic>() {
 }
 
 
-class DirStatic : StaticClass() {
+class DirStatic : StaticClass {
     operator fun invoke(location: String): DirClass {
         return DirClass(location)
     }

@@ -1,19 +1,16 @@
 package lib.matcher
 
 import lib.matcher.items.ItemsStatic
+import lib.oop.classes.StaticClass
 
-interface TestableStatic {
+abstract class TestableStatic<T> : StaticClass {
 
-    abstract class Class<T> {
+    abstract infix fun test(items: ItemsStatic.Class<T>): Boolean
 
-        abstract val self: TestableStatic
+    infix fun fail(items: ItemsStatic.Class<T>): Boolean = !test(items)
 
-        abstract infix fun test(items: ItemsStatic.Class<T>): Boolean
+    abstract class Class<T> : lib.oop.classes.Class<TestableStatic<T>>()
 
-        infix fun fail(items: ItemsStatic.Class<T>): Boolean {
-            return !test(items)
-        }
-    }
 }
 
 

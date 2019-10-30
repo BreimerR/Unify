@@ -1,15 +1,20 @@
 package language.sections
 
+import language.ast.TokensStatic
 import lib.matcher.TestableStatic
+import lib.matcher.items.ItemsStatic
 
-class ZeroOrManyStatic<T> : RepetitiveSectionStatic<T>() {
+class ZeroOrMany(vararg sections: TestableStatic<String>, private val considerSeparation: Boolean = false) : lib.matcher.sections.ZeroOrManyStatic<String>(*sections) {
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
+        return if (items is TokensStatic.Class) {
+            val considerSeparation = items.considerSeparation
+            items.considerSeparation = this.considerSeparation
+            val test = super.test(items)
+            items.considerSeparation = considerSeparation
 
-    class Class<T>(vararg sections: TestableStatic.Class<T>) : RepetitiveSectionStatic.Class<T>(*sections, minCount = 0, maxCount = RepetitiveSection.maxCount) {
-        override val self by lazy {
-            ZeroOrMany
-        }
+
+            test
+
+        } else false
     }
 }
-
-
-val ZeroOrMany = ZeroOrManyStatic<String>()

@@ -10,10 +10,14 @@ open class IdentifierStatic : StringTokenStatic() {
 
     override var regex = Regex("([a-zA-Z][a-zA-Z0-9_]*|_+[a-zA-Z0-9_]*)")
 
+    override fun testItem(item: ItemStatic.Class<String>?) = item is Class
+
     open class Class(tokenString: String, l: Int, col: Int) : StringTokenStatic.Class(tokenString, l, col) {
 
+        override val self by lazy {
+            Identifier
+        }
 
-        override val self = Identifier
     }
 }
 

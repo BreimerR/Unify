@@ -10,11 +10,11 @@ abstract class TokenStatic : ItemStatic<String>() {
 
     abstract operator fun invoke(tokenString: String, l: Int, col: Int): Class
 
-    abstract class Class(tkString: String, open val l: Int, open val col: Int) : ItemStatic.Class<String>(tkString) {
-        override fun test(items: ItemsStatic.Class<String>): Boolean {
-            return testItem(items.nextItem)
-        }
-
-        abstract fun testItem(item: ItemStatic.Class<String>?): Boolean
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
+        return  testItem(items.nextItem)
     }
+
+    abstract fun testItem(item: ItemStatic.Class<String>?): Boolean
+
+    abstract class Class(tkString: String, open val l: Int, open val col: Int) : ItemStatic.Class<String>(tkString)
 }

@@ -1,6 +1,7 @@
 package unify.tokens.tokens
 
 import lib.matcher.TestableStatic
+import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import unify.ast.TokensStatic
 
@@ -38,19 +39,10 @@ abstract class OperatorStatic : TokenStatic() {
         return s.isNotEmpty()
     }
 
-
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-
-        items.nextItem?.let {
-
-            return it.value == tokenString
-        }
-
-        return false
-    }
+    override fun testItem(item: ItemStatic.Class<String>?) = item is Class
 
     // operators are key words and thus static no regular expression required
-    abstract class Class(tokenString: String, l: Int, col: Int, override val self: TestableStatic<String>) :
+    abstract class Class(tokenString: String, l: Int, col: Int, override val self: OperatorStatic) :
             TokenStatic.Class(tokenString, l, col)
 
 }

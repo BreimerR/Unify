@@ -6,7 +6,7 @@ import lib.oop.classes.StaticClass
 import lib.collections.array.invoke
 
 
-class CLIArgumentsStatic : StaticClass() {
+class CLIArgumentsStatic : StaticClass {
     operator fun invoke(arguments: Array<String>): CLIArgumentsClass = CLIArgumentsClass(arguments)
 }
 

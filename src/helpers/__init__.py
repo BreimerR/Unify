@@ -2,6 +2,7 @@ from File import File
 
 cSample = """package unify.tokens.characters
 
+import lib.matcher.items.ItemStatic
 import unify.tokens.tokens.CharacterStatic
 
 class %sStatic : CharacterStatic() {
@@ -10,32 +11,36 @@ class %sStatic : CharacterStatic() {
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
+    override fun testItem(item: ItemStatic.Class<String>?) = if (item != null) item is Class else false
+   
     class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, %s)
+    
 }
 
-val %s = %sStatic()
-"""
+val %s = %sStatic()"""
 
 oSample = """package unify.tokens.operators
 
 import unify.tokens.tokens.OperatorStatic
+
+val %s = %sStatic()
 
 class %sStatic : OperatorStatic() {
 
     override var tokenString: String = "%s"
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
-
-    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,%s) {
-        override fun testItem(item: ItemStatic.Class<String>?): Boolean {
+    
+      override fun testItem(item: ItemStatic.Class<String>?): Boolean {
             return if (item != null)
                 item is Class
             else false
-        }
-    }
+      }
+
+    class Class(tokenString: String, l: Int, col: Int) : OperatorStatic.Class(tokenString, l, col,%s) 
 }
 
-val %s = %sStatic()
+
 """
 
 operators = {
@@ -56,7 +61,6 @@ operators = {
 
 }
 skippedChars = {
-    "FSlash": "/",
     "SQuotes": "'",
     "NewLine": "n",
     "EscapedR": "r",
@@ -91,8 +95,10 @@ characters = {
     "LThan": "<",
     "GThan": ">",
     "Coma": ",",
+    "DQuotes": "\"",
+    "FSlash": "/",
     "Dot": ".",
-    "BSlash": "\\",
+    "BSlash": "\\\\",
     "Question": "?"
 }
 
@@ -102,7 +108,7 @@ def processChars(chars, action):
         value = action(chars[name])
         src = "../UnifyMain/kotlin/unify/tokens/characters/"
         file = File(src + name + ".kt")
-        file.readWrite(format(cSample % (name, name, name, value, name)))
+        file.readWrite(format(cSample % (name, value, name, name, name)))
 
 
 def processOperators(ops):
@@ -122,4 +128,4 @@ def createSkippedChars(chars):
 
 createChars(characters)
 createSkippedChars(skippedChars)
-processOperators(operators)
+# processOperators(operators)

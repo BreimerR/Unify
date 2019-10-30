@@ -1,9 +1,7 @@
 package unify.tokens.tokens
 
-import lib.text.asString
-import language.lib.io.FileClass
 import lib.matcher.items.ItemsStatic
-import language.tokens.TokenStatic  as LTokenStatic
+import language.tokens.TokenStatic as LTokenStatic
 import language.tokens.TokenStatic.Class as LTokenClass
 
 abstract class TokenStatic : LTokenStatic() {

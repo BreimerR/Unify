@@ -7,7 +7,7 @@ import lib.oop.classes.Class
 import kotlinx.cinterop.CPointer
 import lib.oop.classes.StaticClass
 
-open class FileStatic : StaticClass() {
+open class FileStatic : StaticClass {
     operator fun invoke(fullFilePathWithExtension: String, dirSeparator: String = "/"): FileClass = FileClass(fullFilePathWithExtension)
 }
 

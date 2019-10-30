@@ -1,38 +1,25 @@
 package language.sections
 
+import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class SectionStatic<T> : TestableStatic {
 
+open class Section(vararg sections: TestableStatic<String>, val considerSeparation: Boolean = false) : lib.matcher.sections.SectionStatic<String>(*sections) {
 
-    open operator fun invoke(vararg sections: TestableStatic.Class<T>): Class<T> = Class(*sections)
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
+        return if (items is TokensStatic.Class) {
+            val considerSeparation = items.considerSeparation
 
-    open class Class<T>(vararg val sections: TestableStatic.Class<T>) : TestableStatic.Class<T>() {
+            items.considerSeparation = this.considerSeparation
+            val test = super.test(items)
+            items.considerSeparation = considerSeparation
 
-        override val self by lazy {
-            Section
-        }
-
-        override infix fun test(items: ItemsStatic.Class<T>): Boolean {
-
-            sections.forEach {
-
-                if (it fail items)
-                    return false
-                else {
-                    // code for collection
-
-                }
-            }
-
-            return true
-        }
-
+            return test
+        } else false
 
     }
 }
 
-val Section = SectionStatic<String>()
 
 

@@ -8,19 +8,6 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
 
     var keywords: String = "(infix|prefix|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo)"
 
-
-    override fun test(item: ItemStatic.Class<String>?): Boolean {
-
-        var bool = item is Class
-
-        item?.value?.let {
-            bool = bool && it == value
-        }
-
-        return bool
-    }
-
-
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
     override fun test(items: ItemsStatic.Class<Char>): Boolean {
@@ -28,6 +15,12 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
 
         return if (super.test(items))
             items[i..items.i].toTypedArray().asString matches keywords.toRegex()
+        else false
+    }
+
+    override fun testItem(item: ItemStatic.Class<String>?): Boolean {
+        return if (super.testItem(item))
+            item!!.value == value
         else false
     }
 
