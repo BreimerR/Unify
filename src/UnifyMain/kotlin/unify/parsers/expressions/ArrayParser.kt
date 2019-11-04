@@ -1,15 +1,19 @@
-package unify.parsers
+package unify.parsers.expressions
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
-import unify.parsers.numbers.IntegerParser
+import language.sections.RepetitiveBySection
 import unify.tokens.characters.LSBracket
 import unify.tokens.characters.RSBracket
 
-class ArrayBodyDeclarationParser : ParserStatic(
+class ArrayParser : ParserStatic(
         LSBracket,
         OptionalSection(
-                IntegerParser()
+                RepetitiveBySection(
+                        ExpressionParser()
+                )
         ),
         RSBracket
-)
+) {
+
+}

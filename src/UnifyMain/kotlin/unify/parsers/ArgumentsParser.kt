@@ -14,11 +14,8 @@ class ArgumentsParser : ParserStatic(
         OptionalSection(
                 RepetitiveBySection(
                         ArgumentParser(),
-                        Coma,
-                        minCount = 0,
-                        considerSeparation = false
-                ),
-                considerSeparation = false
+                        Coma
+                )
         ),
         Section(RBracket)
 ) {

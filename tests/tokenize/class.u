@@ -1,1 +1,24 @@
-class Aged<T>
+class Foo<V>{
+
+    <T : V> update(val T int : 10 :: this.validator,failHandler ) {
+
+        a = datum * datum
+
+        For datum = 10
+
+        func age (Int){
+
+        }
+    }
+
+    act deletion -> !(i * i)
+
+    Form  a = datum delete datum
+
+    protected static  <T> deleteAll(){
+
+    }
+
+}
+
+a = datum * datum

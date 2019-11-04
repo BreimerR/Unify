@@ -17,9 +17,6 @@ class A{
 		$c =+10E14
 		$d = -F
 
-
-
-
 	}
 	// much bulky init
 	init2{
@@ -41,9 +38,9 @@ class A{
 
 	}
 
-	private prefix actionOnValidationFailure Array parsedUrl as url -> addError "No proper url found ${$_GET.url}"
+	private prefix actionOnValidationFailure Array parsedUrl -> addError "No proper url found ${$_GET.url}"
 
-	addError(String msg,Int level as errorLevel = 1){
+	addError(String msg,Int level = 1){
 
 	}
 

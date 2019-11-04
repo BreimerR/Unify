@@ -1,4 +1,4 @@
-package unify.functions
+package unify.parsers.functions
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection

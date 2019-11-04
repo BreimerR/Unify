@@ -7,6 +7,4 @@ class ArgumentParser : ParserStatic(
         AlternativeSection(
                 SingleArgumentParser()
         )
-) {
-    // space considerations
-}
+)

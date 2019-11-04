@@ -36,7 +36,7 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>) : Se
 
         if (!test) items.i = i
 
-        return true
+        return sections.isNotEmpty()
     }
 
 
