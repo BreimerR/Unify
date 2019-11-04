@@ -303,3 +303,24 @@ if(Boolean) {
 
 }
 ```
+
+
+## Loops
+
+#### Mixed Type loops
+
+In a case where there are different type items in a single array we can have 
+type selective loops i.e
+```Unify
+// two typed array
+Array<Int,String> array = ["",2]
+
+for Int i in array{
+    println i
+}
+
+
+/** result print
+2
+*/
+```

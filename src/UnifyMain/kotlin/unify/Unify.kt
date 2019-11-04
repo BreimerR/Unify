@@ -4,11 +4,15 @@ import language.LanguageStatic
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
+import unify.parsers.ClassParser
 import unify.parsers.EOFParser
-import unify.parsers.FunctionParser
+import unify.functions.FunctionParser
+import unify.parsers.comments.CommentsParser
 
 
 class Unify(args: CLIArgumentsClass) : LanguageStatic(
+        ClassParser(),
+        CommentsParser(),
         FunctionParser(),
         EOFParser()
 ) {

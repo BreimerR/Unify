@@ -18,11 +18,7 @@ class KeywordStatic(val value: String = "") : IdentifierStatic() {
         else false
     }
 
-    override fun testItem(item: ItemStatic.Class<String>?): Boolean {
-        return if (super.testItem(item))
-            item!!.value == value
-        else false
-    }
+    override fun testItem(item: ItemStatic.Class<String>?): Boolean  = item is Class  && item.value == value
 
     class Class(tokenString: String, l: Int, col: Int) : IdentifierStatic.Class(tokenString, l, col) {
         override val self = Keyword

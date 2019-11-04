@@ -5,6 +5,8 @@ import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.ZeroOrMany
 import lib.collections.array.pop
+import lib.collections.array.last
+import lib.collections.array.get
 import lib.matcher.MatcherStatic
 import language.ast.TokensStatic.Class as TokensClass
 
@@ -16,9 +18,11 @@ import language.ast.TokensStatic.Class as TokensClass
 abstract class LanguageStatic(vararg parsers: ParserStatic) : MatcherStatic<String>(
         ZeroOrMany(
                 AlternativeSection(
-                        *parsers.pop()
+                        *parsers[0..parsers.size - 2].toTypedArray()
                 )
-        ), parsers.last()) {
+        ),
+        parsers.last
+) {
 
     abstract val tokens: TokensClass
 
