@@ -8,6 +8,7 @@ import unify.tokens.strings.Identifier
 
 class InfixOperatorParser : ParserStatic(
         AlternativeSection(
+                AssignmentOperatorParser(),
                 ComparisonOperatorParser(),
                 Section(Identifier),
                 MathOperatorParser()

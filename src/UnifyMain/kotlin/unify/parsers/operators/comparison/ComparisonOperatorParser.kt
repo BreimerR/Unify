@@ -11,13 +11,13 @@ import unify.tokens.characters.LThan
 class ComparisonOperatorParser : ParserStatic(
         AlternativeSection(
                 // !=
-                Section(Exclamation, Equals, considerSeparation = true),
+                Section(Exclamation, Equals),
                 //  ==
-                Section(Equals, Equals, considerSeparation = true),
+                Section(Equals, Equals),
                 // <=
-                Section(LThan, Equals, considerSeparation = true),
+                Section(LThan, Equals),
                 // >=
-                Section(GThan, Equals, considerSeparation = true),
+                Section(GThan, Equals),
                 // <
                 Section(LThan),
                 // >

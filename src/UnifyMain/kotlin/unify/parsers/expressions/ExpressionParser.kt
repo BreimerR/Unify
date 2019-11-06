@@ -1,11 +1,17 @@
 package unify.parsers.expressions
 
 import language.parsers.ParserStatic
-import language.sections.*
-import unify.parsers.VariableDeclarationParser
+import language.sections.AlternativeSection
+import language.sections.OptionalSection
+import language.sections.Section
+import lib.matcher.items.ItemsStatic
+import unify.parsers.controlstractures.IfParser
 import unify.parsers.literals.LiteralParser
 import unify.parsers.operators.InfixOperatorParser
+import unify.tokens.characters.Colon
 import unify.tokens.characters.Exclamation
+import unify.tokens.characters.Question
+import unify.tokens.characters.SColon
 
 class ExpressionParser : ParserStatic() {
     override val sections by lazy {
@@ -13,28 +19,10 @@ class ExpressionParser : ParserStatic() {
                 OptionalSection(
                         Exclamation
                 ),
-                AlternativeSection(
-                        GroupExpressionParser(),
-                        Section(
-                                AlternativeSection(
-                                        LiteralParser(),
-                                        FunctionCallParser()
-                                ),
-                                OptionalSection(
-                                        PassiveSection(
-                                                NotSection(
-                                                        VariableDeclarationParser()
-                                                )
-                                        ),
-                                        InfixOperatorParser(),
-                                        ExpressionParser()
-                                )
-                        )
+                UnTerminatedExpressionParser(),
+                OptionalSection(
+                        SColon
                 )
         )
     }
-
-    fun update(): Boolean = false;
-
-
 }

@@ -16,7 +16,7 @@ class ClassBodyParser : ParserStatic() {
                 LBrace,
                 ZeroOrMany(
                         AlternativeSection(
-                                VariableDeclarationParser(),
+                                TerminatedVariableDeclarationParser(),
                                 EnumParser(),
                                 ClassParser(),
                                 ActionParser(),

@@ -14,7 +14,7 @@ class ReferenceParser : ParserStatic(
                 Dot
         )
 ) {
-    var error: String? = null
+    private var error: String? = null
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         val fileScope = false /*scope is FileScope*/

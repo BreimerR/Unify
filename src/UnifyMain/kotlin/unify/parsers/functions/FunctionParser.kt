@@ -5,6 +5,8 @@ import language.sections.Section
 import unify.tokens.strings.KeywordStatic
 
 class FunctionParser : ParserStatic(
-        Section(KeywordStatic("func")),
+        Section(
+                KeywordStatic("func")
+        ),
         FunctionContentParser()
 )
