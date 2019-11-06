@@ -30,7 +30,7 @@ open class SectionStatic<T>(open vararg val sections: TestableStatic<T>) : Testa
             } else return false
         }
 
-        return true
+        return sections.isNotEmpty()
     }
 
 }

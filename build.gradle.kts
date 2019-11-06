@@ -21,6 +21,10 @@ kotlin {
     }
 }
 
+dependencies{
+
+}
+
 // Use the following Gradle tasks to run your application:
 // :runHelloWorldAppReleaseExecutableHelloWorld - without debug symbols
 // :runHelloWorldAppDebugExecutableHelloWorld - with debug symbols

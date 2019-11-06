@@ -28,7 +28,7 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>) : Se
                     }
                 }
 
-                if (test) continue
+                if (test) continue else if (section is OptionalSectionStatic<T> || section is RepetitiveSectionStatic<T>) continue
             }
 
             break

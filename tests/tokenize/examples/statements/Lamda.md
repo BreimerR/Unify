@@ -19,7 +19,7 @@ class Button {
        // touch start
        // touch time
        // touch end
-       onTouchEnd(e->{
+       onTouchEnd(e -> {
        		if (time <= 10){
        			// wait  for another touch start
        		}else {

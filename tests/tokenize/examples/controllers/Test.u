@@ -4,7 +4,7 @@ class Test{
 
 		}
 
-		when	(params){
+		when(params){
 
 		}
     }

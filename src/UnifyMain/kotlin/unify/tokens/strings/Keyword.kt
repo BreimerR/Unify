@@ -4,9 +4,9 @@ import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import lib.text.asString
 
-class KeywordStatic(val value: String = "") : IdentifierStatic() {
+class KeywordStatic(private val value: String = "") : IdentifierStatic() {
 
-    var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo|enum|var|val|const|impl)"
+    var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default)"
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 

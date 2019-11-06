@@ -8,6 +8,9 @@ import lib.collections.array.pop
 import lib.collections.array.last
 import lib.collections.array.get
 import lib.matcher.MatcherStatic
+import lib.matcher.items.ItemsStatic
+import lib.matcher.sections.OptionalSectionStatic
+import lib.matcher.sections.RepetitiveSectionStatic
 import language.ast.TokensStatic.Class as TokensClass
 
 
@@ -27,11 +30,7 @@ abstract class LanguageStatic(vararg parsers: ParserStatic) : MatcherStatic<Stri
     abstract val tokens: TokensClass
 
     fun test(): Boolean {
-        return super.test(tokens)
-    }
-
-    fun parse() {
-
+        return test(tokens)
     }
 
 }

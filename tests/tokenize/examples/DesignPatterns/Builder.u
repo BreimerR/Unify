@@ -14,7 +14,7 @@ abstract class Creator {
 
 open class BodyStructure : Creator() {
 
-    fun makeHead() {
+    makeHead() {
         println("making head")
     }
 

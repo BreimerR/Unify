@@ -4,7 +4,7 @@ import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class MixedOrderSection(vararg sections: TestableStatic<String>, val considerSeparations: Boolean = false) : lib.matcher.sections.MixedSectionStatic<String>(*sections) {
+open class MixedOrderSection(vararg sections: TestableStatic<String>, private val considerSeparations: Boolean = false) : lib.matcher.sections.MixedSectionStatic<String>(*sections) {
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
             val cSeparations = items.considerSeparation

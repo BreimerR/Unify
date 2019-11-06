@@ -1,24 +1,24 @@
-class Foo<V>{
+class Foo<V> {
 
-    <T : V> update(val T int : 10 :: this.validator,failHandler ) {
+    <T : V> update(val T int : (10 * 10)  :: this.validator,failHandler)  {
 
-        a = datum * datum
+        when a += {
+            age {
+                var age  = age age age
 
-        For datum = 10
+                age = age ? true : new Map()
 
-        func age (Int){
-
+                var name = new App()
+            }
         }
     }
 
-    act deletion -> !(i * i)
+    var a = 20 times name
 
-    Form  a = datum delete datum
-
-    protected static  <T> deleteAll(){
+    name(){
 
     }
 
 }
 
-a = datum * datum
+/**/

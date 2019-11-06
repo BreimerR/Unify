@@ -11,7 +11,11 @@ class System {
 		}
 	}
 
-	static in = {
+	static out aka log, println(...Any content){
+
+	}
+
+	static in (...Any content) {
 
 	}
 }
