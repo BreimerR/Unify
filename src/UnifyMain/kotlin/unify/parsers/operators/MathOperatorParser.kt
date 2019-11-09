@@ -11,6 +11,11 @@ class MathOperatorParser : ParserStatic(
                 Section(Minus),
                 Section(Percent),
                 Section(Asterisk),
-                Section(FSlash)
+                Section(FSlash),
+                Section(Ampersand)
         )
-)
+) {
+
+    var age = 12
+
+}

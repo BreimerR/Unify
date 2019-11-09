@@ -1,6 +1,9 @@
 package unify
 
 import language.LanguageStatic
+import language.sections.AlternativeSection
+import language.sections.OptionalSection
+import language.sections.ZeroOrMany
 import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
@@ -9,17 +12,27 @@ import unify.parsers.TerminatedVariableDeclarationParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.parsers.functions.FunctionParser
+import unify.parsers.headers.ImportsParser
+import unify.parsers.headers.PackageDefParser
 import unify.parsers.objects.ClassParser
 import unify.parsers.objects.EnumParser
 
 
 class Unify(args: CLIArgumentsClass) : LanguageStatic(
-        TerminatedVariableDeclarationParser(),
-        TAssignmentExpressionParser(),
-        EnumParser(),
-        ClassParser(),
-        CommentsParser(),
-        FunctionParser(),
+        OptionalSection(
+                PackageDefParser()
+        ),
+        ImportsParser(),
+        ZeroOrMany(
+                AlternativeSection(
+                        TerminatedVariableDeclarationParser(),
+                        TAssignmentExpressionParser(),
+                        EnumParser(),
+                        ClassParser(),
+                        CommentsParser(),
+                        FunctionParser()
+                )
+        ),
         EOFParser()
 ) {
     // found items parser

@@ -75,9 +75,7 @@ fun <T> Array<T>.pop(index: Int): List<T> {
     val list = mutableListOf<T>()
 
     for ((i, item) in this.withIndex()) {
-        if (i != index) {
-            list.add(item)
-        }
+        if (i != index) list.add(item)
     }
 
     return list

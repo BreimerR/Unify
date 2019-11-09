@@ -5,7 +5,7 @@ import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import unify.tokens.strings.KeywordStatic
 
-class AccessControlModifiersParser : ParserStatic(
+class AccessModifiersParser : ParserStatic(
         OptionalSection(
                 AlternativeSection(
                         KeywordStatic("private"),

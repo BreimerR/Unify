@@ -19,9 +19,7 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>) : Se
 
             if (test) {
                 when (section) {
-                    is OptionalSectionStatic<T> -> {
-                        test = section.test
-                    }
+
 
                     is RepetitiveSectionStatic<T> -> {
                         test = section.test

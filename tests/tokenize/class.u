@@ -1,24 +1,16 @@
-class Foo<V> {
+package class.age.page
 
-    <T : V> update(val T int : (10 * 10)  :: this.validator,failHandler)  {
+class Exception(var simpe) : Age{
 
-        when a += {
-            age {
-                var age  = age age age
-
-                age = age ? true : new Map()
-
-                var name = new App()
-            }
-        }
-    }
-
-    var a = 20 times name
-
-    name(){
+    init {
 
     }
+
+
+    simple(items) Person {
+       var age= 10
+    }
+
+
 
 }
-
-/**/

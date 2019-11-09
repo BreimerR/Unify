@@ -4,16 +4,18 @@ import lib.collections.array.pop
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
+class AlternativeZeroOrMany<T>(vararg sections: TestableStatic<T>, maxCount: Int = RepetitiveSectionStatic.maxCount) : RepetitiveSectionStatic<T>(*sections, minCount = 0, maxCount = maxCount) {
 
-abstract class AlternativeSectionStatic<T>(override vararg var sections: TestableStatic<T>) : SectionStatic<T>(*sections) {
-
-    override fun test(items: ItemsStatic.Class<T>): Boolean {
+    override fun singleTest(items: ItemsStatic.Class<T>): Boolean {
+        var sections = this.sections
 
         var eI: Int = items.i
 
         var sI = 0
 
         for (section in sections) {
+
+            sI += 1;
 
             val i = items.i
 
@@ -24,32 +26,26 @@ abstract class AlternativeSectionStatic<T>(override vararg var sections: Testabl
             if (test) {
 
                 when (section) {
-
                     is RepetitiveSectionStatic<T> -> test = section.test
+
 
                     is OptionalSectionStatic<T> -> test = section.test
 
-                    is SingleInstanceSection<T> -> {
-                        if (test) sections = sections.pop(sI).toTypedArray()
-                        sI = 0
-                    }
+                    is SingleInstanceSection<T> -> if (test) sections = sections.pop(sI).toTypedArray()
 
                 }
+
                 // TODO save found section to avoid re test on collection
 
                 if (test) return true
 
             }
-            sI += 1;
             // revert i for re test
             items.i = i
-
         }
 
         items.i = eI
 
         return false
     }
-
 }
-

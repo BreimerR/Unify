@@ -6,7 +6,7 @@ import language.sections.ZeroOrMany
 import unify.parsers.TerminatedVariableDeclarationParser
 import unify.parsers.controlstractures.WhenParser
 import unify.parsers.controlstractures.WhileParser
-import unify.parsers.expressions.ExpressionParser
+import unify.parsers.expressions.TExpressionParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
@@ -19,7 +19,7 @@ class RFuncItemsParser : ParserStatic(
                         WhenParser(),
                         TerminatedVariableDeclarationParser(),
                         TAssignmentExpressionParser(),
-                        ExpressionParser(),
+                        TExpressionParser(),
                         FunctionParser()
                 )
         ),

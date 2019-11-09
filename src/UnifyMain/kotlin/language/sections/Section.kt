@@ -5,7 +5,11 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
 
-open class Section(vararg sections: TestableStatic<String>, val considerSeparation: Boolean = false) : lib.matcher.sections.SectionStatic<String>(*sections) {
+open class Section(
+        vararg sections: TestableStatic<String>,
+        val considerSeparation: Boolean = false,
+        val name: String? = null
+) : lib.matcher.sections.SectionStatic<String>(*sections) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {

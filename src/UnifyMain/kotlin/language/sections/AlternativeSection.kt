@@ -5,6 +5,7 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
 open class AlternativeSection(vararg sections: TestableStatic<String>, private val considerSeparation: Boolean = false) : lib.matcher.sections.AlternativeSectionStatic<String>(*sections) {
+
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
             val considerSeparation = items.considerSeparation

@@ -3,6 +3,6 @@ package unify.parsers.functions
 import language.parsers.ParserStatic
 
 class MethodParser : ParserStatic(
-        AccessControlModifiersParser(),
+        AccessModifiersParser(),
         FunctionContentParser()
 )

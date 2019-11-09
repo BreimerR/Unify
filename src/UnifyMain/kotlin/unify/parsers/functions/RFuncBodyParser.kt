@@ -1,28 +1,28 @@
 package unify.parsers.functions
 
 import language.parsers.AlternativeParser
-import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.Section
-import unify.parsers.expressions.ExpressionParser
+import lib.matcher.TestableStatic
+import unify.parsers.expressions.TExpressionParser
 
 class RFuncBodyParser : AlternativeParser() {
-    override val sections by lazy {
-        arrayOf(
+    override var sections: Array<out TestableStatic<String>>
+        get() = arrayOf(
                 RFuncItemsParser(),
                 Section(
                         ReturnActionOperatorParser(),
                         AlternativeSection(
-                                ExpressionParser(),
+                                TExpressionParser(),
                                 RFuncItemsParser()
                         )
                 ),
                 Section(
                         ActionOperatorParser(),
                         AlternativeSection(
-                                ExpressionParser()
+                                TExpressionParser()
                         )
                 )
         )
-    }
+        set(value) {}
 }

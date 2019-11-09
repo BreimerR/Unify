@@ -2,15 +2,18 @@ package unify.parsers.functions
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
-import unify.parsers.expressions.ExpressionParser
+import lib.matcher.TestableStatic
+import unify.parsers.expressions.TExpressionParser
 
 class ActFuncBodyParser : ParserStatic() {
-    override val sections by lazy {
-        arrayOf(
+
+    override var sections: Array<out TestableStatic<String>>
+        get() = arrayOf(
                 ActionOperatorParser(),
                 AlternativeSection(
-                        ExpressionParser()
+                        TExpressionParser(),
+                        FunctionItemsParser()
                 )
         )
-    }
+        set(value) {}
 }

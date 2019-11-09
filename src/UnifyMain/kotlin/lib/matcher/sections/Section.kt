@@ -3,7 +3,7 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class SectionStatic<T>(open vararg val sections: TestableStatic<T>) : TestableStatic<T>() {
+open class SectionStatic<T>(open vararg var sections: TestableStatic<T>) : TestableStatic<T>() {
 
     override infix fun test(items: ItemsStatic.Class<T>): Boolean {
 
@@ -14,7 +14,7 @@ open class SectionStatic<T>(open vararg val sections: TestableStatic<T>) : Testa
             if (test) {
                 when (section) {
                     is RepetitiveSectionStatic<T> -> {
-                        test = section.test
+                        test = if (section.minCount <= 0) section.test else test
                     }
 
                     is OptionalSectionStatic<T> -> {

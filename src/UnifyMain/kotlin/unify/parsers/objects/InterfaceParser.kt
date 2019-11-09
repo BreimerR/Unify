@@ -1,28 +1,36 @@
-package unify.parsers
+package unify.parsers.objects
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
-import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
+import unify.parsers.GenericTypeParser
+import unify.parsers.TypeDeclarationParser
+import unify.tokens.characters.Colon
 import unify.tokens.characters.Coma
-import unify.tokens.characters.GThan
-import unify.tokens.characters.LThan
 import unify.tokens.strings.Identifier
+import unify.tokens.strings.KeywordStatic
 
-class TypeDeclarationParser : ParserStatic() {
+class InterfaceParser : ParserStatic(
+
+
+) {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                Identifier,
+                KeywordStatic("interface"),
+                Section(Identifier),
                 OptionalSection(
-                        LThan,
+                        GenericTypeParser()
+                ),
+                OptionalSection(
+                        Colon,
                         RepetitiveBySection(
                                 TypeDeclarationParser(),
                                 Coma
-                        ),
-                        GThan
-                )
+                        )
+                ),
+                InterfaceBodyParser()
         )
         set(value) {}
 }

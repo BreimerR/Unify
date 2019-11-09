@@ -1,6 +1,7 @@
 abstract class EntertainmentDevice{
 	public{
 		boolean deviceState;
+
 		Int{
 			 maxSetting;
 

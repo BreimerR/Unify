@@ -5,9 +5,9 @@ import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
-import unify.tokens.strings.KeywordStatic
 import unify.parsers.expressions.ExpressionParser
 import unify.parsers.functions.FunctionBodyParser
+import unify.tokens.strings.KeywordStatic
 
 class IfParser : ParserStatic(
         KeywordStatic("if"),

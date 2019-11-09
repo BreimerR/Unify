@@ -10,13 +10,10 @@ import unify.tokens.characters.Pipe
 
 
 class LogicalOperatorParser : ParserStatic(
-        OptionalSection(Exclamation),
         AlternativeSection(
                 // &&
                 Section(Ampersand, Ampersand),
                 // ||
-                Section(Pipe, Pipe),
-                // !
-                Section(Exclamation)
+                Section(Pipe, Pipe)
         )
 )

@@ -4,9 +4,9 @@ import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import lib.text.asString
 
-class KeywordStatic(private val value: String = "") : IdentifierStatic() {
+class KeywordStatic(value: String = "") : IdentifierStatic(value = value) {
 
-    var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|get|set|switch|while|new|return|throw|import|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default)"
+    private var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|switch|while|new|return|throw|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default|as|override)"
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 
@@ -18,7 +18,7 @@ class KeywordStatic(private val value: String = "") : IdentifierStatic() {
         else false
     }
 
-    override fun testItem(item: ItemStatic.Class<String>?): Boolean = item is Class && item.value == value
+    override fun testItem(item: ItemStatic.Class<String>?): Boolean = item is Class && (item.value == value || value == "")
 
     class Class(tokenString: String, l: Int, col: Int) : IdentifierStatic.Class(tokenString, l, col) {
         override val self by lazy {

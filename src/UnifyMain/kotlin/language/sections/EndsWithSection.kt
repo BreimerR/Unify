@@ -3,21 +3,24 @@ package language.sections
 import lib.matcher.TestableStatic
 import unify.tokens.tokens.EOF
 
-class EndsWithSection(vararg sections: TestableStatic<String>, considerSeparation: Boolean = false) : Section() {
-    override val sections by lazy {
-        val end = Section(*sections, considerSeparation = considerSeparation)
+class EndsWithSection(private vararg var mSections: TestableStatic<String>, considerSeparation: Boolean = false) : Section() {
 
-        arrayOf(
-                ZeroOrMany(
-                        NotSection(
-                                AlternativeSection(
-                                        EOF,
-                                        end
-                                )
-                        ),
-                        considerSeparation = considerSeparation
-                ),
-                end
-        )
-    }
+    override var sections: Array<out TestableStatic<String>>
+        get() {
+            val end = Section(*mSections, considerSeparation = considerSeparation)
+
+            return arrayOf(
+                    ZeroOrMany(
+                            NotSection(
+                                    AlternativeSection(
+                                            EOF,
+                                            end
+                                    )
+                            ),
+                            considerSeparation = considerSeparation
+                    ),
+                    end
+            )
+        }
+        set(value) {}
 }

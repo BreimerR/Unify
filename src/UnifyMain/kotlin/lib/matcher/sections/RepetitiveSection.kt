@@ -5,7 +5,7 @@ import lib.matcher.items.ItemsStatic
 
 open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 0, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
 
-    var tCounts = 0
+    private var tCounts = 0
 
     var test: Boolean = true
 
@@ -18,12 +18,18 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
     override fun test(items: ItemsStatic.Class<T>): Boolean {
         var i: Int = items.i
 
-        recurTest@ while (testable) {
+        var tCounts = 0
+
+
+
+        recurTest@ while (tCounts < maxCount) {
             i = items.i
 
-            test = tests(items)
+            test = singleTest(items)
 
             if (!test) break@recurTest
+
+            tCounts += 1
 
         }
 
@@ -34,7 +40,7 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
         } else test
     }
 
-    private fun tests(items: ItemsStatic.Class<T>): Boolean {
+    protected open fun singleTest(items: ItemsStatic.Class<T>): Boolean {
 
         var truth = false
 

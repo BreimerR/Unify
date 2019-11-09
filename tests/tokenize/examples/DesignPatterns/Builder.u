@@ -31,8 +31,8 @@ open class BodyStructure : Creator() {
 class Delegator(var items: Array<Creator>) {
 
     create() {
-       items.each{
-       		obj,key -> obj.create() && print(key)
+       items.each {
+               obj,key -> obj.create() && print(key)
        }
     }
 }
