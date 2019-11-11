@@ -28,5 +28,6 @@ class IfParser : ParserStatic(
                         ExpressionParser(),
                         FunctionBodyParser()
                 )
-        )
+        ),
+        name = "IF_STATEMENT"
 )

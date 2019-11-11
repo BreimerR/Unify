@@ -1,4 +1,4 @@
-package unify.parsers.functions
+package unify.parsers.controlstractures
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
@@ -6,9 +6,10 @@ import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
 import lib.matcher.TestableStatic
-import unify.parsers.VariableDeclarationParser
+import unify.parsers.variables.VariableDeclarationParser
 import unify.parsers.expressions.AssignmentExpressionParser
 import unify.parsers.expressions.ExpressionParser
+import unify.parsers.functions.FunctionBodyParser
 import unify.parsers.literals.ReferenceParser
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
@@ -17,7 +18,7 @@ import unify.tokens.characters.SColon
 import unify.tokens.strings.IdentifierStatic
 import unify.tokens.strings.KeywordStatic
 
-class ForParser : ParserStatic() {
+class ForParser : ParserStatic(name = "FOR_LOOP") {
 
     var mSections: Array<out TestableStatic<String>>? = null
 
@@ -63,7 +64,10 @@ class ForParser : ParserStatic() {
                                 )
                         ),
                         RBracket,
-                        FunctionBodyParser()
+                        AlternativeSection(
+                                ExpressionParser(),
+                                FunctionBodyParser()
+                        )
                 )
 
                 mSections!!

@@ -1,5 +1,6 @@
 package lib.matcher.sections
 
+import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
@@ -9,25 +10,9 @@ open class SectionStatic<T>(open vararg var sections: TestableStatic<T>) : Testa
 
         for (section in sections) {
 
-            var test = section test items
+            val test = section test items
 
-            if (test) {
-                when (section) {
-                    is RepetitiveSectionStatic<T> -> {
-                        test = if (section.minCount <= 0) section.test else test
-                    }
-
-                    is OptionalSectionStatic<T> -> {
-                        test = section.test
-                    }
-
-                }
-
-
-                if (test) {
-
-                }
-            } else return false
+            if (!test) return false
         }
 
         return sections.isNotEmpty()

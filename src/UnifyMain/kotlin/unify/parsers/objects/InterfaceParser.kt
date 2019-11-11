@@ -10,15 +10,13 @@ import unify.parsers.TypeDeclarationParser
 import unify.tokens.characters.Colon
 import unify.tokens.characters.Coma
 import unify.tokens.strings.Identifier
+import unify.tokens.strings.IdentifierStatic
 import unify.tokens.strings.KeywordStatic
 
-class InterfaceParser : ParserStatic(
-
-
-) {
+class InterfaceParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                KeywordStatic("interface"),
+                IdentifierStatic("interface"),
                 Section(Identifier),
                 OptionalSection(
                         GenericTypeParser()

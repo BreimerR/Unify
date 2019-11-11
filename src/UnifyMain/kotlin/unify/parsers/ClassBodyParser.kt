@@ -12,6 +12,7 @@ import unify.parsers.functions.FunctionItemsParser
 import unify.parsers.functions.MethodParser
 import unify.parsers.objects.ClassParser
 import unify.parsers.objects.EnumParser
+import unify.parsers.variables.TVariableDeclarationParser
 import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
 import unify.tokens.strings.IdentifierStatic
@@ -31,7 +32,7 @@ class ClassBodyParser : ParserStatic() {
                                         OverridesParser(),
                                         AccessModifiersParser(),
                                         AlternativeSection(
-                                                TerminatedVariableDeclarationParser(),
+                                                TVariableDeclarationParser(),
                                                 ActionParser(),
                                                 MethodParser()
                                         )

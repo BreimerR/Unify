@@ -11,6 +11,9 @@ import language.sections.OptionalSection
 import unify.tokens.strings.KeywordStatic
 import language.sections.AlternativeSection
 import language.sections.RepetitiveBySection
+import unify.parsers.expressions.ExpressionParser
+import unify.tokens.characters.LBracket
+import unify.tokens.characters.RBracket
 
 class ClassParser : ParserStatic() {
 
@@ -36,7 +39,14 @@ class ClassParser : ParserStatic() {
                         Section(Colon),
                         TypeDeclarationParser(),
                         OptionalSection(
-                                ArgumentsParser()
+                                LBracket,
+                                OptionalSection(
+                                        RepetitiveBySection(
+                                                ExpressionParser(),
+                                                Coma
+                                        )
+                                ),
+                                RBracket
                         )
                 ),
                 OptionalSection(

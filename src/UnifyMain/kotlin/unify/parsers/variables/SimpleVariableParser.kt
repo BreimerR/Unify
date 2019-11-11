@@ -1,10 +1,12 @@
-package unify.parsers
+package unify.parsers.variables
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
+import unify.parsers.ReferenceOperatorParser
+import unify.parsers.TypeInitializationParser
 import unify.parsers.expressions.ExpressionParser
 import unify.parsers.literals.ReferenceParser
 import unify.tokens.characters.Colon
@@ -33,4 +35,5 @@ class SimpleVariableParser : ParserStatic(
                 Equals,
                 ExpressionParser()
         )
+
 )

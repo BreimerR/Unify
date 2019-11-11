@@ -13,5 +13,6 @@ class CaseBodyParser : ParserStatic(
                 ExpressionParser(),
                 RFuncBodyParser()
         ),
-        RBrace
+        RBrace,
+        name="S_CASE_BODY"
 )

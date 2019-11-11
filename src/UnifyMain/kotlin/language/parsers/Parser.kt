@@ -1,5 +1,6 @@
 package language.parsers
 
+import language.sections.AlternativeSection
 import language.sections.Section
 import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
@@ -12,7 +13,7 @@ open class ParserStatic(
         considerSeparation: Boolean = false,
         name: String? = null
 ) : Section(
-        *if (considerSeparation) arrayOf(ZeroOrMany(Tab, Space, NewLine), *sections) else sections,
+        *if (considerSeparation) arrayOf(ZeroOrMany(AlternativeSection(Tab, Space, NewLine, considerSeparation = true), considerSeparation = true ), *sections) else sections,
         considerSeparation = considerSeparation,
         name = name
 )

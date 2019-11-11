@@ -1,10 +1,7 @@
 package unify.parsers.comments
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.EndsWithSection
-import language.sections.NotSection
-import language.sections.ZeroOrMany
+import language.sections.*
 import unify.tokens.characters.Asterisk
 import unify.tokens.characters.FSlash
 import unify.tokens.characters.NewLine
@@ -16,7 +13,11 @@ class SingleLineComment : ParserStatic(
         FSlash,
         ZeroOrMany(
                 NotSection(
-                        AlternativeSection(EOF, NewLine)
+                        AlternativeSection(
+                                PassiveSection(EOF),
+                                NewLine,
+                                considerSeparation = true
+                        )
                 )
         )
 )

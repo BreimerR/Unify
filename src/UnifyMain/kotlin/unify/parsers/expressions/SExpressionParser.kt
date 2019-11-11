@@ -11,9 +11,9 @@ class SExpressionParser : AlternativeParser() {
         get() = arrayOf(
                 GroupExpressionParser(),
                 InfixExpressionParser(),
+                FunctionCallParser(),
                 IfParser(),
                 ClassInitParser(),
-                FunctionCallParser(),
                 PreFixExpressionParser(),
                 LiteralParser()
         )

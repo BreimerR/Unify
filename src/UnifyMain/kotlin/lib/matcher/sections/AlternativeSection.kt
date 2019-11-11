@@ -1,5 +1,6 @@
 package lib.matcher.sections
 
+import language.sections.PassiveSection
 import lib.collections.array.pop
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
@@ -17,27 +18,27 @@ abstract class AlternativeSectionStatic<T>(override vararg var sections: Testabl
 
             val i = items.i
 
-            var test = section test items
+            val test = section test items
 
             eI = items.i
 
             if (test) {
 
-                when (section) {
-
-                    is RepetitiveSectionStatic<T> -> test = section.test
-
-                    is OptionalSectionStatic<T> -> test = section.test
-
-                    is SingleInstanceSection<T> -> {
-                        if (test) sections = sections.pop(sI).toTypedArray()
-                        sI = 0
-                    }
-
+                if (section is SingleInstanceSection<T>) {
+                    if (items.i > i) sections = sections.pop(sI).toTypedArray()
+                    sI = 0
                 }
-                // TODO save found section to avoid re test on collection
 
-                if (test) return true
+                // TODO save found section to avoid re test on collection
+                if (section is PassiveSection && section.test) {
+
+                    return true
+                }
+
+                // TODO nested sections failure ie Alternative(Section(PassiveSection))
+                if (items.i > i) {
+                    return true
+                }
 
             }
             sI += 1;

@@ -7,7 +7,8 @@ open class NotSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionStat
     override infix fun test(items: ItemsStatic.Class<T>): Boolean {
         val i = items.i
         val test = super.test(items)
-        return if (test) {
+
+        return if (items.i > i || test) {
             items.i = i
             false
         } else true

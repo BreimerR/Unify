@@ -6,7 +6,7 @@ import lib.text.asString
 
 class KeywordStatic(value: String = "") : IdentifierStatic(value = value) {
 
-    private var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|interface|public|static|void|null|when|for|if|elif|aka|else|switch|while|new|return|throw|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default|as|override)"
+    private var keywords: String = "(protected|private|public|final|func|data|infix|prefix|act|class|abstract|closed|trait|public|static|void|null|when|for|if|elif|aka|else|switch|while|new|return|throw|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default|override)"
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 

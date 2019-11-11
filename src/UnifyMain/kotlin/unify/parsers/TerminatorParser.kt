@@ -1,9 +1,10 @@
 package unify.parsers
 
-import language.parsers.ParserStatic
 import language.sections.AlternativeSection
-import language.sections.Section
+import language.parsers.ParserStatic
 import language.sections.ZeroOrMany
+import language.sections.NotSection
+import language.sections.Section
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.SColon
 import unify.tokens.characters.Space
@@ -14,12 +15,16 @@ class TerminatorParser : ParserStatic(
                 SColon,
                 Section(
                         ZeroOrMany(
-                                AlternativeSection(
-                                        Tab, Space
+                                NotSection(
+                                        AlternativeSection(
+                                                Tab,Space,considerSeparation = true
+                                        )
                                 )
                         ),
-                        NewLine,
-                        considerSeparation = true
+                        AlternativeSection(
+                                NewLine,
+                                considerSeparation = true
+                        )
                 )
         )
 )

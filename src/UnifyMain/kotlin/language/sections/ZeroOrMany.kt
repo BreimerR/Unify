@@ -12,9 +12,7 @@ class ZeroOrMany(vararg sections: TestableStatic<String>, private val considerSe
             val test = super.test(items)
             items.considerSeparation = considerSeparation
 
-
             test
-
         } else false
     }
 }

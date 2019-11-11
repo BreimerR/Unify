@@ -3,14 +3,11 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 0, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
+open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 1, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
 
     private var tCounts = 0
 
     var test: Boolean = true
-
-    private inline val testable
-        get() = tCounts < maxCount
 
     private inline val minSuccess: Boolean
         get() = tCounts >= minCount
@@ -18,43 +15,44 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
     override fun test(items: ItemsStatic.Class<T>): Boolean {
         var i: Int = items.i
 
-        var tCounts = 0
 
 
-
-        recurTest@ while (tCounts < maxCount) {
+        // TODO maxCount error fix required
+        recurTest@ while (tCounts < maxCount + 1) {
             i = items.i
+
+            val prevT = test
 
             test = singleTest(items)
 
-            if (!test) break@recurTest
+            if (items.i <= i || !test) {
+
+                test = prevT
+                break@recurTest
+            }
 
             tCounts += 1
 
         }
 
-
         return if (minCount <= 0) {
             items.i = i
             true
-        } else test
+        } else {
+            test
+        }
     }
 
+    // TODO stop self when min = zero
     protected open fun singleTest(items: ItemsStatic.Class<T>): Boolean {
 
         var truth = false
 
         testLoop@ for (section in sections) {
-            if (section test items) {
+            truth = section test items
 
-                truth = when (section) {
-                    is RepetitiveSectionStatic<T> -> section.test
-                    is OptionalSectionStatic<T> -> section.test
-                    else -> true
-                }
-
-                if (!truth) break@testLoop
-
+            if (truth) {
+                //
             } else break@testLoop
 
         }

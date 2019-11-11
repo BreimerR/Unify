@@ -5,7 +5,7 @@ import language.sections.AlternativeSection
 import language.sections.Section
 import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
-import unify.parsers.TerminatedVariableDeclarationParser
+import unify.parsers.variables.TVariableDeclarationParser
 import unify.parsers.controlstractures.WhenParser
 import unify.parsers.controlstractures.WhileParser
 import unify.parsers.expressions.TExpressionParser
@@ -26,7 +26,7 @@ class ReturnFuncBodyParser : ParserStatic() {
                                             AlternativeSection(
                                                     WhileParser(),
                                                     WhenParser(),
-                                                    TerminatedVariableDeclarationParser(),
+                                                    TVariableDeclarationParser(),
                                                     TAssignmentExpressionParser(),
                                                     TExpressionParser(),
                                                     FunctionParser()
