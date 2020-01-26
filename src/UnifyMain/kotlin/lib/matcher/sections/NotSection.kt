@@ -8,7 +8,7 @@ open class NotSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionStat
         val i = items.i
         val test = super.test(items)
 
-        return if (items.i > i || test) {
+        return if (test) {
             items.i = i
             false
         } else true

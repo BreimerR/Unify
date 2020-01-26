@@ -13,9 +13,11 @@ class EndsWithSection(private vararg var mSections: TestableStatic<String>, cons
                     ZeroOrMany(
                             NotSection(
                                     AlternativeSection(
+                                            end,
                                             EOF,
-                                            end
-                                    )
+                                            considerSeparation = considerSeparation
+                                    ),
+                                    considerSeparation = considerSeparation
                             ),
                             considerSeparation = considerSeparation
                     ),

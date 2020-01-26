@@ -1,6 +1,10 @@
 package class.age.page
 
-class Exception(var simpe) : Age{
+
+/**/
+
+
+class Exception(var simple) : Age {
 
     init {
 
@@ -8,7 +12,9 @@ class Exception(var simpe) : Age{
 
 
     simple(items) Person {
-       var age= 10
+       var age = 10;
+
+
     }
 
 

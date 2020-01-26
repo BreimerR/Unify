@@ -11,7 +11,6 @@ import unify.tokens.characters.Colon
 import unify.tokens.characters.Coma
 import unify.tokens.strings.Identifier
 import unify.tokens.strings.IdentifierStatic
-import unify.tokens.strings.KeywordStatic
 
 class InterfaceParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
@@ -30,5 +29,7 @@ class InterfaceParser : ParserStatic() {
                 ),
                 InterfaceBodyParser()
         )
-        set(value) {}
+        @Suppress("UNUSED_PARAMETER")
+        set(value) {
+        }
 }

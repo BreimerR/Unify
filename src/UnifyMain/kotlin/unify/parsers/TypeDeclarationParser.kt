@@ -3,8 +3,6 @@ package unify.parsers
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
-import language.sections.Section
-import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
 import unify.tokens.characters.Coma
 import unify.tokens.characters.GThan
@@ -20,6 +18,8 @@ class TypeDeclarationParser : ParserStatic() {
                         RepetitiveBySection(
                                 TypeDeclarationParser(),
                                 Coma
+
+
                         ),
                         GThan
                 )

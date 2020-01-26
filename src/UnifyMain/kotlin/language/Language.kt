@@ -8,7 +8,7 @@ import language.ast.TokensStatic.Class as TokensClass
 
 
 // TODO look into organization once this makes proper sense
-//  at one point or the other just where it will start to work right
+// at one point or the other just where it will start to work right
 
 
 abstract class LanguageStatic(vararg parsers: SectionStatic<String>) : MatcherStatic<String>(
@@ -25,5 +25,4 @@ abstract class LanguageStatic(vararg parsers: SectionStatic<String>) : MatcherSt
 }
 
 
-
-
+class Lang(matcher: LanguageStatic) : MatcherStatic<String>()

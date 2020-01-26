@@ -13,7 +13,7 @@ open class ParserStatic(
         considerSeparation: Boolean = false,
         name: String? = null
 ) : Section(
-        *if (considerSeparation) arrayOf(ZeroOrMany(AlternativeSection(Tab, Space, NewLine, considerSeparation = true), considerSeparation = true ), *sections) else sections,
+        *if (considerSeparation) arrayOf(ZeroOrMany(AlternativeSection(Tab, Space, NewLine, considerSeparation = true)), *sections) else sections,
         considerSeparation = considerSeparation,
         name = name
 )

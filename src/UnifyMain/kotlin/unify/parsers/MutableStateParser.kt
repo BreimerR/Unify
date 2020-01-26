@@ -7,7 +7,8 @@ import unify.tokens.strings.KeywordStatic
 class MutableStateParser : ParserStatic(
         AlternativeSection(
                 KeywordStatic("var"),
-                KeywordStatic("val")
+                KeywordStatic("val"),
+                KeywordStatic("const")
         )
 ) {
 }
