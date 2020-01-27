@@ -18,8 +18,6 @@ class TypeDeclarationParser : ParserStatic() {
                         RepetitiveBySection(
                                 TypeDeclarationParser(),
                                 Coma
-
-
                         ),
                         GThan
                 )

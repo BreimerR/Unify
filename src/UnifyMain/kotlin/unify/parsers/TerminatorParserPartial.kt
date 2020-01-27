@@ -7,7 +7,7 @@ import unify.tokens.tokens.EOF
 
 /*imports terminator = space new line is for formatter*/
 
-class TerminatedParser(val parseStatement: ParserStatic) : ParserStatic(
+class TerminatorParserPartial(val parseStatement: ParserStatic) : ParserStatic(
         parseStatement,
         AlternativeSection(
                 EOF

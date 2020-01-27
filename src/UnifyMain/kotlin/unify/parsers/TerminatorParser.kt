@@ -6,6 +6,8 @@ import language.sections.EndsWithSection
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.SColon
 
+
+@Deprecated("Use: TerminatorParserPartial")
 class TerminatorParser : ParserStatic(
         AlternativeSection(
                 SColon,
