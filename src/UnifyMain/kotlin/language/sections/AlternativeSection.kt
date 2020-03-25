@@ -3,8 +3,10 @@ package language.sections
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import lib.matcher.sections.AlternativeSectionStatic as BaseAlternativeSectionStatic
 
-open class AlternativeSection(vararg sections: TestableStatic<String>, private val considerSeparation: Boolean = false) : lib.matcher.sections.AlternativeSectionStatic<String>(*sections) {
+open class AlternativeSection(vararg sections: TestableStatic<String>, private val considerSeparation: Boolean = false)
+    : BaseAlternativeSectionStatic<String>(*sections) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -14,6 +16,7 @@ open class AlternativeSection(vararg sections: TestableStatic<String>, private v
             items.considerSeparation = considerSeparation
 
             test
-        } else false
+
+        } else super.test(items)
     }
 }

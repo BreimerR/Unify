@@ -1,17 +1,25 @@
 package unify.parsers
 
 /*package terminator =  space*/
+import language.parsers.AlternativeParser
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
 import unify.tokens.tokens.EOF
 
 /*imports terminator = space new line is for formatter*/
 
-class TerminatorParserPartial(val parseStatement: ParserStatic) : ParserStatic(
-        parseStatement,
-        AlternativeSection(
-                EOF
-        )
+
+/** TODO
+ * Supposed to parse default terminator
+ * default terminator is
+ * ; or newLine
+ * */
+class TerminatorParserPartial : ParserStatic(
+        AlternativeParser(
+                EOF,
+
+                considerSeparation = true
+        ),
+        considerSeparation = true
 ) {
 
     init {
