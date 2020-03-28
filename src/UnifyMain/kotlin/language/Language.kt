@@ -1,9 +1,9 @@
 package language
 
 
+import language.scopes.Scope
 import lib.matcher.MatcherStatic
 import lib.matcher.sections.SectionStatic
-import language.scopes.Scope
 import language.ast.TokensStatic.Class as TokensClass
 
 
@@ -11,18 +11,16 @@ import language.ast.TokensStatic.Class as TokensClass
 // at one point or the other just where it will start to work right
 
 
-abstract class LanguageStatic(vararg parsers: SectionStatic<String>) : MatcherStatic<String>(
+abstract class Language(vararg parsers: SectionStatic<String>) : MatcherStatic<String>(
         *parsers
 ) {
     abstract val scope: Scope
 
     abstract val tokens: TokensClass
 
-    fun test(): Boolean {
-        return test(tokens)
-    }
+    fun test(): Boolean = test(tokens)
 
+    class Class(matcher: Language) : MatcherStatic<String>()
 }
 
 
-class Lang(matcher: LanguageStatic) : MatcherStatic<String>()

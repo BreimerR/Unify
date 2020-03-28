@@ -3,6 +3,10 @@ package unify.parsers
 /*package terminator =  space*/
 import language.parsers.AlternativeParser
 import language.parsers.ParserStatic
+import language.sections.PassiveSection
+import language.sections.Section
+import unify.tokens.characters.NewLine
+import unify.tokens.characters.SColon
 import unify.tokens.tokens.EOF
 
 /*imports terminator = space new line is for formatter*/
@@ -13,17 +17,21 @@ import unify.tokens.tokens.EOF
  * default terminator is
  * ; or newLine
  * */
+// if a parser fails it should restore all the used up spaces or new lines
 class TerminatorParserPartial : ParserStatic(
+        // structure of the alternative parser is important else the termination will not work
         AlternativeParser(
-                EOF,
-
-                considerSeparation = true
-        ),
-        considerSeparation = true
+                Section(
+                        NewLine,
+                        considerNewLine = true
+                ),
+                SColon,
+                PassiveSection(EOF)
+        )
 ) {
 
     init {
-
+        val age = 12
 
     }
     /**

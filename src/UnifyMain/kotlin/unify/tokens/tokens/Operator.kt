@@ -1,12 +1,11 @@
 package unify.tokens.tokens
 
-import lib.matcher.TestableStatic
 import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
-import unify.ast.TokensStatic
 
 
 abstract class OperatorStatic : TokenStatic() {
+
     abstract val tokenString: String
 
     override val regex: Regex

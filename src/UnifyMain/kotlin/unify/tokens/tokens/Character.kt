@@ -1,11 +1,8 @@
 package unify.tokens.tokens
 
 
-import lib.text.asString
-import language.lib.io.FileClass
-import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
-import unify.ast.TokensStatic
+import lib.text.asString
 
 fun Regex.Companion.char(char: Char): Regex = Regex(char.asString)
 
@@ -22,18 +19,6 @@ abstract class CharacterStatic : TokenStatic() {
         }
         return false
     }
-/*
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-        items.nextItem?.let {
-
-            val string = it.value
-
-            return string.length == 1 && string[0] == char
-
-        }
-
-        return false
-    }*/
 
     abstract override operator fun invoke(tokenString: String, l: Int, col: Int): Class
 

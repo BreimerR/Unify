@@ -1,6 +1,7 @@
 package unify
 
-import language.LanguageStatic
+import System
+import language.Language
 import language.scopes.FileScope
 import language.scopes.Scope
 import language.sections.AlternativeSection
@@ -10,7 +11,6 @@ import lib.cli.CLIArguments
 import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
 import unify.parsers.EOFParser
-import unify.parsers.variables.TVariableDeclarationParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.parsers.functions.FunctionParser
@@ -19,9 +19,13 @@ import unify.parsers.headers.PackageDefParser
 import unify.parsers.objects.ClassParser
 import unify.parsers.objects.EnumParser
 import unify.parsers.objects.InterfaceParser
+import unify.parsers.variables.MultiVariableDeclarationParser
+import unify.parsers.variables.TVariableDeclarationParser
 
 
-class Unify(args: CLIArgumentsClass) : LanguageStatic(
+
+
+class Unify(args: CLIArgumentsClass) : Language(
         OptionalSection(
                 PackageDefParser()
         ),
@@ -29,6 +33,7 @@ class Unify(args: CLIArgumentsClass) : LanguageStatic(
         ZeroOrMany(
                 AlternativeSection(
                         InterfaceParser(),
+                        MultiVariableDeclarationParser(),
                         TVariableDeclarationParser(),
                         TAssignmentExpressionParser(),
                         EnumParser(),
@@ -43,14 +48,18 @@ class Unify(args: CLIArgumentsClass) : LanguageStatic(
     // found items parser
     override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
 
-
 }
 
 fun main(args: Array<String>) {
-    // initialize arguments in a convenient readable mode
+    // initialize arguments
     val cli = CLIArguments(args)
 
     val unify = Unify(cli)
 
-    println(unify.test())
+    System.updateDebug(cli)
+
+    if (System.DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
+
+    println( unify.test() )
+
 }

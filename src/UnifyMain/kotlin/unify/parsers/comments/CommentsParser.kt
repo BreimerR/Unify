@@ -5,6 +5,7 @@ import language.sections.AlternativeSection
 
 class CommentsParser : ParserStatic(
         AlternativeSection(
+                // TODO comment does not end correctly
                 SingleLineComment(),
                 MultiLineComment()
         )
