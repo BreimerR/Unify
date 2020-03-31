@@ -13,4 +13,6 @@ class WhenParser : ParserStatic(
                 InfixOperatorParser()
         ),
         CaseBodyParser()
-)
+) {
+        override val TAG = "WhenParser"
+}

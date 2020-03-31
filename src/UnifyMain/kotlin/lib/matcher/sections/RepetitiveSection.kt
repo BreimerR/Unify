@@ -7,27 +7,28 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
 
     private var tCounts = 0
 
-    var test: Boolean = true
+    var test: Boolean = false
 
     private inline val minSuccess: Boolean
         get() = tCounts >= minCount
 
     override fun test(items: ItemsStatic.Class<T>): Boolean {
-        var i: Int = items.i
-
+        var indexBeforeTest: Int = items.nextIndex
 
 
         // TODO maxCount error fix required
         recurTest@ while (tCounts < maxCount + 1) {
-            i = items.i
+            indexBeforeTest = items.nextIndex
 
             val prevT = test
 
             test = singleTest(items)
 
-            if (items.i <= i || !test) {
-
+            if (!test || items.nextIndex <= indexBeforeTest) {
                 test = prevT
+
+                if (prevT) items.nextIndex = indexBeforeTest
+
                 break@recurTest
             }
 
@@ -36,7 +37,7 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
         }
 
         return if (minCount <= 0) {
-            items.i = i
+            items.nextIndex = indexBeforeTest
             true
         } else {
             test
@@ -50,11 +51,6 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
 
         testLoop@ for (section in sections) {
             truth = section test items
-
-            if (truth) {
-                //
-            } else break@testLoop
-
         }
 
         return truth

@@ -23,4 +23,7 @@ class TypeDeclarationParser : ParserStatic() {
                 )
         )
         set(value) {}
+
+
+    override val TAG = "TypeDeclarationParser"
 }

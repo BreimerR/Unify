@@ -30,4 +30,7 @@ class IfParser : ParserStatic(
                 )
         ),
         name = "IF_STATEMENT"
-)
+){
+    override val TAG: String
+        get() = "IfParser"
+}

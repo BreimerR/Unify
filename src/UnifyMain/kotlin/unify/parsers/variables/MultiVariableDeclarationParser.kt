@@ -6,7 +6,7 @@ import language.sections.OptionalSection
 import language.sections.RepetitiveSection
 import language.sections.ZeroOrMany
 import unify.parsers.MutableStateParser
-import unify.parsers.TerminatorParserPartial
+import unify.parsers.TerminatorParser
 import unify.tokens.characters.Coma
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.Space
@@ -26,5 +26,5 @@ class MultiVariableDeclarationParser : ParserStatic(
                 SimpleVariableParser(),
                 minCount = 1
         ),
-        TerminatorParserPartial()
+        TerminatorParser()
 )

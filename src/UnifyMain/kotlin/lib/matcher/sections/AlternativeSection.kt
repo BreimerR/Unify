@@ -10,22 +10,22 @@ abstract class AlternativeSectionStatic<T>(override vararg var sections: Testabl
 
     override fun test(items: ItemsStatic.Class<T>): Boolean {
 
-        var eI: Int = items.i
+        var eI: Int = items.nextIndex
 
         var sI = 0
 
         for (section in sections) {
 
-            val i = items.i
+            val i = items.nextIndex
 
             val test = section test items
 
-            eI = items.i
+            eI = items.nextIndex
 
             if (test) {
 
                 if (section is SingleInstanceSection<T>) {
-                    if (items.i > i) sections = sections.pop(sI).toTypedArray()
+                    if (items.nextIndex > i) sections = sections.pop(sI).toTypedArray()
                     sI = 0
                 }
 
@@ -36,18 +36,18 @@ abstract class AlternativeSectionStatic<T>(override vararg var sections: Testabl
                 }
 
                 // TODO nested sections failure ie Alternative(Section(PassiveSection))
-                if (items.i > i) {
+                if (items.nextIndex > i) {
                     return true
                 }
 
             }
             sI += 1;
             // revert i for re test
-            items.i = i
+            items.nextIndex = i
 
         }
 
-        items.i = eI
+        items.nextIndex = eI
 
         return false
     }

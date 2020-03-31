@@ -4,7 +4,7 @@ import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
 // TODO  var sections should be open val sections instead
-open class SectionStatic<T>(open vararg var sections: TestableStatic<T>) : TestableStatic<T>() {
+open class SectionStatic<T>(open vararg var sections: TestableStatic<T>, val name: String? = null) : TestableStatic<T>() {
 
     override infix fun test(items: ItemsStatic.Class<T>): Boolean {
 

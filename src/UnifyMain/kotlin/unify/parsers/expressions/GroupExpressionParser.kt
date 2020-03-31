@@ -8,4 +8,6 @@ class GroupExpressionParser : ParserStatic(
         LBracket,
         ExpressionParser(),
         RBracket
-)
+) {
+    override val TAG = "GroupExpressionParser"
+}

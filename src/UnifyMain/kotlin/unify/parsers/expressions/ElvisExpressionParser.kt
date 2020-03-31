@@ -17,4 +17,7 @@ class ElvisExpressionParser : ParserStatic() {
             )
         }
         set(value) {}
+
+    override val TAG = "ElvisExpressionParser"
+
 }

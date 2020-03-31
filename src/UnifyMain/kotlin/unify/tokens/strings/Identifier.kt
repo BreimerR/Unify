@@ -18,6 +18,8 @@ open class IdentifierStatic(val value: String = "") : StringTokenStatic() {
         }
 
     }
+
+    override val TAG = "Identifier"
 }
 
 

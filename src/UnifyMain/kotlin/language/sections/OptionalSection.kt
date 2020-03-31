@@ -1,6 +1,11 @@
 package language.sections
 
-import System
+import DEBUG_NEGATIVES
+import DEBUG_POSITIVES
+import DEBUG_POSITIVE_PARSERS
+import DEBUG_SECTIONS
+import DEBUG as SYS_DEBUG
+import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
@@ -11,8 +16,12 @@ class OptionalSection(
         vararg sections: TestableStatic<String>,
         private val considerSeparation: Boolean = false,
         private val considerSpaces: Boolean = false,
-        private val considerNewLines: Boolean = false
-) : BaseOptionalSectionStatic<String>(*sections) {
+        private val considerNewLines: Boolean = false,
+        name: String? = null
+) : BaseOptionalSectionStatic<String>(*sections, name = name) {
+
+    override val TAG = "OptionalSection"
+
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
             items.saveState
@@ -27,12 +36,28 @@ class OptionalSection(
 
             items.restoreState
 
-            if (System.DEBUG) println("OptionalSection Returns $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
-
-            if (System.DEBUG_POSITIVES && test) println("PassiveSection Returns $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
+            debug(items, test)
 
             test
-        } else false
+        } else {
+
+            Log.d(TAG, "This is the wrong class being passed error")
+
+            false
+        }
+    }
+
+    val DEBUG get() = SYS_DEBUG && DEBUG_SECTIONS
+
+    fun debug(items: TokensStatic.Class, test: Boolean) {
+        if (DEBUG) {
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, "test =  $test \t token =  ${items.token}  \t token.value = ${items.token}")
+            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test \t token =  ${items.token}  \t token.value = ${items.token}")
+
+            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, "test = $test\ttoken = ${items.token}\ttoken.value = ${items.token}")
+
+        }
     }
 }
 

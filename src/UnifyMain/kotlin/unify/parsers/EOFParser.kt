@@ -1,10 +1,11 @@
 package unify.parsers
 
-import unify.tokens.tokens.EOF
 import language.parsers.ParserStatic
-import language.sections.Section
+import unify.tokens.tokens.EOF
 
 class EOFParser : ParserStatic(
         EOF
-)
+){
+    override val TAG ="EOFParser"
+}
 

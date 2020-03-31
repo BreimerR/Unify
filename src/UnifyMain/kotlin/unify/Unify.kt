@@ -1,5 +1,6 @@
 package unify
 
+import DEBUG_SHOW_TOKENS
 import System
 import language.Language
 import language.scopes.FileScope
@@ -8,7 +9,6 @@ import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import language.sections.ZeroOrMany
 import lib.cli.CLIArguments
-import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
 import unify.parsers.EOFParser
 import unify.parsers.comments.CommentsParser
@@ -21,8 +21,7 @@ import unify.parsers.objects.EnumParser
 import unify.parsers.objects.InterfaceParser
 import unify.parsers.variables.MultiVariableDeclarationParser
 import unify.parsers.variables.TVariableDeclarationParser
-
-
+import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
 class Unify(args: CLIArgumentsClass) : Language(
@@ -58,8 +57,8 @@ fun main(args: Array<String>) {
 
     System.updateDebug(cli)
 
-    if (System.DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
+    if (DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
 
-    println( unify.test() )
+    println(unify.test())
 
 }

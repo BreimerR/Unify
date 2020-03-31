@@ -18,14 +18,14 @@ abstract class TokenStatic : LTokenStatic() {
 
         while (bool) {
 
-            val i = items.i
+            val i = items.nextIndex
 
             val char = items.nextItem?.value
 
             val test = s + char matches regex
 
             if (test) s += char
-            else items.i = i
+            else items.nextIndex = i
 
             bool = test && items.hasRemItems
         }
@@ -33,8 +33,8 @@ abstract class TokenStatic : LTokenStatic() {
         return s.isNotEmpty()
     }
 
-    abstract class Class(tkString: String, override val l: Int, override val col: Int) :
-            LTokenClass(tkString, l, col)
+    abstract class Class(tkString: String, override val line: Int, override val col: Int) :
+            LTokenClass(tkString, line, col)
 }
 
 

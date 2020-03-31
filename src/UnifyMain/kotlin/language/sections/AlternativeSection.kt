@@ -1,6 +1,10 @@
 package language.sections
 
-import System
+import DEBUG
+import DEBUG_NEGATIVES
+import DEBUG_POSITIVES
+import DEBUG_SECTIONS
+import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
@@ -15,26 +19,41 @@ open class AlternativeSection(
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
 
-        return if (items is TokensStatic.Class) {
-            items.saveState
+        items as TokensStatic.Class
 
-            items.updateStates(
-                    considerSpaces,
-                    considerNewLine,
-                    considerSeparation
-            )
+        items.saveState
 
-            val test = super.test(items)
+        items.updateStates(
+                considerSpaces,
+                considerNewLine,
+                considerSeparation
+        )
 
-            items.restoreState
+        val test = super.test(items)
 
-            if (System.DEBUG) println("Alternative Returns $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
+        items.restoreState
 
-            if (System.DEBUG_POSITIVES && test) println("PassiveSection Returns $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
+        debug(items, test)
 
-            test
+        return test
 
-        } else super.test(items)
+    }
 
+    open val TAG = "AlternativeSection"
+
+    open fun debug(items: ItemsStatic.Class<String>, test: Boolean) {
+
+        items as TokensStatic.Class
+
+        val token = items.token
+        val line = token?.line
+        val col = token?.col
+
+        if (DEBUG && DEBUG_SECTIONS) {
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+            if (DEBUG_NEGATIVES && !test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+
+        }
     }
 }

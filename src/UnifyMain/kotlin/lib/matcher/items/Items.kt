@@ -22,6 +22,8 @@ abstract class ItemsStatic : StaticClass {
 
         constructor(vararg items: ItemClass<T>) : this(items)
 
+        var nextIndex = 0
+
         var i = 0
 
         var currentItem: ItemClass<T>? = null
@@ -29,8 +31,11 @@ abstract class ItemsStatic : StaticClass {
         open val nextItem: ItemClass<T>?
             get() {
                 if (hasRemItems) {
-                    val res = items[i]
-                    i += 1
+                    val res = items[nextIndex]
+
+                    i = nextIndex
+
+                    nextIndex += 1
 
                     currentItem = res
 
@@ -44,9 +49,11 @@ abstract class ItemsStatic : StaticClass {
             get() {
                 return if (onFirstIndex) null
                 else {
-                    i -= 1
+                    nextIndex -= 1
 
-                    val res = items[i]
+                    i = nextIndex
+
+                    val res = items[nextIndex]
 
                     currentItem = res
 
@@ -55,12 +62,12 @@ abstract class ItemsStatic : StaticClass {
             }
 
         private val onFirstIndex: Boolean
-            get() = i == 0
+            get() = nextIndex == 0
 
-        private val hasPrevItems get() = i >= 0 && !onFirstIndex
+        private val hasPrevItems get() = nextIndex >= 0 && !onFirstIndex
 
         val hasRemItems: Boolean
-            get() = items.length != 0 && i < items.length
+            get() = items.length != 0 && nextIndex < items.length
 
         operator fun get(index: Int): ItemClass<T> = items[index]
 

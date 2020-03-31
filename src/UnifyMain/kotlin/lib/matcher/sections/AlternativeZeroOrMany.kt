@@ -9,7 +9,7 @@ class AlternativeZeroOrMany<T>(vararg sections: TestableStatic<T>, maxCount: Int
     override fun singleTest(items: ItemsStatic.Class<T>): Boolean {
         var sections = this.sections
 
-        var eI: Int = items.i
+        var eI: Int = items.nextIndex
 
         var sI = 0
 
@@ -17,11 +17,11 @@ class AlternativeZeroOrMany<T>(vararg sections: TestableStatic<T>, maxCount: Int
 
             sI += 1;
 
-            val i = items.i
+            val i = items.nextIndex
 
             var test = section test items
 
-            eI = items.i
+            eI = items.nextIndex
 
             if (test) {
 
@@ -41,10 +41,10 @@ class AlternativeZeroOrMany<T>(vararg sections: TestableStatic<T>, maxCount: Int
 
             }
             // revert i for re test
-            items.i = i
+            items.nextIndex = i
         }
 
-        items.i = eI
+        items.nextIndex = eI
 
         return false
     }

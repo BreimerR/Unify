@@ -1,5 +1,6 @@
 package language.parsers
 
+import DEBUG_PARSERS
 import language.sections.AlternativeSection
 import language.sections.Section
 import language.sections.ZeroOrMany
@@ -7,6 +8,7 @@ import lib.matcher.TestableStatic
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.Space
 import unify.tokens.characters.Tab
+import DEBUG as SYS_DEBUG
 
 open class ParserStatic(
         vararg sections: TestableStatic<String>,
@@ -29,26 +31,10 @@ open class ParserStatic(
         considerSpaces = considerSpaces,
         name = name
 ) {
-   /* parser does not need to override does not make sense
 
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
+    override val TAG = "Parser"
 
-        items as TokensStatic.Class
+    override val DEBUG
+        get() = SYS_DEBUG && DEBUG_PARSERS
 
-        items.saveState
-
-        items.updateStates(
-                considerSpaces,
-                considerNewLine,
-                considerSeparation
-        )
-
-        val test = super.test(items)
-
-        items.restoreState
-
-        if (System.DEBUG_POSITIVE_PARSERS && test) println("$this Returns $test \t token =  ${items.token}  \t token.i = ${items.i} ")
-
-        return test
-    }*/
 }

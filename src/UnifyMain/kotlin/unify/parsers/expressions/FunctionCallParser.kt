@@ -1,6 +1,6 @@
 package unify.parsers.expressions
 
-import language.parsers.AlternativeParser
+import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
@@ -13,9 +13,42 @@ import unify.tokens.characters.RBracket
 import unify.tokens.strings.Identifier
 
 
-class FunctionCallParser : AlternativeParser(
+class FunctionCallParser : ParserStatic(
         AlternativeSection(
-                Section(
+                AlternativeSection(
+                        Section(
+                                Section(
+                                        ReferenceParser(),
+                                        LBracket,
+                                        OptionalSection(
+                                                RepetitiveBySection(
+                                                        ExpressionParser(),
+                                                        Coma
+                                                )
+                                        ),
+                                        RBracket
+                                ),
+                                OptionalSection(
+                                        Dot,
+                                        RepetitiveBySection(
+                                                AlternativeSection(
+                                                        Section(
+                                                                ReferenceParser(),
+                                                                LBracket,
+                                                                OptionalSection(
+                                                                        RepetitiveBySection(
+                                                                                ExpressionParser(),
+                                                                                Coma
+                                                                        )
+                                                                ),
+                                                                RBracket
+                                                        ),
+                                                        Identifier
+                                                ),
+                                                Dot
+                                        )
+                                )
+                        ),
                         Section(
                                 ReferenceParser(),
                                 LBracket,
@@ -26,43 +59,14 @@ class FunctionCallParser : AlternativeParser(
                                         )
                                 ),
                                 RBracket
-                        ),
-                        OptionalSection(
-                                Dot,
-                                RepetitiveBySection(
-                                        AlternativeSection(
-                                                Section(
-                                                        ReferenceParser(),
-                                                        LBracket,
-                                                        OptionalSection(
-                                                                RepetitiveBySection(
-                                                                        ExpressionParser(),
-                                                                        Coma
-                                                                )
-                                                        ),
-                                                        RBracket
-                                                ),
-                                                Identifier
-                                        ),
-                                        Dot
-                                )
                         )
                 ),
                 Section(
                         ReferenceParser(),
-                        LBracket,
-                        OptionalSection(
-                                RepetitiveBySection(
-                                        ExpressionParser(),
-                                        Coma
-                                )
-                        ),
-                        RBracket
+                        ReferenceParser(),
+                        ExpressionParser()
                 )
-        ),
-        Section(
-                ReferenceParser(),
-                Section(Identifier),
-                ExpressionParser()
         )
-)
+) {
+    override val TAG: String = "FunctionCallParser"
+}

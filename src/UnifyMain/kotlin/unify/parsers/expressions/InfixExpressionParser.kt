@@ -9,7 +9,10 @@ import unify.parsers.controlstractures.IfParser
 import unify.parsers.literals.LiteralParser
 import unify.parsers.operators.InfixOperatorParser
 
+// expressions can not be in a separate line soo check for new lines
 class InfixExpressionParser : ParserStatic() {
+
+    override val TAG = "InfixExpressionParser"
 
     override var sections: Array<out TestableStatic<String>>
         get() {
@@ -19,7 +22,7 @@ class InfixExpressionParser : ParserStatic() {
                             FunctionCallParser(),
                             IfParser(),
                             ClassInitParser(),
-                            PreFixExpressionParser(),
+                            // PreFixExpressionParser(),
                             LiteralParser()
                     ),
                     InfixOperatorParser(),

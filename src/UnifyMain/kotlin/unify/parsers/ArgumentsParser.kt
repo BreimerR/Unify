@@ -3,20 +3,19 @@ package unify.parsers
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
-import language.sections.Section
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
-import unify.tokens.strings.Identifier
 
 class ArgumentsParser : ParserStatic(
-        Section(LBracket),
+        LBracket,
         OptionalSection(
                 RepetitiveBySection(
                         ArgumentParser(),
                         Coma
                 )
         ),
-        Section(RBracket)
+        RBracket
 ) {
+    override val TAG = "ArgumentsParser"
 }

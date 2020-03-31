@@ -1,14 +1,19 @@
 package unify.parsers.functions
 
-import language.parsers.AlternativeParser
+import language.parsers.ParserStatic
+import language.sections.AlternativeSection
 import lib.matcher.TestableStatic
 
-class FunctionBodyParser : AlternativeParser() {
+class FunctionBodyParser : ParserStatic() {
+    override val TAG = "FunctionBodyParser"
+
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                FunctionItemsParser(),
-                ReturnFuncBodyParser(),
-                ActFuncBodyParser()
+                AlternativeSection(
+                        FunctionItemsParser(),
+                        ReturnFuncBodyParser(),
+                        ActFuncBodyParser()
+                )
         )
         set(value) {}
 }

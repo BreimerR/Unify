@@ -12,4 +12,6 @@ class InfixOperatorParser : ParserStatic(
                 AssignmentOperatorParser(),
                 MathOperatorParser()
         )
-)
+){
+        override val TAG = "InfixOperatorParser"
+}

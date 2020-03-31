@@ -7,4 +7,6 @@ class ArgumentParser : ParserStatic(
         AlternativeSection(
                 SingleArgumentParser()
         )
-)
+){
+        override val TAG = "ArgumentParser"
+}

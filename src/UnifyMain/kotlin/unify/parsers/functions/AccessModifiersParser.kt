@@ -19,4 +19,6 @@ class AccessModifiersParser : ParserStatic(
         OptionalSection(
                 KeywordStatic("final")
         )
-)
+) {
+    override val TAG = "AccessModifierParser"
+}

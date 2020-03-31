@@ -6,11 +6,11 @@ import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
 import lib.matcher.TestableStatic
-import unify.parsers.variables.VariableDeclarationParser
 import unify.parsers.expressions.AssignmentExpressionParser
 import unify.parsers.expressions.ExpressionParser
 import unify.parsers.functions.FunctionBodyParser
 import unify.parsers.literals.ReferenceParser
+import unify.parsers.variables.MutableVariableDeclarationParser
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
@@ -19,6 +19,8 @@ import unify.tokens.strings.IdentifierStatic
 import unify.tokens.strings.KeywordStatic
 
 class ForParser : ParserStatic(name = "FOR_LOOP") {
+
+    override val TAG = "ForParser"
 
     var mSections: Array<out TestableStatic<String>>? = null
 
@@ -43,7 +45,7 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                          * */
                         AlternativeSection(
                                 Section(
-                                        VariableDeclarationParser(),
+                                        MutableVariableDeclarationParser(),
                                         IdentifierStatic("in"),
                                         ReferenceParser()
                                 ),

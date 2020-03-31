@@ -10,6 +10,8 @@ class EndsWithSection(
         considerNewLine: Boolean = false
 ) : Section(considerSeparation = considerSeparation, considerSpaces = considerSpaces, considerNewLine = considerNewLine) {
 
+    override val TAG = "EndsWithSection"
+
     private val _sections: Array<out TestableStatic<String>>
         get() {
 

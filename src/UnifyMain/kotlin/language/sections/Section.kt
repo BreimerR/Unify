@@ -1,9 +1,13 @@
 package language.sections
 
-import System
+import DEBUG_NEGATIVES
+import DEBUG_POSITIVES
+import DEBUG_SECTIONS
+import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import DEBUG as SYS_DEBUG
 
 
 open class Section(
@@ -11,8 +15,10 @@ open class Section(
         val considerSeparation: Boolean = false,
         val considerNewLine: Boolean = false,
         val considerSpaces: Boolean = false,
-        val name: String? = null
-) : lib.matcher.sections.SectionStatic<String>(*sections) {
+        name: String? = null
+) : lib.matcher.sections.SectionStatic<String>(*sections, name = name) {
+
+    open val TAG = "Section"
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -29,11 +35,27 @@ open class Section(
 
             items.restoreState
 
-            if (System.DEBUG) println("Section = $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
-
-            if (System.DEBUG_POSITIVES && test) println("PassiveSection Returns $test \t token =  ${items.token}  \t token.value = ${items.token?.value}")
+            debug(items, test)
 
             test
         } else false
+    }
+
+
+    open val DEBUG
+        get() = SYS_DEBUG && DEBUG_SECTIONS
+
+    open fun debug(items: TokensStatic.Class, test: Boolean) {
+        if (DEBUG) {
+
+
+            val token = items.token
+            val line = token?.line
+            val col = token?.col
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+
+        }
     }
 }

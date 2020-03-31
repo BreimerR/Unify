@@ -6,6 +6,8 @@ import lib.matcher.TestableStatic
 
 class TypeInitializationParser : ParserStatic() {
 
+    override val TAG = "TypeInitializationParser"
+
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 TypeDeclarationParser(),

@@ -5,7 +5,7 @@ import language.sections.OptionalSection
 import unify.parsers.MutableStateParser
 import unify.tokens.strings.KeywordStatic
 
-class VariableDeclarationParser : ParserStatic(
+class MutableVariableDeclarationParser : ParserStatic(
         // define if the var or val is static
         OptionalSection(
                 // if true this value should be available

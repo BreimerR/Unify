@@ -41,7 +41,12 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
                 @Suppress("RecursivePropertyAccessor")
                 return when {
+
                     cToken == null -> null
+
+                    // skip nothing
+                    considerSeparation -> cToken
+
                     // skip newLIne
                     considerSpaces -> {
                         if (isNewLine(cToken))
@@ -56,9 +61,6 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
                         else
                             cToken
                     }
-
-                    // skip nothing
-                    considerSeparation -> cToken
 
                     // skip NewLine Tab or Space
                     isSeparation(cToken) -> nextToken
@@ -83,23 +85,23 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
         abstract fun isTab(klass: TokenStatic): Boolean
 
-        var stateHolder: StateHolder = StateHolder(considerSeparation, considerSpaces, considerNewLine)
+        private var stateHolder: StateHolder = StateHolder(considerSeparation, considerSpaces, considerNewLine)
 
         val saveState: Unit
             get() {
                 stateHolder = StateHolder(considerSeparation, considerSpaces, considerNewLine)
             }
 
-        var savedIndex = i
+        var savedIndex = nextIndex
 
         val pauseIndex: Unit
             get() {
-                savedIndex = i
+                savedIndex = nextIndex
             }
 
         val resumeIndex: Unit
             get() {
-                i = savedIndex
+                nextIndex = savedIndex
             }
 
 
@@ -116,7 +118,7 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
                 considerSpaces = stateHolder.considerSpaces
             }
 
-        data class StateHolder(val considerSeparation: Boolean, val considerSpaces: Boolean, val considerNewLine: Boolean)
+        internal data class StateHolder(val considerSeparation: Boolean, val considerSpaces: Boolean, val considerNewLine: Boolean)
 
     }
 }

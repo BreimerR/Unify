@@ -1,16 +1,23 @@
 package unify.parsers
 
+import language.parsers.AlternativeParser
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.EndsWithSection
+import language.sections.PassiveSection
+import language.sections.Section
 import unify.tokens.characters.NewLine
 import unify.tokens.characters.SColon
+import unify.tokens.tokens.EOF
 
-
-@Deprecated("Use: TerminatorParserPartial")
 class TerminatorParser : ParserStatic(
-        AlternativeSection(
+        // structure of the alternative parser is important else the termination will not work
+        AlternativeParser(
+                Section(
+                        NewLine,
+                        considerNewLine = true
+                ),
                 SColon,
-                EndsWithSection(NewLine, considerSeparation = true)
+                PassiveSection(EOF)
         )
-)
+) {
+    override val TAG = "TerminatorParser"
+}

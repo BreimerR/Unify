@@ -9,4 +9,6 @@ class WhileParser : ParserStatic(
         KeywordStatic("while"),
         ExpressionParser(),
         FunctionBodyParser()
-)
+){
+    override  val TAG = "WhileParser"
+}

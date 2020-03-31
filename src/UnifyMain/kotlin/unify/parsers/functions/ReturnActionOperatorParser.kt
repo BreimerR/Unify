@@ -7,4 +7,6 @@ import unify.tokens.characters.GThan
 class ReturnActionOperatorParser : ParserStatic(
         Equals,
         GThan
-)
+) {
+    override val TAG = "ReturnActionOperatorParser"
+}

@@ -6,4 +6,6 @@ import unify.tokens.strings.Number
 
 class IntegerParser : ParserStatic(
         Section(Number)
-)
+) {
+    override val TAG = "IntegerParser"
+}

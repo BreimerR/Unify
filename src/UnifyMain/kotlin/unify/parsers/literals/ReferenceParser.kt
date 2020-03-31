@@ -1,23 +1,36 @@
 package unify.parsers.literals
 
 import language.parsers.ParserStatic
-import language.sections.RepetitiveBySection
+import language.sections.AlternativeSection
+import language.sections.ZeroOrMany
 import lib.matcher.items.ItemsStatic
 import unify.tokens.characters.Dot
 import unify.tokens.strings.Identifier
+import unify.tokens.strings.Keyword
 import unify.tokens.strings.KeywordStatic
 
 
 class ReferenceParser : ParserStatic(
-        RepetitiveBySection(
-                Identifier,
+        ZeroOrMany(
+                AlternativeSection(
+                        Identifier,
+                        Keyword
+                ),
                 Dot
+        ),
+        AlternativeSection(
+                Identifier
         )
 ) {
+
+
+    var fileScope = false /*scope is FileScope*/
+
     private var error: String? = null
 
+    override val TAG = "ReferenceParser"
+
     override fun test(items: ItemsStatic.Class<String>): Boolean {
-        val fileScope = false /*scope is FileScope*/
 
         @Suppress("ConstantConditionIf")
         return if (fileScope) {
@@ -25,6 +38,12 @@ class ReferenceParser : ParserStatic(
                 error = ""
                 false
             } else true
-        } else super.test(items)
+        }
+        else super.test(items)
+    }
+
+
+    companion object {
+        val age = 12
     }
 }

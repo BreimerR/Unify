@@ -1,19 +1,19 @@
 package unify.parsers.objects
 
-import unify.parsers.*
+import language.parsers.ParserStatic
+import language.sections.AlternativeSection
+import language.sections.OptionalSection
+import language.sections.RepetitiveBySection
 import language.sections.Section
 import lib.matcher.TestableStatic
-import unify.tokens.characters.Coma
-import language.parsers.ParserStatic
-import unify.tokens.characters.Colon
-import unify.tokens.strings.Identifier
-import language.sections.OptionalSection
-import unify.tokens.strings.KeywordStatic
-import language.sections.AlternativeSection
-import language.sections.RepetitiveBySection
+import unify.parsers.*
 import unify.parsers.expressions.ExpressionParser
+import unify.tokens.characters.Colon
+import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
+import unify.tokens.strings.Identifier
+import unify.tokens.strings.KeywordStatic
 
 class ClassParser : ParserStatic() {
 
@@ -29,7 +29,8 @@ class ClassParser : ParserStatic() {
                 Section(
                         Section(Identifier, name = "NAME"),
                         OptionalSection(
-                                GenericTypeParser()
+                                GenericTypeParser(),
+                                name = "GENERIC_TYPES"
                         )
                 ),
                 OptionalSection(
@@ -38,6 +39,7 @@ class ClassParser : ParserStatic() {
                 OptionalSection(
                         Section(Colon),
                         TypeDeclarationParser(),
+                        // argument calls should be in a separate place not here
                         OptionalSection(
                                 LBracket,
                                 OptionalSection(

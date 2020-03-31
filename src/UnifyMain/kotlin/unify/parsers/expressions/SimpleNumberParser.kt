@@ -17,4 +17,6 @@ class SimpleNumberParser : ParserStatic(
                 )
         ),
         Section(Number, OptionalSection(Dot, Number))
-)
+) {
+    override val TAG = "SimpleNumberParser"
+}

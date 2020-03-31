@@ -1,35 +1,46 @@
 package lib.matcher.sections
 
+import DEBUG
+import Log
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
 
-abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionStatic<T>(*sections) {
+abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>, name: String? = null) : SectionStatic<T>(*sections, name = name) {
 
     var test: Boolean = true
+
+    open val TAG = "OptionalSectionStatic<T, ItemStatic<T>>"
 
     // 170902
     override fun test(items: ItemsStatic.Class<T>): Boolean {
 
-        var tI: Int
-        val i = items.i
+        var testIndex: Int
+        val indexBeforeTest = items.nextIndex
 
-        for (section in sections) {
+        tester@ for (section in sections) {
 
-            tI = items.i
+            testIndex = items.nextIndex
+
             test = section test items
 
             if (test) {
-                if (items.i > tI) continue else if (section is OptionalSectionStatic<T> || section is RepetitiveSectionStatic<T>) continue
+                if (items.nextIndex > testIndex) continue else if (section is OptionalSectionStatic<T> || section is RepetitiveSectionStatic<T>) continue
             }
 
-            break
-        }
+            items.nextIndex = indexBeforeTest
 
-        if (!test) items.i = i
+            break@tester
+        }
 
         return sections.isNotEmpty()
     }
 
+
+    fun debug(message: String) {
+        if (DEBUG) {
+            Log.d(TAG, message)
+        }
+    }
 
 }

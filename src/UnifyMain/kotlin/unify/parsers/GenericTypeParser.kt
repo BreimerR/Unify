@@ -28,5 +28,5 @@ class GenericTypeParser : ParserStatic(
         ),
         GThan
 ) {
-
+    override val TAG = "GenericTypeParser"
 }

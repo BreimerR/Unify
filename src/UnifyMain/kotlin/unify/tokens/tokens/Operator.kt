@@ -21,14 +21,14 @@ abstract class OperatorStatic : TokenStatic() {
 
         while (bool) {
 
-            val pI = items.i
+            val pI = items.nextIndex
 
             val char = items.nextItem?.value
 
             val test = if (i < tokenString.length) tokenString[i] == char else false
 
             if (test) s += char
-            else items.i = pI
+            else items.nextIndex = pI
 
             i += 1
 

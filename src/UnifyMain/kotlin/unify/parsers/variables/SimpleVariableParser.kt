@@ -2,38 +2,28 @@ package unify.parsers.variables
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
-import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
 import language.sections.Section
-import unify.parsers.ReferenceOperatorParser
-import unify.parsers.TypeInitializationParser
-import unify.parsers.expressions.ExpressionParser
-import unify.parsers.literals.ReferenceParser
-import unify.tokens.characters.Colon
-import unify.tokens.characters.Coma
-import unify.tokens.characters.Equals
-import unify.tokens.strings.Identifier
+import lib.matcher.TestableStatic
 
-class SimpleVariableParser : ParserStatic(
-        AlternativeSection(
-                Section(TypeInitializationParser(), Identifier),
-                Section(Identifier)
-        ),
-        OptionalSection(
-                Colon,
-                ExpressionParser()
-        ),
-        OptionalSection(
-                ReferenceOperatorParser(),
-                RepetitiveBySection(
-                        ReferenceParser(),
-                        Coma,
-                        maxCount = 1
-                )
-        ),
-        OptionalSection(
-                Equals,
-                ExpressionParser()
+class SimpleVariableParser : ParserStatic() {
+
+    override val TAG = "SimpleVariableParser"
+
+    override var sections: Array<out TestableStatic<String>>
+        get() = arrayOf(
+                AlternativeSection(
+                        Section(
+                                VariableStartParser(),
+                                DistractingParser()
+                        ),
+                        VariableStartParser(),
+                        DistractingParser()
+                ),
+                VariableEndParser()
         )
+        set(value) {
 
-)
+        }
+}
+
+

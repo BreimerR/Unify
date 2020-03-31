@@ -13,4 +13,5 @@ class MutableStateParser : ParserStatic(
                 KeywordStatic("val")
         )
 ) {
+    override val TAG = "MutableStateParser"
 }

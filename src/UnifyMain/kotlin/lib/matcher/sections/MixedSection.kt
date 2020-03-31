@@ -18,7 +18,7 @@ open class MixedSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionSt
 
         for (section in sections) {
             val lastIndex = sections.size - 1
-            val iC = items.i
+            val iC = items.nextIndex
 
             var isOptional = false
 
@@ -61,7 +61,7 @@ open class MixedSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionSt
                     if (mSec.isNotEmpty()) test = false
                 }
                 else -> {
-                    items.i = iC
+                    items.nextIndex = iC
                     i++
                 }
             }

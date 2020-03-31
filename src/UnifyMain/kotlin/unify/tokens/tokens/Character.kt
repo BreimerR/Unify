@@ -24,10 +24,10 @@ abstract class CharacterStatic : TokenStatic() {
 
     abstract class Class(
             open val char: String,
-            override val l: Int,
+            override val line: Int,
             override val col: Int,
             override val self: CharacterStatic) :
-            TokenStatic.Class(char, l, col)
+            TokenStatic.Class(char, line, col)
 
 }
 

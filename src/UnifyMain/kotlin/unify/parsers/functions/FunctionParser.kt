@@ -9,4 +9,6 @@ class FunctionParser : ParserStatic(
                 KeywordStatic("func")
         ),
         FunctionContentParser()
-)
+) {
+    override val TAG = "FunctionParser"
+}

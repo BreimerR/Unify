@@ -10,4 +10,5 @@ class CommentsParser : ParserStatic(
                 MultiLineComment()
         )
 ) {
+        override val TAG = "CommentsParser"
 }

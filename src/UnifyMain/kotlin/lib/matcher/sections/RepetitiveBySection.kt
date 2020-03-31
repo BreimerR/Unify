@@ -9,23 +9,21 @@ open class RepetitiveBySection<T> : SectionStatic<T> {
             section: TestableStatic<T>,
             by: TestableStatic<T>,
             name: String? = null
-    ) :
-            super(section, RepetitiveSectionStatic(by, section))
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = 0), name = name)
 
     constructor(
             section: TestableStatic<T>,
             by: TestableStatic<T>,
             name: String? = null,
             maxCount: Int
-    ) :
-            super(section, RepetitiveSectionStatic(by, section, maxCount = maxCount))
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = 0, maxCount = maxCount), name = name)
 
     constructor(
             section: TestableStatic<T>,
             by: TestableStatic<T>,
             name: String? = null,
-            minCount: Int,
+            minCount: Int = 0,
             maxCount: Int
-    ) : super(section, RepetitiveSectionStatic(by, section, minCount = minCount, maxCount = maxCount))
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = minCount, maxCount = maxCount), name = name)
 
 }

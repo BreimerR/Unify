@@ -21,14 +21,18 @@ import unify.tokens.tokens.EOF
 class TerminatorParserPartial : ParserStatic(
         // structure of the alternative parser is important else the termination will not work
         AlternativeParser(
+                SColon,
                 Section(
                         NewLine,
                         considerNewLine = true
                 ),
-                SColon,
-                PassiveSection(EOF)
-        )
+                PassiveSection(EOF),
+                considerSeparation = false
+        ),
+        considerSeparation = false
 ) {
+
+    override val TAG = "TerminatorParserPartial"
 
     init {
         val age = 12
