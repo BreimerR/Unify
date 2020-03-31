@@ -1,31 +1,25 @@
 package unify.tokens.strings
 
-import lib.matcher.TestableStatic
-import lib.matcher.items.ItemsStatic
-import unify.ast.TokensStatic
-import unify.tokens.tokens.StringTokenClass
+import lib.matcher.items.ItemStatic
 import unify.tokens.tokens.StringTokenStatic
 
-open class IdentifierStatic : StringTokenStatic() {
+open class IdentifierStatic(val value: String = "") : StringTokenStatic() {
+
     override fun invoke(tokenString: String, l: Int, col: Int) = Class(tokenString, l, col)
-
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-
-        items.nextItem?.let {
-
-            val string = it.value
-
-            return string matches regex
-        }
-
-        return false
-    }
 
     override var regex = Regex("([a-zA-Z][a-zA-Z0-9_]*|_+[a-zA-Z0-9_]*)")
 
-    open class Class(tokenString: String, l: Int, col: Int) : StringTokenClass(tokenString, l, col) {
-        override val self = Identifier
+    override fun testItem(item: ItemStatic.Class<String>?): Boolean = (item is Class && item !is KeywordStatic.Class) && (item.value == value || value == "")
+
+    open class Class(tokenString: String, l: Int, col: Int) : StringTokenStatic.Class(tokenString, l, col) {
+
+        override val self by lazy {
+            Identifier
+        }
+
     }
+
+    override val TAG = "Identifier"
 }
 
 

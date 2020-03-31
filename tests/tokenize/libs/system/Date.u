@@ -4,7 +4,7 @@ class Date{
     Int dateOfWeek : 0 :: in 0..6
     Int dateOfMonth : 1
 
-    days = [
+    val days = [
         "Sunday",
         "Monday",
         "Tuesday",
@@ -15,7 +15,7 @@ class Date{
     ]
 
 
-    private static Date now
+    private val static Date now
         get() => {
             // return last statement in this function
         }

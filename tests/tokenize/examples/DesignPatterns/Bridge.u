@@ -1,16 +1,18 @@
-abstruct class EntertainmentDevice{
+abstract class EntertainmentDevice{
 	public{
 		boolean deviceState;
+
 		Int{
 			 maxSetting;
 
             volumeLevel = 0
 		}
 
-		abstruct{
+		abstract{
 			buttonFivePressed();
 			buttonSixPressed();
 		}
+
 		deviceFeedback{
 			if(deviceState > maxSetting || deviceState  < 0) deviceState = 0
 
@@ -44,7 +46,7 @@ class TvDevice: EntertainmentDevice {
 	}
 }
 
-abstruct RemoteButton{
+abstract class RemoteButton{
 
 	public{
 		constructor(device);

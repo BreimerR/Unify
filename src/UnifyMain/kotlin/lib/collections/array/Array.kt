@@ -66,4 +66,23 @@ operator fun <T> Array<T>.get(intRange: IntRange): List<T> {
     }
 }
 
+/** @Description
+ * remove the last item from an array
+ * */
 fun <T> Array<T>.pop(): Array<T> = minus(1)
+
+fun <T> Array<T>.pop(index: Int): List<T> {
+    val list = mutableListOf<T>()
+
+    for ((i, item) in this.withIndex()) {
+        if (i != index) list.add(item)
+    }
+
+    return list
+}
+
+val <T> Array<T>.last: T get() = this[this.size - 1]
+
+val <T> Array<T>.pop: Array<T> get() = pop()
+
+

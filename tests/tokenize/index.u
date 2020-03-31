@@ -2,9 +2,11 @@
  * @param fileName is a fileName and a file name can not contain forwardSlash
  */
 
-abstract Language(protected String code,protected String fileName:/[char!\/]*/,Parser ...parsers){
+abstract Language(protected String code,protected String fileName: /[char!\/]*/,Parser ...parsers){
 	// this is a property that requires being declared by the implementers
-	abstract Token[] tokens
+	abstract var tokens = arrayOf<T>(
+
+	)
 
 	init{
 
@@ -17,7 +19,7 @@ abstract Language(protected String code,protected String fileName:/[char!\/]*/,P
 
 
 
-	tokenize:Tokens (String ...code){}
+	tokenize (String ...code) : Tokens{}
 
 	static get parser:Parser {
 		/*Test if parser shouldParse if so return that parser*/

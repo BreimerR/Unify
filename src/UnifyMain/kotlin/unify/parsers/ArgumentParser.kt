@@ -1,16 +1,12 @@
 package unify.parsers
 
-import language.parsers.Parser
-import lib.matcher.sections.AlternativeSection
+import language.parsers.ParserStatic
+import language.sections.AlternativeSection
 
-class ArgumentParser : Parser(
+class ArgumentParser : ParserStatic(
         AlternativeSection(
-                SimpleArgumentParser(),
-                DestructedArgumentParser()
-        ),
-        name = "ARGUMENT"
-) {
-    override val considerSpaces = false
+                SingleArgumentParser()
+        )
+){
+        override val TAG = "ArgumentParser"
 }
-
-

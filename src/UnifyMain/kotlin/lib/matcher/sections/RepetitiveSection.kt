@@ -1,37 +1,64 @@
 package lib.matcher.sections
 
-
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
-import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-open class RepetitiveSection<T>(vararg sections: TestableStatic<T>, name: String? = null, val minCount: Int = 0, open val maxCount: Int = 10000000) :
-        Section<T>(*sections, name = name) {
+open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 1, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
 
-    var tCounts = 0
+    private var tCounts = 0
 
-    var mCounts = 0
-
-    private inline val testable
-        get() = mCounts < maxCount
+    var test: Boolean = false
 
     private inline val minSuccess: Boolean
         get() = tCounts >= minCount
 
-    override infix fun test(items: ItemsStatic.Class<T>): Boolean {
-        var i = items.i
+    override fun test(items: ItemsStatic.Class<T>): Boolean {
+        var indexBeforeTest: Int = items.nextIndex
 
-        while (testable && super.test(items)) {
-            i = items.i
-            mCounts += 1
+
+        // TODO maxCount error fix required
+        recurTest@ while (tCounts < maxCount + 1) {
+            indexBeforeTest = items.nextIndex
+
+            val prevT = test
+
+            test = singleTest(items)
+
+            if (!test || items.nextIndex <= indexBeforeTest) {
+                test = prevT
+
+                if (prevT) items.nextIndex = indexBeforeTest
+
+                break@recurTest
+            }
+
             tCounts += 1
+
         }
 
-
-        return if (minSuccess) {
-            items.i = i
+        return if (minCount <= 0) {
+            items.nextIndex = indexBeforeTest
             true
-        } else false
+        } else {
+            test
+        }
+    }
+
+    // TODO stop self when min = zero
+    protected open fun singleTest(items: ItemsStatic.Class<T>): Boolean {
+
+        var truth = false
+
+        testLoop@ for (section in sections) {
+            truth = section test items
+        }
+
+        return truth
+    }
+
+    companion object {
+        val maxCount = 10000
     }
 
 }
+

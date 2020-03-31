@@ -3,7 +3,7 @@ package lib.io
 import lib.oop.classes.Class
 import lib.oop.classes.StaticClass
 
-open class FileSizeStatic : StaticClass() {
+open class FileSizeStatic : StaticClass {
     operator fun invoke(s: Long): FileSizeClass = FileSizeClass(s)
 }
 

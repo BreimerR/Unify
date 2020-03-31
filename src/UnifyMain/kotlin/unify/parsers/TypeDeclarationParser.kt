@@ -1,21 +1,17 @@
 package unify.parsers
 
-import language.parsers.Parser
-import lib.matcher.sections.OneOrManySection
-import lib.matcher.sections.OptionalSection
-import lib.matcher.sections.RepetitiveBySection
+import language.parsers.ParserStatic
+import language.sections.OptionalSection
+import language.sections.RepetitiveBySection
+import lib.matcher.TestableStatic
 import unify.tokens.characters.Coma
 import unify.tokens.characters.GThan
 import unify.tokens.characters.LThan
 import unify.tokens.strings.Identifier
 
-class TypeDeclarationParser :
-        Parser() {
-
-    override val considerSpaces = false
-    // sections not definable via the constructor as self is being recreated
-    override val sections by lazy {
-        arrayOf(
+class TypeDeclarationParser : ParserStatic() {
+    override var sections: Array<out TestableStatic<String>>
+        get() = arrayOf(
                 Identifier,
                 OptionalSection(
                         LThan,
@@ -26,5 +22,8 @@ class TypeDeclarationParser :
                         GThan
                 )
         )
-    }
+        set(value) {}
+
+
+    override val TAG = "TypeDeclarationParser"
 }

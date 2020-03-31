@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.3.30"
+    kotlin("multiplatform") version "1.3.61"
 }
 
 repositories {
@@ -19,6 +19,11 @@ kotlin {
             }
         }
     }
+}
+
+dependencies {
+
+
 }
 
 // Use the following Gradle tasks to run your application:

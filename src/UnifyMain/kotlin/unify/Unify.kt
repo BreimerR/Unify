@@ -1,49 +1,64 @@
 package unify
 
-import language.LanguageStatic
-import language.parsers.Parser
+import DEBUG_SHOW_TOKENS
+import System
+import language.Language
+import language.scopes.FileScope
+import language.scopes.Scope
+import language.sections.AlternativeSection
+import language.sections.OptionalSection
+import language.sections.ZeroOrMany
 import lib.cli.CLIArguments
-import lib.cli.CLIArgumentsClass
 import unify.ast.Tokens
 import unify.parsers.EOFParser
-import unify.parsers.FunctionParser
-import unify.parsers.comments.MultiLineCommentParser
-import unify.parsers.comments.SingleLineCommentParser
-import unify.parsers.operators.SCommentOperatorParser
+import unify.parsers.comments.CommentsParser
+import unify.parsers.expressions.TAssignmentExpressionParser
+import unify.parsers.functions.FunctionParser
+import unify.parsers.headers.ImportsParser
+import unify.parsers.headers.PackageDefParser
+import unify.parsers.objects.ClassParser
+import unify.parsers.objects.EnumParser
+import unify.parsers.objects.InterfaceParser
+import unify.parsers.variables.MultiVariableDeclarationParser
+import unify.parsers.variables.TVariableDeclarationParser
+import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
-class UnifyStatic : LanguageStatic() {
-
-    override val parsers by lazy {
-        arrayOf(
-                MultiLineCommentParser(),
-                SingleLineCommentParser(),
-                FunctionParser(),
-                EOFParser()
-        )
-    }
-
-    operator fun invoke(args: CLIArgumentsClass): Class = Class(args)
-
-    class Class(args: CLIArgumentsClass) : LanguageStatic.Class() {
-
-        override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
-
-        override val self by lazy {
-            Unify
-        }
-
-    }
-
+class Unify(args: CLIArgumentsClass) : Language(
+        OptionalSection(
+                PackageDefParser()
+        ),
+        ImportsParser(),
+        ZeroOrMany(
+                AlternativeSection(
+                        InterfaceParser(),
+                        MultiVariableDeclarationParser(),
+                        TVariableDeclarationParser(),
+                        TAssignmentExpressionParser(),
+                        EnumParser(),
+                        ClassParser(),
+                        CommentsParser(),
+                        FunctionParser()
+                )
+        ),
+        EOFParser()
+) {
+    override val scope: Scope = FileScope()
+    // found items parser
+    override val tokens = Tokens(args["-fileName"], args["-fileEncoding"])
 
 }
 
-val Unify = UnifyStatic()
+fun main(args: Array<String>) {
+    // initialize arguments
+    val cli = CLIArguments(args)
 
-fun main(arguments: Array<String>) {
-    // tokens ready
-    val un = Unify(CLIArguments(arguments))
+    val unify = Unify(cli)
 
-    un.parse()
+    System.updateDebug(cli)
+
+    if (DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
+
+    println(unify.test())
 
 }

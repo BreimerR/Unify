@@ -1,22 +1,21 @@
 package unify.parsers
 
-import language.parsers.Parser
-import lib.matcher.sections.OptionalSection
-import lib.matcher.sections.RepetitiveBySection
-import lib.matcher.sections.Section
-import lib.matcher.sections.ZeroOrManySection
+import language.parsers.ParserStatic
+import language.sections.OptionalSection
+import language.sections.RepetitiveBySection
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
 
-class ArgumentsParser : Parser(
-        Section(LBracket, name = "START"),
-        RepetitiveBySection(
-                ArgumentParser(),
-                Coma,
-                name ="ARGS"
+class ArgumentsParser : ParserStatic(
+        LBracket,
+        OptionalSection(
+                RepetitiveBySection(
+                        ArgumentParser(),
+                        Coma
+                )
         ),
-        Section(RBracket, name = "END")
+        RBracket
 ) {
-    override val considerSpaces = false
+    override val TAG = "ArgumentsParser"
 }

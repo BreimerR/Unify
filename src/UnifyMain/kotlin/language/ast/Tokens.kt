@@ -13,7 +13,6 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
     abstract val tokenClasses: Array<out TokenStatic>
 
-
     abstract class Class(override val self: TokensStatic<out Token>) : ItemsStatic.Class<String>() {
 
         override val items get() = tokens
@@ -24,30 +23,57 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
         abstract val tokens: Array<out Token>
 
-        var considerSpaces = true
-
-        // TODO use this instead of consider spaces variable
+        // space tab or newLine
         var considerSeparation = true
+
+        var considerSpaces = false
 
         // TODO integrate use of new lines
         var considerNewLine = false
 
-        override val nextItem: ItemStatic.Class<String>?
+        val token: TokenStatic.Class?
+            get() = currentItem as TokenStatic.Class?
+
+        val nextToken: ItemStatic.Class<String>?
             get() {
-                val token = super.nextItem
+                val cToken = super.nextItem
+
 
                 @Suppress("RecursivePropertyAccessor")
+                return when {
 
-                return if (considerSpaces) {
-                    token
-                } else if (token != null && isSeparation(token)) {
-                    nextItem
-                } else token
+                    cToken == null -> null
+
+                    // skip nothing
+                    considerSeparation -> cToken
+
+                    // skip newLIne
+                    considerSpaces -> {
+                        if (isNewLine(cToken))
+                            nextToken
+                        else
+                            cToken
+                    }
+
+                    considerNewLine -> {
+                        if (isTabSpace(cToken))
+                            nextToken
+                        else
+                            cToken
+                    }
+
+                    // skip NewLine Tab or Space
+                    isSeparation(cToken) -> nextToken
+
+                    else -> cToken
+                }
             }
 
         private fun isNewLine(token: ItemStatic.Class<String>): Boolean {
             return token is NewLineStatic.Class
         }
+
+        private fun isTabSpace(token: ItemStatic.Class<String>) = isTab(token) || isSpace(token)
 
         private fun isSpace(token: ItemStatic.Class<String>): Boolean = token is SpaceStatic.Class
 
@@ -57,8 +83,43 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
         abstract fun isNewLine(klass: TokenStatic): Boolean
 
-
         abstract fun isTab(klass: TokenStatic): Boolean
+
+        private var stateHolder: StateHolder = StateHolder(considerSeparation, considerSpaces, considerNewLine)
+
+        val saveState: Unit
+            get() {
+                stateHolder = StateHolder(considerSeparation, considerSpaces, considerNewLine)
+            }
+
+        var savedIndex = nextIndex
+
+        val pauseIndex: Unit
+            get() {
+                savedIndex = nextIndex
+            }
+
+        val resumeIndex: Unit
+            get() {
+                nextIndex = savedIndex
+            }
+
+
+        fun updateStates(considerSpaces: Boolean, considerNewLine: Boolean, considerSeparation: Boolean) {
+            this.considerSpaces = considerSpaces
+            this.considerNewLine = considerNewLine
+            this.considerSeparation = considerSeparation
+        }
+
+        val restoreState: Unit
+            get() {
+                considerSeparation = stateHolder.considerSeparation
+                considerNewLine = stateHolder.considerNewLine
+                considerSpaces = stateHolder.considerSpaces
+            }
+
+        internal data class StateHolder(val considerSeparation: Boolean, val considerSpaces: Boolean, val considerNewLine: Boolean)
+
     }
 }
 

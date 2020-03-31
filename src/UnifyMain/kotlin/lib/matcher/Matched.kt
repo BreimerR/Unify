@@ -5,4 +5,4 @@ import lib.oop.classes.StaticClass
 
 abstract class MatchedClass<T> : Class<MatchedStatic>()
 
-abstract class MatchedStatic : StaticClass()
+abstract class MatchedStatic : StaticClass

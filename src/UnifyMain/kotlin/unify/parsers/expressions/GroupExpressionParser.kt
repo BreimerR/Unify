@@ -1,9 +1,13 @@
 package unify.parsers.expressions
 
-import language.parsers.Parser
+import language.parsers.ParserStatic
+import unify.tokens.characters.LBracket
+import unify.tokens.characters.RBracket
 
-class GroupExpressionParser : Parser(
-
+class GroupExpressionParser : ParserStatic(
+        LBracket,
+        ExpressionParser(),
+        RBracket
 ) {
-    override val considerSpaces = false
+    override val TAG = "GroupExpressionParser"
 }

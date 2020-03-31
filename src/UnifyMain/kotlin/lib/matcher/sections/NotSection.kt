@@ -1,29 +1,16 @@
 package lib.matcher.sections
 
 import lib.matcher.TestableStatic
-import lib.matcher.items.ItemsStatic.Class as ItemsClass
+import lib.matcher.items.ItemsStatic
 
+open class NotSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionStatic<T>(*sections) {
+    override infix fun test(items: ItemsStatic.Class<T>): Boolean {
+        val i = items.nextIndex
+        val test = super.test(items)
 
-class NotSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
-        Section<T>(*sections, name = name) {
-
-    // search algo required here to make the loop not linear exactly for performance boost
-    override fun test(items: ItemsClass<T>): Boolean {
-        sections.forEach {
-            val i = items.i
-            if (it test items) {
-                items.i = i
-                return false
-            }
-        }
-
-        return true
+        return if (test) {
+            items.nextIndex = i
+            false
+        } else true
     }
-
 }
-
-
-
-
-
-

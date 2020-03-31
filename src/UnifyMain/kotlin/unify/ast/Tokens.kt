@@ -123,9 +123,9 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
                         if (clazz != null) {
                             if (clazz test items) {
 
-                                val s = items[i..items.i].toTypedArray().string
+                                val s = items[i..items.nextIndex].toTypedArray().string
                                 tk = clazz(s, line, col)
-                                i = items.i
+                                i = items.nextIndex
                                 field += tk
                                 when {
                                     isNewLine(clazz) -> {
@@ -139,7 +139,7 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
                                 }
 
                                 break@fLoop
-                            } else items.i = i
+                            } else items.nextIndex = i
                         } else throw Error("Malformed token class")
                     }
 
@@ -153,7 +153,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
         override fun isTab(klass: language.tokens.TokenStatic): Boolean = klass is TabStatic
 
         override fun isNewLine(klass: language.tokens.TokenStatic): Boolean = klass is NewLineStatic
-
 
         private fun printTokens() {
             for (token in tokens) {

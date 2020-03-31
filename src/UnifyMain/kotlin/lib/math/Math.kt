@@ -17,7 +17,7 @@ val kotlin.Int.long: Long get () = this.toLong()
 
 val kotlin.Int.asBool: Boolean get () = this > 0
 
-class MathStatic : StaticClass()
+class MathStatic : StaticClass
 
 
 class MatchClass : Class<MathStatic>() {

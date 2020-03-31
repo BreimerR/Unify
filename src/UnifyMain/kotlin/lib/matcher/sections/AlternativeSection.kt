@@ -1,60 +1,56 @@
 package lib.matcher.sections
 
-
+import language.sections.PassiveSection
+import lib.collections.array.pop
 import lib.matcher.TestableStatic
-import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
-import lib.matcher.items.ItemsStatic.Class as ItemsClass
 
-class AlternativeSection<T>(vararg sections: TestableStatic<T>, name: String? = null) :
-        Section<T>(*sections, name = name) {
 
-    // we dont want to find the first match but the best case match
-    override infix fun test(items: ItemsClass<T>): Boolean {
-        return test(items, sections)
-    }
+abstract class AlternativeSectionStatic<T>(override vararg var sections: TestableStatic<T>) : SectionStatic<T>(*sections) {
 
-    private fun test(items: ItemsStatic.Class<T>, sections: Array<out TestableStatic<T>>): Boolean {
-        val i = items.i
+    override fun test(items: ItemsStatic.Class<T>): Boolean {
 
-        var w = 0
+        var eI: Int = items.nextIndex
 
-        var fI = i
+        var sI = 0
 
-        sections.forEach { section ->
-            sI = items.i
+        for (section in sections) {
+
+            val i = items.nextIndex
 
             val test = section test items
 
-            fI = items.i
+            eI = items.nextIndex
 
-            if (test && w < items.i) w = items.i
+            if (test) {
 
-            items.i = i
+                if (section is SingleInstanceSection<T>) {
+                    if (items.nextIndex > i) sections = sections.pop(sI).toTypedArray()
+                    sI = 0
+                }
+
+                // TODO save found section to avoid re test on collection
+                if (section is PassiveSection && section.test) {
+
+                    return true
+                }
+
+                // TODO nested sections failure ie Alternative(Section(PassiveSection))
+                if (items.nextIndex > i) {
+                    return true
+                }
+
+            }
+            sI += 1;
+            // revert i for re test
+            items.nextIndex = i
+
         }
 
+        items.nextIndex = eI
 
-        val test = when {
-            w == 0 -> {
-                items.i = fI
-                false
-            }
-            w > 0 -> {
-                items.i = w
-                true
-            }
-            else -> false
-        }
-
-
-        // if (test) collect(items, sI, name)
-
-        return test
+        return false
     }
 
 }
-
-
-
-
 

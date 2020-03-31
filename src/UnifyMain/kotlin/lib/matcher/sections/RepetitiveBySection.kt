@@ -3,26 +3,27 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 
 
-class RepetitiveBySection<T> : Section<T> {
+open class RepetitiveBySection<T> : SectionStatic<T> {
 
     constructor(
             section: TestableStatic<T>,
             by: TestableStatic<T>,
-            name: String? = null) :
-            super(section, RepetitiveSection(by, section), name = name)
-
-    constructor(
-            section: TestableStatic<T>,
-            by: TestableStatic<T>,
-            name: String? = null,
-            maxCount: Int) :
-            super(section, RepetitiveSection(by, section, maxCount = maxCount), name = name)
+            name: String? = null
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = 0), name = name)
 
     constructor(
             section: TestableStatic<T>,
             by: TestableStatic<T>,
             name: String? = null,
-            minCount: Int,
-            maxCount: Int) :
-            super(section, RepetitiveSection(by, section, minCount = minCount, maxCount = maxCount), name = name)
+            maxCount: Int
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = 0, maxCount = maxCount), name = name)
+
+    constructor(
+            section: TestableStatic<T>,
+            by: TestableStatic<T>,
+            name: String? = null,
+            minCount: Int = 0,
+            maxCount: Int
+    ) : super(section, RepetitiveSectionStatic(by, section, minCount = minCount, maxCount = maxCount), name = name)
+
 }

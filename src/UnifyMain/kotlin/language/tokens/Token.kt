@@ -1,21 +1,51 @@
 package language.tokens
 
 
-import language.lib.io.FileClass
+import DEBUG
+import DEBUG_NEGATIVES
+import DEBUG_POSITIVES
+import DEBUG_TOKENS
+import Log
+import language.ast.TokensStatic
 import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 
 abstract class TokenStatic : ItemStatic<String>() {
 
-    abstract infix fun test(file: FileClass): Boolean
+    open val TAG = "TokenStatic"
 
     abstract infix fun test(items: ItemsStatic.Class<Char>): Boolean
 
     abstract operator fun invoke(tokenString: String, l: Int, col: Int): Class
 
-    override fun collect(sI: Int, items: ItemsStatic.Class<String>): Array<Pair<String?, IntRange>> {
-        TODO("Implement collect: language.tokens.Token.kt") //To change body of created functions use File | Settings | File Templates.
+    override fun test(items: ItemsStatic.Class<String>): Boolean {
+
+        items as TokensStatic.Class
+
+        val token = items.nextToken
+
+        val test = testItem(token)
+
+
+        debug(token, test)
+
+        return test
+
     }
 
-    abstract class Class(tkString: String, open val l: Int, open val col: Int) : ItemStatic.Class<String>(tkString)
+    fun debug(item: ItemStatic.Class<String>?, test: Boolean) {
+        if (DEBUG && DEBUG_TOKENS) {
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, " value = $item\ttest = $test")
+            if (DEBUG_NEGATIVES && !test) Log.d(TAG, " value = $item\ttest = $test")
+
+        }
+    }
+
+    abstract fun testItem(item: ItemStatic.Class<String>?): Boolean
+
+    abstract class Class(tkString: String, open val line: Int, open val col: Int) : ItemStatic.Class<String>(tkString) {
+        override fun toString(): String = value
+    }
+
 }

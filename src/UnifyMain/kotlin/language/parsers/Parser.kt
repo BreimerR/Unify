@@ -1,19 +1,40 @@
 package language.parsers
 
-import lib.matcher.sections.Section
+import DEBUG_PARSERS
+import language.sections.AlternativeSection
+import language.sections.Section
+import language.sections.ZeroOrMany
+import lib.matcher.TestableStatic
+import unify.tokens.characters.NewLine
+import unify.tokens.characters.Space
+import unify.tokens.characters.Tab
+import DEBUG as SYS_DEBUG
 
-open class Parser(
-        vararg sections: Section<String>,
+open class ParserStatic(
+        vararg sections: TestableStatic<String>,
+        considerSeparation: Boolean = false,
+        considerSpaces: Boolean = false,
+        considerNewLine: Boolean = false,
         name: String? = null
-) : Section<String>(*sections, name = name) {
+) : Section(
+        *if (considerSeparation) arrayOf(
+                ZeroOrMany(
+                        // consume previous spaces and tabs before next parse test or parse
+                        AlternativeSection(
+                                Tab, Space, NewLine,
+                                considerSeparation = true
+                        )
+                ), *sections
+        ) else sections,
+        considerSeparation = considerSeparation,
+        considerNewLine = considerNewLine,
+        considerSpaces = considerSpaces,
+        name = name
+) {
 
-    open val considerSpaces = true
+    override val TAG = "Parser"
 
-/*
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-        val i = items.i
-        val test = super.test(items)
-        items.i = i
-        return test
-    }*/
+    override val DEBUG
+        get() = SYS_DEBUG && DEBUG_PARSERS
+
 }
