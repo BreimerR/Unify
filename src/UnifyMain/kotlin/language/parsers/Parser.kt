@@ -14,7 +14,7 @@ open class ParserStatic(
         vararg sections: TestableStatic<String>,
         considerSeparation: Boolean = false,
         considerSpaces: Boolean = false,
-        considerNewLine: Boolean = false,
+        considerNewLines: Boolean = false,
         name: String? = null
 ) : Section(
         *if (considerSeparation) arrayOf(
@@ -27,7 +27,7 @@ open class ParserStatic(
                 ), *sections
         ) else sections,
         considerSeparation = considerSeparation,
-        considerNewLine = considerNewLine,
+        considerNewLines = considerNewLines,
         considerSpaces = considerSpaces,
         name = name
 ) {

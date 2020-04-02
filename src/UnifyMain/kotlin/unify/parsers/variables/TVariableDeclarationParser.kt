@@ -4,7 +4,7 @@ import language.parsers.ParserStatic
 import unify.parsers.TerminatorParser
 
 class TVariableDeclarationParser : ParserStatic(
-        MutableVariableDeclarationParser(),
+        VariableDeclarationParser(),
         /** @Description
          * This should be the one used as EndsWith looks for an end but walk all over whatever is it and the end
          * termination means that there can not be an expression filling upto two lines as
@@ -13,4 +13,7 @@ class TVariableDeclarationParser : ParserStatic(
          * more complex code would be required for the parser to work
          **/
         TerminatorParser()
-)
+) {
+    override val TAG = "TVariableDeclarationParser"
+}
+

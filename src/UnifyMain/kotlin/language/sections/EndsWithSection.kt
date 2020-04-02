@@ -8,7 +8,7 @@ class EndsWithSection(
         considerSeparation: Boolean = false,
         considerSpaces: Boolean = false,
         considerNewLine: Boolean = false
-) : Section(considerSeparation = considerSeparation, considerSpaces = considerSpaces, considerNewLine = considerNewLine) {
+) : Section(considerSeparation = considerSeparation, considerSpaces = considerSpaces, considerNewLines = considerNewLine) {
 
     override val TAG = "EndsWithSection"
 

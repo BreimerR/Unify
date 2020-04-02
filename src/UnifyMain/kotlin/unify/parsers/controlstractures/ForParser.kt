@@ -10,7 +10,7 @@ import unify.parsers.expressions.AssignmentExpressionParser
 import unify.parsers.expressions.ExpressionParser
 import unify.parsers.functions.FunctionBodyParser
 import unify.parsers.literals.ReferenceParser
-import unify.parsers.variables.MutableVariableDeclarationParser
+import unify.parsers.variables.VariableDeclarationParser
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
@@ -45,7 +45,7 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                          * */
                         AlternativeSection(
                                 Section(
-                                        MutableVariableDeclarationParser(),
+                                        VariableDeclarationParser(),
                                         IdentifierStatic("in"),
                                         ReferenceParser()
                                 ),

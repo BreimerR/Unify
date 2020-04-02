@@ -13,7 +13,7 @@ import DEBUG as SYS_DEBUG
 open class Section(
         vararg sections: TestableStatic<String>,
         val considerSeparation: Boolean = false,
-        val considerNewLine: Boolean = false,
+        val considerNewLines: Boolean = false,
         val considerSpaces: Boolean = false,
         name: String? = null
 ) : lib.matcher.sections.SectionStatic<String>(*sections, name = name) {
@@ -27,7 +27,7 @@ open class Section(
 
             items.updateStates(
                     considerSpaces,
-                    considerNewLine,
+                    considerNewLines,
                     considerSeparation
             )
 

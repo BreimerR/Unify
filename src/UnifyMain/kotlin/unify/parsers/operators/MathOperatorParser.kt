@@ -16,6 +16,8 @@ class MathOperatorParser : ParserStatic(
         )
 ) {
 
+    override val TAG = "MathOperatorParser"
+
     var age = 12
 
 }

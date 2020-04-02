@@ -7,6 +7,8 @@ import unify.parsers.expressions.TExpressionParser
 
 class ActFuncBodyParser : ParserStatic() {
 
+    override val TAG = "ActFuncBodyParser"
+
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 ActionOperatorParser(),

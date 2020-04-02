@@ -10,7 +10,7 @@ import lib.matcher.TestableStatic
  * thus this will require all the expression parsers to consider new lines unless as long as they are not used within a
  * grouped expression
  * */
-class ExpressionParser : ParserStatic(considerNewLine = true) {
+class ExpressionParser : ParserStatic(considerNewLines = true) {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 AlternativeSection(

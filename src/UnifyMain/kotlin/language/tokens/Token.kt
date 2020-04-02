@@ -36,8 +36,8 @@ abstract class TokenStatic : ItemStatic<String>() {
     fun debug(item: ItemStatic.Class<String>?, test: Boolean) {
         if (DEBUG && DEBUG_TOKENS) {
 
-            if (DEBUG_POSITIVES && test) Log.d(TAG, " value = $item\ttest = $test")
-            if (DEBUG_NEGATIVES && !test) Log.d(TAG, " value = $item\ttest = $test")
+            if (DEBUG_POSITIVES && test) Log.d(TAG, "value = $item\ttest = $test")
+            if (DEBUG_NEGATIVES && !test) Log.d(TAG, "value = $item\ttest = $test")
 
         }
     }
