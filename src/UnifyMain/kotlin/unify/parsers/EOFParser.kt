@@ -5,7 +5,4 @@ import unify.tokens.tokens.EOF
 
 class EOFParser : ParserStatic(
         EOF
-){
-    override val TAG ="EOFParser"
-}
-
+)

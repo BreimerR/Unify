@@ -7,7 +7,8 @@ import unify.tokens.characters.RBracket
 class GroupExpressionParser : ParserStatic(
         LBracket,
         ExpressionParser(),
-        RBracket
+        RBracket,
+        name = "GROUP_EXPRESSION"
 ) {
     override val TAG = "GroupExpressionParser"
 }

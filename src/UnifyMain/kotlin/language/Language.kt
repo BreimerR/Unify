@@ -20,6 +20,7 @@ abstract class Language(vararg parsers: SectionStatic<String>) : MatcherStatic<S
 
     fun test(): Boolean = test(tokens)
 
+    @Suppress("UNUSED_PARAMETER")
     class Class(matcher: Language) : MatcherStatic<String>()
 
 }

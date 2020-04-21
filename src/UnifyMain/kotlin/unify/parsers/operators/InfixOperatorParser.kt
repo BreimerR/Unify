@@ -9,9 +9,10 @@ class InfixOperatorParser : ParserStatic(
         AlternativeSection(
                 ComparisonOperatorParser(),
                 LogicalOperatorParser(),
-                AssignmentOperatorParser(),
+                // an assignment as an expression is causing issues as it can not be used as an infix expression exactly
+                // AssignmentOperatorParser(),
                 MathOperatorParser()
         )
-){
-        override val TAG = "InfixOperatorParser"
+) {
+    override val TAG = "InfixOperatorParser"
 }

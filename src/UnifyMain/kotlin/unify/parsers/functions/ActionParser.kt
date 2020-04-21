@@ -9,4 +9,6 @@ class ActionParser : ParserStatic(
         KeywordStatic("act"),
         Section(Identifier),
         FunctionBodyParser()
-)
+) {
+    override val TAG = "ActionParser"
+}

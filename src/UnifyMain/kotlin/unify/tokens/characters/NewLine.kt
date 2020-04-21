@@ -20,7 +20,7 @@ class NewLineStatic : CharacterStatic() {
     }
 
     class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, NewLine) {
-        override fun toString(): String = "\\n"
+        override fun toString(): String = "${self::class.simpleName} = \\n"
     }
 
 

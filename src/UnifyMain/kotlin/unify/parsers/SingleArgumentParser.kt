@@ -9,6 +9,4 @@ class SingleArgumentParser : ParserStatic(
                 MutableStateParser()
         ),
         SimpleVariableParser()
-){
-        override val TAG = "SingleArgumentParser"
-}
+)

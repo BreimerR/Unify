@@ -12,6 +12,4 @@ class ArrayBodyDeclarationParser : ParserStatic(
                 IntegerParser()
         ),
         RSBracket
-) {
-    override val TAG = "ArrayBodyDeclarationParser"
-}
+)

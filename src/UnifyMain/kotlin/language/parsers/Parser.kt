@@ -14,25 +14,37 @@ open class ParserStatic(
         vararg sections: TestableStatic<String>,
         considerSeparation: Boolean = false,
         considerSpaces: Boolean = false,
-        considerNewLine: Boolean = false,
+        considerNewLines: Boolean = false,
         name: String? = null
 ) : Section(
-        *if (considerSeparation) arrayOf(
-                ZeroOrMany(
-                        // consume previous spaces and tabs before next parse test or parse
-                        AlternativeSection(
-                                Tab, Space, NewLine,
-                                considerSeparation = true
-                        )
-                ), *sections
-        ) else sections,
+        *when {
+            considerSeparation -> arrayOf(
+                    ZeroOrMany(
+                            // consume previous spaces and tabs before next parse test or parse
+                            AlternativeSection(
+                                    Tab, Space, NewLine,
+                                    considerSeparation = true
+                            )
+                    ), *sections
+            )
+            considerSpaces -> arrayOf(
+                    ZeroOrMany(
+                            // consume previous spaces and tabs before next parse test or parse
+                            AlternativeSection(
+                                    Tab, Space,
+                                    considerSpaces = true
+                            )
+                    ), *sections
+            )
+            else -> sections
+        },
         considerSeparation = considerSeparation,
-        considerNewLine = considerNewLine,
+        considerNewLines = considerNewLines,
         considerSpaces = considerSpaces,
         name = name
 ) {
 
-    override val TAG = "Parser"
+    override val TAG = super.TAG
 
     override val DEBUG
         get() = SYS_DEBUG && DEBUG_PARSERS

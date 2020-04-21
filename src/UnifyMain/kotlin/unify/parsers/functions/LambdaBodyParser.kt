@@ -8,6 +8,7 @@ import unify.parsers.controlstractures.ForParser
 import unify.parsers.controlstractures.IfParser
 import unify.parsers.controlstractures.WhenParser
 import unify.parsers.controlstractures.WhileParser
+import unify.parsers.expressions.ExpressionParser
 import unify.parsers.expressions.FunctionCallParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.parsers.variables.TVariableDeclarationParser
@@ -15,18 +16,15 @@ import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
 
 
-/**
- * @SUGGESTION
- * parsers testers could have access to parent class
- * this could assist in having singleInstance items nested inside other sections being
- * filtered out in cases like zeroOrMany
- * */
-open class FunctionItemsParser : ParserStatic(
+// return lambda or a null lambda this is dependant on the return type
+// thus lambda used as an expression can only fail on return type check of the final result provided
+class LambdaBodyParser : ParserStatic(
         LBrace,
         ZeroOrMany(
                 AlternativeSection(
                         CommentsParser(),
                         IfParser(),
+                        ExpressionParser(),
                         WhileParser(),
                         WhenParser(),
                         ForParser(),
@@ -36,7 +34,6 @@ open class FunctionItemsParser : ParserStatic(
                         FunctionParser()
                 )
         ),
-        RBrace
-) {
-    override val TAG = "FunctionItemsParser"
-}
+        RBrace,
+        name = "LAMBDA_FUNCTION"
+)

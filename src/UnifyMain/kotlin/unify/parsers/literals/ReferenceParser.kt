@@ -1,8 +1,7 @@
 package unify.parsers.literals
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.ZeroOrMany
+import language.sections.*
 import lib.matcher.items.ItemsStatic
 import unify.tokens.characters.Dot
 import unify.tokens.strings.Identifier
@@ -11,14 +10,18 @@ import unify.tokens.strings.KeywordStatic
 
 
 class ReferenceParser : ParserStatic(
-        ZeroOrMany(
-                AlternativeSection(
-                        Identifier,
-                        Keyword
-                ),
-                Dot
-        ),
         AlternativeSection(
+                Section(
+                        RepetitiveSection(
+                                AlternativeSection(
+                                        Identifier,
+                                        Keyword
+                                ),
+                                Dot,
+                                minCount = 1
+                        ),
+                        Identifier
+                ),
                 Identifier
         )
 ) {
@@ -38,8 +41,7 @@ class ReferenceParser : ParserStatic(
                 error = ""
                 false
             } else true
-        }
-        else super.test(items)
+        } else super.test(items)
     }
 
 

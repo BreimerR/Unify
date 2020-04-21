@@ -324,3 +324,21 @@ for Int i in array{
 2
 */
 ```
+
+
+## language compile directives 
+## compile modes
+1. strict  ```This provides for required val or var declaratios```
+2. non strict ```This provides the freedom to leave out val and var in declarations thus providing language flexibility ```
+
+
+## Getters and Setters
+```
+
+data class Person(val name:String, var age:Int){
+    age@set(age:String){
+        field = age.toString()
+    }
+}
+
+```

@@ -1,7 +1,7 @@
 package unify.parsers.comments
 
-import language.parsers.AlternativeParser
 import language.parsers.ParserStatic
+import language.sections.AlternativeSection
 import language.sections.EndsWithSection
 import language.sections.PassiveSection
 import language.sections.Section
@@ -15,12 +15,14 @@ class SingleLineComment : ParserStatic(
         FSlash,
         // ends with error causing single line comment not to terminate
         EndsWithSection(
-                AlternativeParser(
+                AlternativeSection(
                         Section(
                                 NewLine,
-                                considerNewLine = true
+                                considerNewLines = true
                         ),
                         PassiveSection(EOF)
                 )
         )
-)
+) {
+    override val TAG = "SingleLineComment"
+}

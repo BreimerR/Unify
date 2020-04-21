@@ -1,8 +1,7 @@
 package unify.parsers.variables
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.Section
+import language.sections.OptionalSection
 import lib.matcher.TestableStatic
 
 class SimpleVariableParser : ParserStatic() {
@@ -11,15 +10,10 @@ class SimpleVariableParser : ParserStatic() {
 
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                AlternativeSection(
-                        Section(
-                                VariableStartParser(),
-                                DistractingParser()
-                        ),
-                        VariableStartParser(),
-                        DistractingParser()
-                ),
-                VariableEndParser()
+                VariableStartParser(),
+                OptionalSection(
+                        VariableEndParser()
+                )
         )
         set(value) {
 

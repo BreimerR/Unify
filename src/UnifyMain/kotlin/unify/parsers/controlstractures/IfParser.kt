@@ -12,25 +12,25 @@ import unify.tokens.strings.KeywordStatic
 class IfParser : ParserStatic(
         KeywordStatic("if"),
         ExpressionParser(),
-        OptionalSection(
-                RepetitiveBySection(
-                        FunctionBodyParser(),
-                        Section(
-                                KeywordStatic("else"),
-                                KeywordStatic("if"),
-                                ExpressionParser()
-                        )
+        RepetitiveBySection(
+                FunctionBodyParser(),
+                Section(
+                        KeywordStatic("else"),
+                        KeywordStatic("if"),
+                        ExpressionParser()
                 )
         ),
         OptionalSection(
                 KeywordStatic("else"),
                 AlternativeSection(
-                        ExpressionParser(),
-                        FunctionBodyParser()
+                        FunctionBodyParser(),
+                        ExpressionParser()
                 )
         ),
         name = "IF_STATEMENT"
-){
+) {
     override val TAG: String
         get() = "IfParser"
 }
+
+

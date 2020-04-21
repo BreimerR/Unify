@@ -24,7 +24,7 @@ class TerminatorParserPartial : ParserStatic(
                 SColon,
                 Section(
                         NewLine,
-                        considerNewLine = true
+                        considerNewLines = true
                 ),
                 PassiveSection(EOF),
                 considerSeparation = false

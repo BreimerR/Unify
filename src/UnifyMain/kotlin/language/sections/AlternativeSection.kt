@@ -43,16 +43,14 @@ open class AlternativeSection(
 
     open fun debug(items: ItemsStatic.Class<String>, test: Boolean) {
 
-        items as TokensStatic.Class
-
-        val token = items.token
-        val line = token?.line
-        val col = token?.col
-
         if (DEBUG && DEBUG_SECTIONS) {
 
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
-            if (DEBUG_NEGATIVES && !test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+            items as TokensStatic.Class
+
+            val string = "test = $test\ttoken = ${items.token}"
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
+            if (DEBUG_NEGATIVES) Log.d(TAG, string)
 
         }
     }

@@ -12,11 +12,14 @@ class NumberParser : ParserStatic(
         OptionalSection(
                 AlternativeSection(
                         Section(
-                                Identifier, SimpleNumberParser(),
-                                considerSeparation = true
+                                Identifier,
+                                SimpleNumberParser(),
+                                considerSpaces = true
                         ),
-                        Identifier,
-                        considerSeparation =  true
+                        Section(
+                                Identifier,
+                                considerSpaces = true
+                        )
                 )
         )
 ) {

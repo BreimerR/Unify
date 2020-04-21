@@ -17,6 +17,8 @@ import unify.tokens.strings.KeywordStatic
 
 class ClassParser : ParserStatic() {
 
+    override val TAG = "ClassParser"
+
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 OptionalSection(

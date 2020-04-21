@@ -7,4 +7,6 @@ import unify.tokens.characters.Minus
 class ActionOperatorParser : ParserStatic(
         Minus,
         GThan
-)
+) {
+    override val TAG = "ActionOperatorParser"
+}
