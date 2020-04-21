@@ -7,6 +7,4 @@ import unify.tokens.strings.KeywordStatic
 class ClassInitParser : ParserStatic(
         KeywordStatic("new"),
         FunctionCallParser()
-) {
-    override val TAG = "ClassInitParser"
-}
+)

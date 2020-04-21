@@ -22,6 +22,7 @@ import unify.parsers.objects.EnumParser
 import unify.parsers.objects.InterfaceParser
 import unify.parsers.variables.MultiVariableDeclarationParser
 import unify.parsers.variables.TVariableDeclarationParser
+import unify.tokens.tokens.printLn
 import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
@@ -29,6 +30,7 @@ class Unify(args: CLIArgumentsClass) : Language(
         OptionalSection(
                 PackageDefParser()
         ),
+
         ImportsParser(),
         ZeroOrMany(
                 AlternativeSection(
@@ -57,7 +59,6 @@ fun main(args: Array<String>) {
     val unify = Unify(cli)
 
     System.updateDebug(cli)
-
 
     if (DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
 

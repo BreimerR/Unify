@@ -6,9 +6,16 @@ import unify.parsers.literals.LiteralParser
 import unify.parsers.literals.ReferenceParser
 
 
-/**TODO
- * implementation of this would require redefining of
- * expression parser to considerNewLines in some cases and in some not to consider them
+/**@DESCRIPTION
+ * reference expression
+ * @Issues
+ * this presentation does not play soo well with other properties i.e
+ * reference reference1 reference2
+ * the above presentation could either be
+ * infix function with reference1 being the functionName
+ * or two prefix functions with
+ * reference being a functionName and reference1 being a functionName and reference2 being the parameter
+ *
  * */
 class PreFixExpressionParser : ParserStatic(
         ReferenceParser(),

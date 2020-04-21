@@ -9,6 +9,4 @@ class OverridesParser : ParserStatic(
                 KeywordStatic("override"),
                 KeywordStatic("impl")
         )
-) {
-    override val TAG = "OverridesParser"
-}
+)

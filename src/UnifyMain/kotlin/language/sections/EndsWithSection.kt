@@ -36,6 +36,7 @@ class EndsWithSection(
 
     override var sections: Array<out TestableStatic<String>>
         get() = _sections
+
         set(value) {
         }
 }

@@ -16,7 +16,15 @@ class SimpleNumberParser : ParserStatic(
                         Minus
                 )
         ),
-        Section(Number, OptionalSection(Dot, Number, considerNewLines = true), considerNewLines = true)
+        Section(
+                Number,
+                OptionalSection(
+                        Dot,
+                        Number,
+                        considerNewLines = true
+                ),
+                considerNewLines = true
+        )
 ) {
     override val TAG = "SimpleNumberParser"
 }

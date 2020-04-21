@@ -84,10 +84,14 @@ open class RepetitiveBySection : BaseRepetitiveBySection<String> {
     open fun debug(items: TokensStatic.Class, test: Boolean) {
         if (DEBUG) {
 
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test =  $test \t token =  ${items.token}  \t token.value = ${items.token}")
-            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test \t token =  ${items.token}  \t token.value = ${items.token}")
+            val token = items.token
 
-            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, "test = $test\ttoken = ${items.token}\ttoken.value = ${items.token}")
+            val string = "test = $test\ttoken = $token"
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
+            if (DEBUG_NEGATIVES) Log.d(TAG, string)
+
+            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, string)
 
         }
     }

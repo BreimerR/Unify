@@ -16,6 +16,4 @@ class ArgumentsParser : ParserStatic(
                 )
         ),
         RBracket
-) {
-    override val TAG = "ArgumentsParser"
-}
+)

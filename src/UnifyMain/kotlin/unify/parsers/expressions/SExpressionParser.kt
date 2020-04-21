@@ -11,13 +11,14 @@ class SExpressionParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 AlternativeSection(
-                        GroupExpressionParser(),
                         InfixExpressionParser(),
                         FunctionCallParser(),
+                        // this is supposed to be a return if statement
                         IfParser(),
                         ClassInitParser(),
                         // PreFixExpressionParser(),
-                        LiteralParser()
+                        LiteralParser(),
+                        GroupExpressionParser()
                 )
         )
         set(value) {}

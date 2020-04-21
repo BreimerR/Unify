@@ -1,16 +1,15 @@
 package language.sections
 
 import DEBUG_NEGATIVES
-import DEBUG as SYS_DEBUG
 import DEBUG_POSITIVES
 import DEBUG_POSITIVE_PARSERS
 import DEBUG_SECTIONS
 import Log
-
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 import lib.matcher.sections.SectionStatic
+import DEBUG as SYS_DEBUG
 
 open
 class PassiveSection(
@@ -56,10 +55,17 @@ class PassiveSection(
     open fun debug(items: TokensStatic.Class, test: Boolean) {
         if (DEBUG) {
 
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test =  $test \t token =  ${items.token}  \t token.value = ${items.token}")
-            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test \t token =  ${items.token}  \t token.value = ${items.token}")
+            val token = items.token
 
-            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, "test = $test\ttoken = ${items.token}\ttoken.value = ${items.token}")
+            val line = token?.line
+            val col = token?.col
+
+            val end = "$token[$line,$col]"
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $end")
+            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test\ttoken = $end")
+
+            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, "test = $test\ttoken = $end")
 
         }
     }

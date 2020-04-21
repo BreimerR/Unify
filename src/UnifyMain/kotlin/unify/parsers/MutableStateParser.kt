@@ -24,6 +24,4 @@ class MutableStateParser : ParserStatic(
 
         ),
         name = "VAR_MUTABILITY"
-) {
-    override val TAG = "MutableStateParser"
-}
+)

@@ -14,8 +14,9 @@ class ExpressionParser : ParserStatic(considerNewLines = true) {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 AlternativeSection(
-                        SExpressionParser(),
-                        ElvisExpressionParser()
+                        // test elvis expression first as it can contain an sExpression doing a premature collection
+                        ElvisExpressionParser(),
+                        SExpressionParser()
                 )
         )
         set(value) {}

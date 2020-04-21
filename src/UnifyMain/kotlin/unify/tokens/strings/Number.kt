@@ -1,7 +1,6 @@
 package unify.tokens.strings
 
 import lib.matcher.items.ItemStatic
-import lib.matcher.items.ItemsStatic
 import unify.tokens.tokens.StringTokenStatic
 
 class NumberStatic : StringTokenStatic() {

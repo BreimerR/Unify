@@ -5,6 +5,7 @@ import language.sections.AlternativeSection
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import language.sections.Section
+import unify.parsers.TypeDeclarationParser
 import unify.parsers.literals.ReferenceParser
 import unify.tokens.characters.Coma
 import unify.tokens.characters.Dot
@@ -64,7 +65,20 @@ class FunctionCallParser : ParserStatic(
                 Section(
                         ReferenceParser(),
                         ReferenceParser(),
-                        ExpressionParser()
+                        // TODO this requires knowledge of the IR code
+                        // as you can not describe this symbolic and
+                        // come out with a reasonable
+                        // conclusion of what it should be
+                        AlternativeSection(
+                                // this is a problem
+                                // Alternative<Sleep>
+                                // can be reference lessThan Sleep and > is left hanging
+                                // parsing type declaration
+                                // sleep > 10
+                                // sleep is a TypeDeclaration and > 10 is left hanging
+                                TypeDeclarationParser(),
+                                ExpressionParser()
+                        )
                 )
         )
 ) {

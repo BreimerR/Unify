@@ -18,7 +18,6 @@ import unify.tokens.strings.IdentifierStatic
 
 class ClassBodyParser : ParserStatic() {
 
-    override val TAG = "ClassBodyParser"
 
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(

@@ -60,9 +60,11 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                                         ExpressionParser(),
                                         OptionalSection(
                                                 SColon,
-                                                ExpressionParser()
+                                                RepetitiveBySection(
+                                                        AssignmentExpressionParser(),
+                                                        Coma
+                                                )
                                         )
-
                                 )
                         ),
                         RBracket,

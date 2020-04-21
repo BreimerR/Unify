@@ -18,7 +18,7 @@ open class Section(
         name: String? = null
 ) : lib.matcher.sections.SectionStatic<String>(*sections, name = name) {
 
-    open val TAG = "Section"
+    open val TAG get() = this::class.simpleName ?: "Section"
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -48,13 +48,10 @@ open class Section(
     open fun debug(items: TokensStatic.Class, test: Boolean) {
         if (DEBUG) {
 
+            val string = "test = $test\ttoken = ${items.token}"
 
-            val token = items.token
-            val line = token?.line
-            val col = token?.col
-
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
-            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
+            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
+            if (DEBUG_NEGATIVES) Log.d(TAG, string)
 
         }
     }

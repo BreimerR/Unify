@@ -18,18 +18,15 @@ class InfixExpressionParser : ParserStatic() {
         get() {
             return arrayOf(
                     AlternativeSection(
-                            GroupExpressionParser(),
                             FunctionCallParser(),
                             IfParser(),
                             ClassInitParser(),
                             // PreFixExpressionParser(),
-                            LiteralParser()
+                            LiteralParser(),
+                            GroupExpressionParser()
                     ),
                     InfixOperatorParser(),
-                    AlternativeSection(
-                            TypeDeclarationParser(),
-                            ExpressionParser()
-                    )
+                    ExpressionParser()
             )
         }
         set(value) {}

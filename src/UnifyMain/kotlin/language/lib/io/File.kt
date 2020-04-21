@@ -4,12 +4,11 @@ package language.lib.io
 import lib.math.charVal
 import lib.math.long
 import lib.text.asString
-
+import platform.posix.SEEK_SET
 import platform.posix.fgetc
 import platform.posix.fseek
 import lib.io.FileClass as LibFileClass
 import lib.io.FileStatic as LibFileStatic
-import platform.posix.SEEK_SET
 
 
 class FileStatic : LibFileStatic() {
@@ -24,6 +23,7 @@ class FileStatic : LibFileStatic() {
     }
 }
 
+@Suppress("UNUSED_PARAMETER")
 class FileClass(private var fullFilePathWithExtension: String, var encoding: String = "UTF-8", dirSeparator: String = "/") :
         LibFileClass(fullFilePathWithExtension) {
 

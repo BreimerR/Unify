@@ -12,7 +12,7 @@ import lib.matcher.items.ItemsStatic
 
 abstract class TokenStatic : ItemStatic<String>() {
 
-    open val TAG = "TokenStatic"
+    open val TAG get() = this::class.simpleName ?: "TokenStatic"
 
     abstract infix fun test(items: ItemsStatic.Class<Char>): Boolean
 
@@ -34,18 +34,22 @@ abstract class TokenStatic : ItemStatic<String>() {
     }
 
     fun debug(item: ItemStatic.Class<String>?, test: Boolean) {
+
         if (DEBUG && DEBUG_TOKENS) {
 
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "value = $item\ttest = $test")
-            if (DEBUG_NEGATIVES && !test) Log.d(TAG, "value = $item\ttest = $test")
+            val string = "test = $test\ttoken = $item"
+
+            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
+            if (DEBUG_NEGATIVES && !test) Log.d(TAG, string)
 
         }
+
     }
 
     abstract fun testItem(item: ItemStatic.Class<String>?): Boolean
 
     abstract class Class(tkString: String, open val line: Int, open val col: Int) : ItemStatic.Class<String>(tkString) {
-        override fun toString(): String = value
+        override fun toString(): String = "${self::class.simpleName} = $value [$line,$col]"
     }
 
 }

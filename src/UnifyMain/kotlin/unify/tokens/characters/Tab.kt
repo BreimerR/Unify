@@ -12,7 +12,7 @@ class TabStatic : CharacterStatic() {
     override fun testItem(item: ItemStatic.Class<String>?) = if (item != null) item is Class else false
    
     class Class(tokenString: String, l: Int, col: Int) : CharacterStatic.Class(tokenString, l, col, Tab){
-        override fun toString(): String = "\\s"
+        override fun toString(): String = "${self::class} = \\t"
     }
     
 }

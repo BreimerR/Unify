@@ -1,16 +1,17 @@
 package unify.ast
 
 
-import lib.io.string
 import language.lib.io.File
+import lib.io.string
 import unify.tokens.characters.*
+import unify.tokens.strings.Character
+import unify.tokens.strings.Identifier
 import unify.tokens.strings.Keyword
 import unify.tokens.strings.Number
 import unify.tokens.tokens.EOF
-import unify.tokens.tokens.printLn
-import unify.tokens.strings.Identifier
-import unify.tokens.tokens.TokenStatic
 import unify.tokens.tokens.OperatorStatic
+import unify.tokens.tokens.TokenStatic
+import unify.tokens.tokens.printLn
 import language.ast.TokensStatic as LangTokensStatic
 import language.ast.TokensStatic.Class as LangTokens
 
@@ -42,6 +43,7 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
     val stringTokens by lazy {
         arrayOf(
                 Keyword,
+                Character,
                 Identifier,
                 Number
         )
