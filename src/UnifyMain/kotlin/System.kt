@@ -4,15 +4,20 @@ import kotlin.math.min
 
 var DEBUG = false
 var DEBUG_PARSERS = false
+
 // allows all testable positive states
 var DEBUG_POSITIVES = false
+
 // allows all testable negative states
 var DEBUG_NEGATIVES = false
+
 // allow testableSection logs
 var DEBUG_SECTIONS = false
 var DEBUG_POSITIVE_PARSERS = false
+
 // shows all tokens before test runs
 var DEBUG_SHOW_TOKENS = false
+
 // log token debugs
 var DEBUG_TOKENS = false
 
@@ -39,14 +44,21 @@ class System {
 
 class Log {
     companion object {
+        val size = 40
+
         fun d(tag: String, value: Any?) {
 
             var spaces = ""
-            val size = 40
 
-            for (i in 0 until size - min(size, tag.length)) spaces += " "
+            if (DEBUG) {
+                for (i in 0 until size - min(size, tag.length)) spaces += " "
 
-            println("$tag:$spaces$value")
+                println("$tag:$spaces$value")
+            }
+        }
+
+        fun e(tag: String, value: Any?) {
+
         }
     }
 }

@@ -24,42 +24,42 @@ abstract class ItemsStatic : StaticClass {
 
         var nextIndex = 0
 
-        var i = 0
-
         var currentItem: ItemClass<T>? = null
 
         open val nextItem: ItemClass<T>?
             get() {
                 if (hasRemItems) {
-                    val res = items[nextIndex]
 
-                    i = nextIndex
+                    goForward()
 
-                    nextIndex += 1
-
-                    currentItem = res
-
-                    return res
+                    return currentItem
                 }
 
                 return null
             }
 
+        fun goForward(i: Int = 1) {
+            currentItem = items[nextIndex]
+
+            nextIndex += 1
+        }
+
         open val prevItem: ItemClass<T>?
             get() {
                 return if (onFirstIndex) null
                 else {
-                    nextIndex -= 1
+                    goBack()
 
-                    i = nextIndex
-
-                    val res = items[nextIndex]
-
-                    currentItem = res
-
-                    res
+                    currentItem
                 }
             }
+
+        // this is not right
+        fun goBack(i: Int = 1) {
+            nextIndex -= i
+
+            currentItem = items[nextIndex]
+        }
 
         private val onFirstIndex: Boolean
             get() = nextIndex == 0

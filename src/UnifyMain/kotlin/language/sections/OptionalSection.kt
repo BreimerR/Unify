@@ -20,8 +20,6 @@ class OptionalSection(
         name: String? = null
 ) : BaseOptionalSectionStatic<String>(*sections, name = name) {
 
-    override val TAG = "OptionalSection"
-
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
             items.saveState

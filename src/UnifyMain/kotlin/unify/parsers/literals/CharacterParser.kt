@@ -20,6 +20,7 @@ class CharacterParser : ParserStatic(
                 NotSection(
                         AlternativeSection(
                                 Identifier,
+                                NumberParser(),
                                 SQuotes
                         )
                 ),

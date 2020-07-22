@@ -30,7 +30,6 @@ class Unify(args: CLIArgumentsClass) : Language(
         OptionalSection(
                 PackageDefParser()
         ),
-
         ImportsParser(),
         ZeroOrMany(
                 AlternativeSection(

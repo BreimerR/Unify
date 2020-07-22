@@ -9,9 +9,6 @@ import unify.tokens.characters.Exclamation
 class TExpressionParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                OptionalSection(
-                        Exclamation
-                ),
                 ExpressionParser(),
                 TerminatorParser()
         )

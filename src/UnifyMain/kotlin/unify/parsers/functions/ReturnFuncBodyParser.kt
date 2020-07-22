@@ -5,6 +5,8 @@ import language.sections.AlternativeSection
 import language.sections.Section
 import language.sections.ZeroOrMany
 import lib.matcher.TestableStatic
+import unify.parsers.controlstractures.DoThenParser
+import unify.parsers.controlstractures.DoWhileParser
 import unify.parsers.controlstractures.WhenParser
 import unify.parsers.controlstractures.WhileParser
 import unify.parsers.expressions.AssignmentExpressionParser
@@ -15,7 +17,7 @@ import unify.tokens.characters.RBrace
 
 class ReturnFuncBodyParser : ParserStatic() {
 
-    override val TAG= "ReturnFuncBodyParser"
+    override val TAG = "ReturnFuncBodyParser"
 
     override var sections: Array<out TestableStatic<String>>
         get() {
@@ -31,6 +33,8 @@ class ReturnFuncBodyParser : ParserStatic() {
                                             AlternativeSection(
                                                     WhileParser(),
                                                     WhenParser(),
+                                                    DoWhileParser(),
+                                                    DoThenParser(),
                                                     VariableDeclarationParser(),
                                                     AssignmentExpressionParser(),
                                                     ExpressionParser(),

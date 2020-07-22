@@ -7,7 +7,7 @@ import unify.parsers.ClassInitParser
 import unify.parsers.controlstractures.IfParser
 import unify.parsers.literals.LiteralParser
 
-class SExpressionParser : ParserStatic() {
+class SExpressionParser : ParserStatic(considerNewLines = true) {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
                 AlternativeSection(
@@ -18,7 +18,8 @@ class SExpressionParser : ParserStatic() {
                         ClassInitParser(),
                         // PreFixExpressionParser(),
                         LiteralParser(),
-                        GroupExpressionParser()
+                        GroupExpressionParser(),
+                        considerNewLine = true
                 )
         )
         set(value) {}

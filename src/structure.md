@@ -1,3 +1,5 @@
+
+
 # UNIFY
 
 ### Simple compiler for unify language created in kotlin-native
@@ -342,3 +344,87 @@ data class Person(val name:String, var age:Int){
 }
 
 ```
+
+
+## Use annotation for language processing
+This way it means that is one can extend an annotation then one can change 
+the language structure to fit their current situation or needs 
+
+This would mean that each section would have a default annotation processor 
+and if an annotation is provided then that is considered as the processor of the section or more like the
+translator from Unify to the target language 
+
+## Comparison 
+This is to be handled by the main Comparator class the shall be extened to handle most cases 
+
+#### Design
+###### If
+```
+val value = false
+
+if(value == false){
+}
+
+// this will compare the value to all the provided or states i.e false or true
+if (value == false || true){
+
+}
+
+val a = 1
+
+// The prefered syntax is as provided
+if(a == 1 || b || c|| d || x ...){
+
+}
+
+
+```
+
+#### Scope less classes
+This are classes that have no specified scope and require a scope on initilization
+basically they are function holders and properties that do not pertain to it's super class
+
+```
+
+class Foo(val manager:FooInterface) :: FooInterface by manager{
+    val height = 0
+    val width = 1
+}
+
+
+delegatable<ScopeCanGoHere> interface FooInterface
+
+// scope provided to the class as so 
+class Manager scope Foo {
+
+    val property = "This property does not belong to the super class"
+
+    fun processHeightWidth(){
+        height = 12
+        width = 20
+    } 
+
+}
+
+// or 
+delegatable<ScopeCanGoHere> class  Manager  : FooInterface {
+    
+    fun processHeight(){
+        height = 12
+        width = 20
+    }
+}
+
+```
+
+This are proposed features and not well thought of more thinking can be done before implementing 
+such features into the final compiler
+
+
+# Passing operators to functions 
+func sample(a,b,operator){
+    return a operator b
+}
+## issues
+operators are compiled at compile time and this might be 
+hard to achieve with compile time

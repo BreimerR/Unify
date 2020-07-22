@@ -10,7 +10,7 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>, name
 
     var test: Boolean = true
 
-    open val TAG = "OptionalSectionStatic<T, ItemStatic<T>>"
+    open val TAG = this::class.simpleName ?: "OptionalSection"
 
     // 170902
     override fun test(items: ItemsStatic.Class<T>): Boolean {
