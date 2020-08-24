@@ -4,10 +4,7 @@ import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.ZeroOrMany
 import unify.parsers.comments.CommentsParser
-import unify.parsers.controlstractures.ForParser
-import unify.parsers.controlstractures.IfParser
-import unify.parsers.controlstractures.WhenParser
-import unify.parsers.controlstractures.WhileParser
+import unify.parsers.controlstractures.*
 import unify.parsers.expressions.FunctionCallParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.parsers.variables.TVariableDeclarationParser
@@ -29,10 +26,12 @@ open class FunctionItemsParser : ParserStatic(
                         IfParser(),
                         WhileParser(),
                         WhenParser(),
+                        DoWhileParser(),
+                        DoThenParser(),
                         ForParser(),
                         TVariableDeclarationParser(),
-                        TAssignmentExpressionParser(),
                         FunctionCallParser(),
+                        TAssignmentExpressionParser(),
                         FunctionParser()
                 )
         ),

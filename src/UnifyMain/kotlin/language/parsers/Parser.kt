@@ -44,8 +44,6 @@ open class ParserStatic(
         name = name
 ) {
 
-    override val TAG = super.TAG
-
     override val DEBUG
         get() = SYS_DEBUG && DEBUG_PARSERS
 

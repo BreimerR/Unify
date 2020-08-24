@@ -1,10 +1,10 @@
 package language.sections
 
+import Log
 import DEBUG
 import DEBUG_NEGATIVES
 import DEBUG_POSITIVES
 import DEBUG_SECTIONS
-import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
@@ -39,7 +39,7 @@ open class AlternativeSection(
 
     }
 
-    open val TAG = "AlternativeSection"
+    open val TAG = this::class.simpleName ?: "AlternativeSection"
 
     open fun debug(items: ItemsStatic.Class<String>, test: Boolean) {
 

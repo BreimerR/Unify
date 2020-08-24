@@ -16,10 +16,10 @@ class ExpressionParser : ParserStatic(considerNewLines = true) {
                 AlternativeSection(
                         // test elvis expression first as it can contain an sExpression doing a premature collection
                         ElvisExpressionParser(),
-                        SExpressionParser()
+                        SExpressionParser(),
+                        considerNewLine = true
                 )
         )
         set(value) {}
 
-    override val TAG = "ExpressionParser"
 }

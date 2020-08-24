@@ -22,7 +22,6 @@ open class AlternativeParser(
         considerSpaces = considerSpaces,
         considerNewLine = considerNewLine
 ) {
-    override val TAG = "AlternativeParser"
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         val test = super.test(items)
@@ -37,7 +36,7 @@ open class AlternativeParser(
 
         items as TokensStatic.Class
 
-        if (DEBUG && DEBUG_PARSERS) {
+        if (DEBUG_PARSERS) {
             val token = items.token
 
             val line = token?.line

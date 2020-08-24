@@ -7,7 +7,14 @@ import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
 
-class ArgumentsParser : ParserStatic(
+/**TODO
+ * The code does not
+ * cater for fixed param passing
+ * making default setters to have
+ * a few deficits i.e can not have a default setter
+ * for the = sign
+ * */
+class ArgumentsParser(argsCount: Int? = null) : ParserStatic(
         LBracket,
         OptionalSection(
                 RepetitiveBySection(

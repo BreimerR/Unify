@@ -9,7 +9,7 @@ open class IdentifierStatic(val value: String = "") : StringTokenStatic() {
 
     override var regex = Regex("([a-zA-Z][a-zA-Z0-9_]*|_+[a-zA-Z0-9_]*)")
 
-    override infix fun testItem(item: ItemStatic.Class<String>?): Boolean = (item is Class && item !is KeywordStatic.Class) && (item.value == value || value == "")
+    override infix fun testItem(item: ItemStatic.Class<String>?): Boolean = item != null && (item is Class && item !is KeywordStatic.Class) && (item.value == value || value == "")
 
     open class Class(tokenString: String, l: Int, col: Int) : StringTokenStatic.Class(tokenString, l, col) {
 
