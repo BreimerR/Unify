@@ -1,14 +1,10 @@
 package language.parsers
 
-import DEBUG
-import DEBUG_NEGATIVES
-import DEBUG_PARSERS
-import DEBUG_POSITIVES
-import Log
 import language.ast.TokensStatic
 import language.sections.AlternativeSection
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.Unify
 
 
 open class AlternativeParser(
@@ -24,27 +20,13 @@ open class AlternativeParser(
 ) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
+
         val test = super.test(items)
 
-
-        debug(items, test)
+        debug(items as TokensStatic.Class, test)
 
         return test
     }
 
-    override fun debug(items: ItemsStatic.Class<String>, test: Boolean) {
 
-        items as TokensStatic.Class
-
-        if (DEBUG_PARSERS) {
-            val token = items.token
-
-            val line = token?.line
-            val col = token?.col
-
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
-            if (DEBUG_NEGATIVES && !test) Log.d(TAG, "test = $test\ttoken = $token[$line,$col]")
-
-        }
-    }
 }

@@ -9,6 +9,7 @@ import unify.parsers.comments.CommentsParser
 import unify.parsers.expressions.FunctionCallParser
 import unify.parsers.expressions.TAssignmentExpressionParser
 import unify.parsers.functions.ActFuncBodyParser
+import unify.parsers.functions.CallParser
 import unify.parsers.functions.FunctionParser
 import unify.parsers.functions.ReturnFuncBodyParser
 import unify.parsers.variables.TVariableDeclarationParser
@@ -33,7 +34,7 @@ class ForBodyParser : ParserStatic() {
                                                 DoThenParser(),
                                                 TVariableDeclarationParser(),
                                                 TAssignmentExpressionParser(),
-                                                FunctionCallParser.TFunctionCallParser(),
+                                                CallParser(),
                                                 FunctionParser()
                                         )
                                 ),

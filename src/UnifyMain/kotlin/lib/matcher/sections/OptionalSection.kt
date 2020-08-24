@@ -2,6 +2,7 @@ package lib.matcher.sections
 
 import DEBUG
 import Log
+import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
@@ -10,7 +11,6 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>, name
 
     var test: Boolean = true
 
-    open val TAG = this::class.simpleName ?: "OptionalSection"
 
     // 170902
     override fun test(items: ItemsStatic.Class<T>): Boolean {
@@ -22,7 +22,9 @@ abstract class OptionalSectionStatic<T>(vararg sections: TestableStatic<T>, name
 
             testIndex = items.nextIndex
 
+            Log.d(TAG, "Start token = " + items.currentItem.toString())
             test = section test items
+            Log.d(TAG, "End token = " + items.currentItem.toString())
 
             if (test) {
                 if (items.nextIndex > testIndex) continue else if (section is OptionalSectionStatic<T> || section is RepetitiveSectionStatic<T>) continue

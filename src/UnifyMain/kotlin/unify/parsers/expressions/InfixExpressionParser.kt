@@ -6,6 +6,7 @@ import lib.matcher.TestableStatic
 import unify.parsers.ClassInitParser
 import unify.parsers.TypeDeclarationParser
 import unify.parsers.controlstractures.IfParser
+import unify.parsers.functions.CallParser
 import unify.parsers.literals.LiteralParser
 import unify.parsers.operators.InfixOperatorParser
 
@@ -18,7 +19,7 @@ class InfixExpressionParser : ParserStatic() {
         get() {
             return arrayOf(
                     AlternativeSection(
-                            FunctionCallParser(),
+                            CallParser(),
                             IfParser(),
                             ClassInitParser(),
                             // PreFixExpressionParser(),

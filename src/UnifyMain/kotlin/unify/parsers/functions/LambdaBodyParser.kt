@@ -30,7 +30,7 @@ class LambdaBodyParser : ParserStatic(
                         ForParser(),
                         TVariableDeclarationParser(),
                         TAssignmentExpressionParser(),
-                        FunctionCallParser(),
+                        CallParser(),
                         FunctionParser()
                 )
         ),

@@ -19,7 +19,11 @@ class AlternativeZeroOrMany<T>(vararg sections: TestableStatic<T>, maxCount: Int
 
             val i = items.nextIndex
 
+            Log.d(TAG, "Start token = " + items.currentItem.toString())
+
             var test = section test items
+
+            Log.d(TAG, "End token = " + items.currentItem.toString())
 
             eI = items.nextIndex
 

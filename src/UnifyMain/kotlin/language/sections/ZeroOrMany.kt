@@ -8,6 +8,7 @@ import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.Unify
 import DEBUG as SYS_DEBUG
 import lib.matcher.sections.ZeroOrManyStatic as BaseZeroOrManyStatic
 
@@ -15,10 +16,10 @@ open class ZeroOrMany(
         vararg sections: TestableStatic<String>,
         private var considerSeparation: Boolean = false,
         private var considerNewLine: Boolean = false,
-        private var considerSpaces: Boolean = false
-) : BaseZeroOrManyStatic<String>(*sections) {
+        private var considerSpaces: Boolean = false,
+        name: String? = null
+) : BaseZeroOrManyStatic<String>(*sections, name = name) {
 
-    private val TAG: String = "ZeroMany"
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -44,16 +45,7 @@ open class ZeroOrMany(
         get() = SYS_DEBUG && DEBUG_SECTIONS
 
     open fun debug(items: TokensStatic.Class, test: Boolean) {
-        if (DEBUG) {
-
-            val string = "test = $test\ttoken = ${items.token}"
-
-            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
-            if (DEBUG_NEGATIVES) Log.d(TAG, string)
-
-            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, string)
-
-        }
+        Unify.debug(TAG, items, test)
     }
 
     operator fun invoke(

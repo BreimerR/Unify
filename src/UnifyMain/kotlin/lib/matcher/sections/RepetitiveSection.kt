@@ -3,7 +3,7 @@ package lib.matcher.sections
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 1, val maxCount: Int = RepetitiveSectionStatic.maxCount) : SectionStatic<T>(*sections) {
+open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val minCount: Int = 1, val maxCount: Int = RepetitiveSectionStatic.maxCount, name: String? = null) : SectionStatic<T>(*sections, name = name) {
 
     private var tCounts = 0
 
@@ -15,13 +15,13 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
     override fun test(items: ItemsStatic.Class<T>): Boolean {
         var indexBeforeTest: Int = items.nextIndex
 
-
         // TODO maxCount error fix required
         recurTest@ while (tCounts < maxCount + 1) {
             indexBeforeTest = items.nextIndex
 
             val prevT = test
 
+            Log.d(TAG, "Start token = " + items.currentItem.toString())
             test = singleTest(items)
 
             if (!test || items.nextIndex <= indexBeforeTest) {
@@ -37,9 +37,11 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
         }
 
         return if (minCount <= 0) {
+            Log.d(TAG, "End token = " + items.currentItem.toString())
             items.nextIndex = indexBeforeTest
             true
         } else {
+            Log.d(TAG, "End token = " + items.currentItem.toString())
             test
         }
     }
@@ -49,8 +51,10 @@ open class RepetitiveSectionStatic<T>(vararg sections: TestableStatic<T>, val mi
 
         var truth = false
 
-        testLoop@ for (section in sections) {
+        for (section in sections) {
+
             truth = section test items
+
         }
 
         return truth

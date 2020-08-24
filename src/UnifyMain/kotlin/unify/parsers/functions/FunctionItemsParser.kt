@@ -7,6 +7,7 @@ import unify.parsers.comments.CommentsParser
 import unify.parsers.controlstractures.*
 import unify.parsers.expressions.FunctionCallParser
 import unify.parsers.expressions.TAssignmentExpressionParser
+import unify.parsers.expressions.TFunctionCallParser
 import unify.parsers.variables.TVariableDeclarationParser
 import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
@@ -22,6 +23,7 @@ open class FunctionItemsParser : ParserStatic(
         LBrace,
         ZeroOrMany(
                 AlternativeSection(
+                        CallParser(),
                         CommentsParser(),
                         IfParser(),
                         WhileParser(),
@@ -30,7 +32,6 @@ open class FunctionItemsParser : ParserStatic(
                         DoThenParser(),
                         ForParser(),
                         TVariableDeclarationParser(),
-                        FunctionCallParser(),
                         TAssignmentExpressionParser(),
                         FunctionParser()
                 )

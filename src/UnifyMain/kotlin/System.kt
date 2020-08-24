@@ -48,9 +48,8 @@ class Log {
 
         fun d(tag: String, value: Any?) {
 
-            var spaces = ""
-
             if (DEBUG) {
+                var spaces = ""
                 for (i in 0 until size - min(size, tag.length)) spaces += " "
 
                 println("$tag:$spaces$value")

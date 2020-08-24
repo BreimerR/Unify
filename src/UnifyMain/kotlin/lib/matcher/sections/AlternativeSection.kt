@@ -14,11 +14,17 @@ abstract class AlternativeSectionStatic<T>(override vararg var sections: Testabl
 
         var sI = 0
 
+
         for (section in sections) {
 
             val i = items.nextIndex
 
+            Log.d(TAG, "Start token = " + items.currentItem.toString())
+
             val test = section test items
+
+            Log.d(TAG, "End token = " + items.currentItem.toString())
+
 
             eI = items.nextIndex
 

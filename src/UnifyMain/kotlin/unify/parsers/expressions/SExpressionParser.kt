@@ -5,6 +5,7 @@ import language.sections.AlternativeSection
 import lib.matcher.TestableStatic
 import unify.parsers.ClassInitParser
 import unify.parsers.controlstractures.IfParser
+import unify.parsers.functions.CallParser
 import unify.parsers.literals.LiteralParser
 
 class SExpressionParser : ParserStatic(considerNewLines = true) {
@@ -12,11 +13,9 @@ class SExpressionParser : ParserStatic(considerNewLines = true) {
         get() = arrayOf(
                 AlternativeSection(
                         InfixExpressionParser(),
-                        FunctionCallParser(),
-                        // this is supposed to be a return if statement
                         IfParser(),
                         ClassInitParser(),
-                        // PreFixExpressionParser(),
+                        CallParser(),
                         LiteralParser(),
                         GroupExpressionParser(),
                         considerNewLine = true
