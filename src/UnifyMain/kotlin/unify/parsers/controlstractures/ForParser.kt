@@ -27,50 +27,50 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
         get() {
             return if (mSections == null) {
                 mSections = arrayOf(
-                        KeywordStatic("for"),
-                        LBracket,
-                        /** TODO
-                         * return should not break if for is to be used as a return
-                         * if for used as a return then item is assigned multiple times
-                         * var age = for(i in 0..10){
-                         *      i += 1
-                         * }
-                         *
-                         * println(age)
-                         *
-                         * @results
-                         * 10
-                         *
-                         * */
-                        AlternativeSection(
-                                Section(
-                                        VariableDeclarationParser(),
-                                        IdentifierStatic("in"),
-                                        ReferenceParser()
-                                ),
-                                Section(
-                                        OptionalSection(
-                                                RepetitiveBySection(
-                                                        AssignmentExpressionParser(),
-                                                        Coma
-                                                ),
-                                                SColon
-                                        ),
-                                        ExpressionParser(),
-                                        OptionalSection(
-                                                SColon,
-                                                RepetitiveBySection(
-                                                        AssignmentExpressionParser(),
-                                                        Coma
-                                                )
-                                        )
-                                )
+                    KeywordStatic("for"),
+                    LBracket,
+                    /** TODO
+                     * return should not break if for is to be used as a return
+                     * if for used as a return then item is assigned multiple times
+                     * var age = for(i in 0..10){
+                     *      i += 1
+                     * }
+                     *
+                     * println(age)
+                     *
+                     * @results
+                     * 10
+                     *
+                     * */
+                    AlternativeSection(
+                        Section(
+                            VariableDeclarationParser(),
+                            IdentifierStatic("in"),
+                            ReferenceParser()
                         ),
-                        RBracket,
-                        AlternativeSection(
-                                ExpressionParser(),
-                                ForBodyParser()
+                        Section(
+                            OptionalSection(
+                                RepetitiveBySection(
+                                    AssignmentExpressionParser(),
+                                    Coma
+                                ),
+                                SColon
+                            ),
+                            ExpressionParser(),
+                            OptionalSection(
+                                SColon,
+                                RepetitiveBySection(
+                                    AssignmentExpressionParser(),
+                                    Coma
+                                )
+                            )
                         )
+                    ),
+                    RBracket,
+                    AlternativeSection(
+                        ExpressionParser(),
+                        ForBodyParser()
+                    )
                 )
 
                 mSections!!

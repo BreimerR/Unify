@@ -17,7 +17,12 @@ class CallParser : ParserStatic(considerNewLines = true) {
         get() = arrayOf(
             ReferenceParser(),
             LBracket,
-            ExpressionParser(),
+            OptionalSection(
+                RepetitiveBySectionReMaster(
+                    Coma,
+                    ExpressionParser()
+                )
+            ),
             RBracket
         )
         set(value) {}

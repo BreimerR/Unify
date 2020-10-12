@@ -41,12 +41,12 @@ import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
 class Unify(args: CLIArgumentsClass) : Language(
-/*        OptionalSection(
+        OptionalSection(
                 PackageDefParser()
         ),
-        ImportsParser(),*/
+        ImportsParser(),
         ZeroOrMany(
-                /* AlternativeSection(
+                 AlternativeSection(
                          InterfaceParser(),
                          MultiVariableDeclarationParser(),
                          TVariableDeclarationParser(),
@@ -55,8 +55,7 @@ class Unify(args: CLIArgumentsClass) : Language(
                          ClassParser(),
                          CommentsParser(),
                          FunctionParser()
-                 )*/
-                CallParser()
+                 )
         ),
         EOFParser()
 ) {
