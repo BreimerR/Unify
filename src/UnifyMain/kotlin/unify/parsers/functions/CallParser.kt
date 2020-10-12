@@ -15,16 +15,10 @@ class CallParser : ParserStatic(considerNewLines = true) {
     // Ends with works better for such a situation.
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                ReferenceParser(),
-                LBracket,
-                OptionalSection(
-                        RepetitiveBySection(
-                                ExpressionParser(),
-                                Coma,
-                                minCount = 1
-                        )
-                ),
-                RBracket
+            ReferenceParser(),
+            LBracket,
+            ExpressionParser(),
+            RBracket
         )
         set(value) {}
 
