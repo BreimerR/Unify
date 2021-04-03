@@ -18,11 +18,15 @@ class ReferenceParser : ParserStatic(
                                         Keyword
                                 ),
                                 Dot,
+                                name = "FULL_CLASS_REFERENCE",
                                 minCount = 1
                         ),
                         Identifier
                 ),
-                Identifier
+                Section(
+                        Identifier,
+                        name = "SIMPLE_CLASS_REFERENCE"
+                )
         )
 ) {
 

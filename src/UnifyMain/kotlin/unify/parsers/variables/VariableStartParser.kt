@@ -1,18 +1,14 @@
 package unify.parsers.variables
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
-import language.sections.Section
+import language.sections.*
 import lib.matcher.TestableStatic
 import unify.parsers.ReferenceOperatorParser
 import unify.parsers.TypeDeclarationParser
 import unify.parsers.expressions.ExpressionParser
 import unify.parsers.literals.ReferenceParser
-import unify.tokens.characters.Colon
-import unify.tokens.characters.Coma
-import unify.tokens.characters.Dollar
+import unify.parsers.numbers.IntegerParser
+import unify.tokens.characters.*
 import unify.tokens.strings.Identifier
 
 class VariableStartParser : ParserStatic() {
@@ -21,34 +17,48 @@ class VariableStartParser : ParserStatic() {
 
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                Section(Identifier, name = "VAR_NAME"),
+            // TODO should be a reference not necessarily an identifier
+            Section(Identifier, name = "VAR_NAME"),
+            OptionalSection(
+                Colon,
+                TypeDeclarationParser()
+            ),
+            OptionalSection(
+                LSBracket,
                 OptionalSection(
-                        Colon,
-                        TypeDeclarationParser()
+                    // Does not cater for matrix arrays
+                    // This should define the shape of the array i.e
+                    // var matrix:Integer{2,2}
+                    RepetitiveBySectionReMaster(
+                        Coma,
+                        IntegerParser()
+                    )
                 ),
-                OptionalSection(
-                        DestructuringParser()
-                ),
-                OptionalSection(
-                        ReferenceOperatorParser(),
-                        AlternativeSection(
-                                Section(
-                                        ExpressionParser(),
-                                        RepetitiveBySection(
-                                                Dollar,
-                                                ReferenceParser(),
-                                                Coma
-                                        )
-                                ),
-                                ExpressionParser(),
-                                RepetitiveBySection(
-                                        Dollar,
-                                        ReferenceParser(),
-                                        Coma
-                                )
-
+                RSBracket
+            ),
+            OptionalSection(
+                DestructuringParser()
+            ),
+            OptionalSection(
+                ReferenceOperatorParser(),
+                AlternativeSection(
+                    Section(
+                        ExpressionParser(),
+                        RepetitiveBySection(
+                            Dollar,
+                            ReferenceParser(),
+                            Coma
                         )
+                    ),
+                    ExpressionParser(),
+                    RepetitiveBySection(
+                        Dollar,
+                        ReferenceParser(),
+                        Coma
+                    )
+
                 )
+            )
         )
         set(value) {}
 }

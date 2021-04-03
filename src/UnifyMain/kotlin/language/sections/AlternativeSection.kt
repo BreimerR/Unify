@@ -1,20 +1,17 @@
 package language.sections
 
-import Log
-import DEBUG
-import DEBUG_NEGATIVES
-import DEBUG_POSITIVES
-import DEBUG_SECTIONS
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.Unify
 import lib.matcher.sections.AlternativeSectionStatic as BaseAlternativeSectionStatic
 
 open class AlternativeSection(
         vararg sections: TestableStatic<String>,
         private val considerSeparation: Boolean = false,
         private val considerSpaces: Boolean = false,
-        private val considerNewLine: Boolean = false
+        private val considerNewLine: Boolean = false,
+        public override val name: String? = null
 ) : BaseAlternativeSectionStatic<String>(*sections) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
@@ -39,19 +36,9 @@ open class AlternativeSection(
 
     }
 
-    open val TAG = this::class.simpleName ?: "AlternativeSection"
+    override val TAG get() = (this::class.simpleName ?: "AlternativeSection") + if (name != null) "($name)" else ""
 
-    open fun debug(items: ItemsStatic.Class<String>, test: Boolean) {
-
-        if (DEBUG && DEBUG_SECTIONS) {
-
-            items as TokensStatic.Class
-
-            val string = "test = $test\ttoken = ${items.token}"
-
-            if (DEBUG_POSITIVES && test) Log.d(TAG, string)
-            if (DEBUG_NEGATIVES) Log.d(TAG, string)
-
-        }
+    open fun debug(items: TokensStatic.Class, test: Boolean) {
+        Unify.debug(TAG, items, test)
     }
 }

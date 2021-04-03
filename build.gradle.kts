@@ -1,6 +1,7 @@
 plugins {
-    kotlin("multiplatform") version "1.3.70"
+    kotlin("multiplatform") version "1.4.10"
 }
+group = "brymher.gmail.com"
 
 repositories {
     mavenCentral()
@@ -10,15 +11,31 @@ kotlin {
     // For ARM, preset function should be changed to iosArm32() or iosArm64()
     // For Linux, preset function should be changed to e.g. linuxX64()
     // For MacOS, preset function should be changed to e.g. macosX64()
-    linuxX64("Unify") {
+    val hostOs = System.getProperty("os.name")
+    val isMingwX64 = hostOs.startsWith("Windows")
+
+    val nativeTarget = when {
+        hostOs == "Mac OS X" -> macosX64("Unify")
+        hostOs == "Linux" -> linuxX64("Unify")
+        isMingwX64 -> mingwX64("Unify")
+        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
+    }
+
+
+    nativeTarget.apply {
         binaries {
-            // Comment the next section to generate Kotlin/Native library (KLIB) instead of executable file:
-            executable("unify") {
-                // Change to specify fully qualified name of your application's entry point:
+            executable {
                 entryPoint = "unify.main"
             }
         }
     }
+
+
+    sourceSets {
+        @Suppress("LocalVariableName") val UnifyMain by getting
+        @Suppress("LocalVariableName") val UnifyTest by getting
+    }
+
 }
 
 dependencies {

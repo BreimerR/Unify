@@ -1,4 +1,4 @@
 package language.sections
 
-class OneOrMany {
+class OneOrMany : RepetitiveSection(minCount = 1) {
 }

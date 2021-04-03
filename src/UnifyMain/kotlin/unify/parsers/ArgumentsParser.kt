@@ -3,6 +3,7 @@ package unify.parsers
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
+import language.sections.RepetitiveBySectionReMaster
 import unify.tokens.characters.Coma
 import unify.tokens.characters.LBracket
 import unify.tokens.characters.RBracket
@@ -14,13 +15,16 @@ import unify.tokens.characters.RBracket
  * a few deficits i.e can not have a default setter
  * for the = sign
  * */
+
+const val age = 12
+
 class ArgumentsParser(argsCount: Int? = null) : ParserStatic(
-        LBracket,
-        OptionalSection(
-                RepetitiveBySection(
-                        ArgumentParser(),
-                        Coma
-                )
-        ),
-        RBracket
+    LBracket,
+    OptionalSection(
+        RepetitiveBySectionReMaster(
+            Coma,
+            ArgumentParser(),
+        )
+    ),
+    RBracket
 )

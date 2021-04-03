@@ -1,4 +1,6 @@
 package unify.parsers.functions
 
-class MultiParameterParser {
+import language.parsers.ParserStatic
+
+class MultiParameterParser : ParserStatic() {
 }

@@ -5,9 +5,10 @@ import unify.tokens.characters.LSBracket
 import unify.tokens.characters.RSBracket
 
 class ArrayDestructuringParser : ParserStatic(
-        LSBracket,
-        DestructuringCenterParser(),
-        RSBracket
+    LSBracket,
+    DestructuringCenterParser(),
+    RSBracket,
+    name = "ARRAY_DESTRUCTING"
 ) {
 
     override val TAG = "ArrayDestructuringParser"

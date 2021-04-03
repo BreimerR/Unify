@@ -11,6 +11,7 @@ import unify.parsers.comments.CommentsParser
 import unify.parsers.functions.*
 import unify.parsers.objects.ClassParser
 import unify.parsers.objects.EnumParser
+import unify.parsers.objects.InterfaceParser
 import unify.parsers.variables.TVariableDeclarationParser
 import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
@@ -21,31 +22,32 @@ class ClassBodyParser : ParserStatic() {
 
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                LBrace,
-                ZeroOrMany(
+            LBrace,
+            ZeroOrMany(
+                AlternativeSection(
+                    SingleInstanceSection(
+                        IdentifierStatic("init"),
+                        FuncExceptionParser(),
+                        FunctionItemsParser()
+                    ),
+                    Section(
+                        OptionalSection(
+                            OverridesParser()
+                        ),
+                        AccessModifiersParser(),
                         AlternativeSection(
-                                SingleInstanceSection(
-                                        IdentifierStatic("init"),
-                                        FuncExceptionParser(),
-                                        FunctionItemsParser()
-                                ),
-                                Section(
-                                        OptionalSection(
-                                                OverridesParser()
-                                        ),
-                                        AccessModifiersParser(),
-                                        AlternativeSection(
-                                                TVariableDeclarationParser(),
-                                                ActionParser(),
-                                                MethodParser()
-                                        )
-                                ),
-                                ClassParser(),
-                                EnumParser(),
-                                CommentsParser()
+                            TVariableDeclarationParser(),
+                            ActionParser(),
+                            MethodParser()
                         )
-                ),
-                RBrace
+                    ),
+                    ClassParser(),
+                    InterfaceParser(),
+                    EnumParser(),
+                    CommentsParser()
+                )
+            ),
+            RBrace
         )
         set(value) {}
 }

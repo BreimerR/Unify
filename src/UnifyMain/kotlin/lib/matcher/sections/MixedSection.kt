@@ -4,7 +4,7 @@ import lib.collections.array.pop
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
 
-open class MixedSectionStatic<T>(vararg sections: TestableStatic<T>) : SectionStatic<T>(*sections) {
+open class MixedSectionStatic<T>(vararg sections: TestableStatic<T>, name: String? = null) : SectionStatic<T>(*sections, name = name) {
 
     override fun test(items: ItemsStatic.Class<T>): Boolean {
         var test = true

@@ -9,6 +9,7 @@ import Log
 import language.ast.TokensStatic
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
+import unify.Unify
 import lib.matcher.sections.RepetitiveSectionStatic as BaseRepetitiveSectionStatic
 
 
@@ -18,8 +19,9 @@ open class RepetitiveSection(
         val considerNewLine: Boolean = false,
         val considerSpaces: Boolean = false,
         minCount: Int = 1,
-        maxCount: Int = this.maxCount
-) : BaseRepetitiveSectionStatic<String>(*sections, minCount = minCount, maxCount = maxCount) {
+        maxCount: Int = this.maxCount,
+        name: String? = null
+) : BaseRepetitiveSectionStatic<String>(*sections, minCount = minCount, maxCount = maxCount , name = name) {
 
     override fun test(items: ItemsStatic.Class<String>): Boolean {
         return if (items is TokensStatic.Class) {
@@ -40,18 +42,11 @@ open class RepetitiveSection(
         } else false
     }
 
-    val TAG = "RepetitiveSection"
-
     val DEBUG get() = SYS_DEBUG && DEBUG_SECTIONS
 
     open fun debug(items: TokensStatic.Class, test: Boolean) {
-        if (DEBUG) {
-
-            if (DEBUG_POSITIVES && test) Log.d(TAG, "test =  $test \t token =  ${items.token}  \t token.value = ${items.token}")
-            if (DEBUG_NEGATIVES) Log.d(TAG, "test = $test \t token =  ${items.token}  \t token.value = ${items.token}")
-
-            if (DEBUG_POSITIVE_PARSERS && test) Log.d(TAG, "test = $test\ttoken = ${items.token}\ttoken.value = ${items.token}")
-
-        }
+        Unify.debug(TAG, items, test)
     }
+
+
 }
