@@ -10,35 +10,46 @@ import unify.parsers.MutableStateParser
 import unify.parsers.TypeDeclarationParser
 import unify.tokens.characters.*
 
+// TODO wrong syntax supported var [var name = 12] = []
 class DestructuringVariableDeclarationParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                OptionalSection(
-                        MutableStateParser()
-                ),
-                AlternativeSection(
+            OptionalSection(
+                MutableStateParser()
+            ),
+            AlternativeSection(
+                Section(
+                    LBrace,
+                    RepetitiveBySection(
                         Section(
-                                LBrace,
-                                RepetitiveBySection(
-                                        MutableVariableDeclarationParser(),
-                                        Coma
-                                ),
-                                RBrace
+                            OptionalSection(
+                                MutableStateParser()
+                            ),
+                            SimpleVariableParser()
                         ),
+                        Coma
+                    ),
+                    RBrace
+                ),
+                Section(
+                    LSBracket,
+                    RepetitiveBySection(
                         Section(
-                                LSBracket,
-                                RepetitiveBySection(
-                                        MutableVariableDeclarationParser(),
-                                        Coma
-                                ),
-                                RSBracket
-                        )
-                ),
-                OptionalSection(
-                        Colon,
-                        TypeDeclarationParser()
-                ),
-                VariableEndParser()
+                            OptionalSection(
+                                MutableStateParser()
+                            ),
+                            SimpleVariableParser()
+                        ),
+                        Coma
+                    ),
+                    RSBracket
+                )
+            ),
+            OptionalSection(
+                Colon,
+                TypeDeclarationParser()
+            ),
+            VariableEndParser()
         )
         set(value) {}
 }

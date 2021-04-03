@@ -15,13 +15,16 @@ import unify.tokens.characters.RBracket
  * a few deficits i.e can not have a default setter
  * for the = sign
  * */
+
+const val age = 12
+
 class ArgumentsParser(argsCount: Int? = null) : ParserStatic(
-        LBracket,
-        OptionalSection(
-                RepetitiveBySectionReMaster(
-                        Coma,
-                        ArgumentParser(),
-                )
-        ),
-        RBracket
+    LBracket,
+    OptionalSection(
+        RepetitiveBySectionReMaster(
+            Coma,
+            ArgumentParser(),
+        )
+    ),
+    RBracket
 )

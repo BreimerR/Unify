@@ -8,8 +8,7 @@ class RepetitiveBySectionReMaster<T>(
     val by: TestableStatic<T>,
     vararg sections: TestableStatic<T>,
     name: String = "RepetitiveBySectionReMaster",
-) :
-    SectionStatic<T>(*sections, name = name) {
+) : SectionStatic<T>(*sections, name = name) {
 
     // Self
     // AlternativeSection

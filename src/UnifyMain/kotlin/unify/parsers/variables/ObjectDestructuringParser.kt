@@ -5,9 +5,10 @@ import unify.tokens.characters.LBrace
 import unify.tokens.characters.RBrace
 
 class ObjectDestructuringParser : ParserStatic(
-        LBrace,
-        DestructuringCenterParser(),
-        RBrace
+    LBrace,
+    DestructuringCenterParser(),
+    RBrace,
+    name = "OBJ_DESTRUCTING"
 ) {
     override val TAG = "ObjectDistractingParser"
 }

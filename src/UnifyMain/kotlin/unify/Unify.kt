@@ -41,23 +41,23 @@ import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
 class Unify(args: CLIArgumentsClass) : Language(
-        OptionalSection(
-                PackageDefParser()
-        ),
-        ImportsParser(),
-        ZeroOrMany(
-                 AlternativeSection(
-                         InterfaceParser(),
-                         MultiVariableDeclarationParser(),
-                         TVariableDeclarationParser(),
-                         TAssignmentExpressionParser(),
-                         EnumParser(),
-                         ClassParser(),
-                         CommentsParser(),
-                         FunctionParser()
-                 )
-        ),
-        EOFParser()
+    OptionalSection(
+        PackageDefParser()
+    ),
+    ImportsParser(),
+    ZeroOrMany(
+        AlternativeSection(
+            InterfaceParser(),
+            MultiVariableDeclarationParser(),
+            TVariableDeclarationParser(),
+            TAssignmentExpressionParser(),
+            EnumParser(),
+            ClassParser(),
+            CommentsParser(),
+            FunctionParser()
+        )
+    ),
+    EOFParser()
 ) {
     override val scope: Scope = FileScope()
 

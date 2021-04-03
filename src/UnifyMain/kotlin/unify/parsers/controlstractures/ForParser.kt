@@ -3,6 +3,7 @@ package unify.parsers.controlstractures
 import language.parsers.ParserStatic
 import language.sections.*
 import lib.matcher.TestableStatic
+import unify.parsers.ArithmeticAdjustmentParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.expressions.*
 import unify.parsers.functions.ActFuncBodyParser
@@ -60,7 +61,10 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                             OptionalSection(
                                 SColon,
                                 RepetitiveBySection(
-                                    AssignmentExpressionParser(),
+                                    AlternativeSection(
+                                        AssignmentExpressionParser(),
+                                        ArithmeticAdjustmentParser()
+                                    ),
                                     Coma
                                 )
                             )

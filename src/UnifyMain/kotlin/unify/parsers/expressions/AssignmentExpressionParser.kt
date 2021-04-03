@@ -8,13 +8,15 @@ import unify.parsers.operators.AssignmentOperatorParser
 open class AssignmentExpressionParser : ParserStatic() {
 
 
-
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                ReferenceParser(),
-                AssignmentOperatorParser(),
-                ExpressionParser()
+            ReferenceParser(),
+            AssignmentOperatorParser(),
+            ExpressionParser()
         )
         set(value) {}
 
 }
+
+
+

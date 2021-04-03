@@ -53,9 +53,9 @@ class ClassParser : ParserStatic() {
             OptionalSection(
                 Section(
                     ReferenceOperatorParser(),
-                    RepetitiveBySection(
-                        TypeDeclarationParser(),
-                        Coma
+                    RepetitiveBySectionReMaster(
+                        Coma,
+                        TypeDeclarationParser()
                     )
                 )
             ),

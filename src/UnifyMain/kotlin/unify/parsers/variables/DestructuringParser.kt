@@ -9,10 +9,10 @@ class DestructuringParser : ParserStatic() {
 
     override var sections: Array<out TestableStatic<String>>
         get() = arrayOf(
-                AlternativeSection(
-                        ObjectDestructuringParser(),
-                        ArrayDestructuringParser()
-                )
+            AlternativeSection(
+                ObjectDestructuringParser(),
+                ArrayDestructuringParser()
+            )
         )
         set(value) {}
 }
