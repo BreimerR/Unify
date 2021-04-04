@@ -66,7 +66,7 @@ abstract class ItemsStatic : StaticClass {
 
         private val hasPrevItems get() = nextIndex >= 0 && !onFirstIndex
 
-        val hasRemItems: Boolean
+        public val hasRemItems: Boolean
             get() = items.length != 0 && nextIndex < items.length
 
         operator fun get(index: Int): ItemClass<T> = items[index]

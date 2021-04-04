@@ -7,12 +7,12 @@ import unify.tokens.characters.*
 
 class MathOperatorParser : ParserStatic(
         AlternativeSection(
-                Section(Plus),
-                Section(Minus),
-                Section(Percent),
-                Section(Asterisk),
-                Section(FSlash),
-                Section(Ampersand)
+                Plus,
+                Minus,
+                Percent,
+                Asterisk,
+                FSlash,
+                Ampersand
         )
 ) {
 

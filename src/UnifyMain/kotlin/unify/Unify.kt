@@ -75,6 +75,7 @@ class Unify(args: CLIArgumentsClass) : Language(
                 if (test) {
                     if (DEBUG_POSITIVES) Log.d(tag, string)
                 } else if (DEBUG_NEGATIVES) Log.d(tag, string)
+
             }
 
         }

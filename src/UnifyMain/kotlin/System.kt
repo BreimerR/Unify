@@ -27,7 +27,7 @@ class System {
 
         fun updateDebug(cli: CLIArgumentsStatic.Class) {
             DEBUG = cli.getBoolean("--debug", false)
-            DEBUG_PARSERS = cli.getBoolean("--debug-parsers", true)
+            DEBUG_PARSERS = cli.getBoolean("--debug-parsers", false)
             DEBUG_POSITIVES = cli.getBoolean("--debug-positives", false)
             DEBUG_NEGATIVES = cli.getBoolean("--debug-negatives", false)
             DEBUG_SECTIONS = cli.getBoolean("--debug-sections", false)

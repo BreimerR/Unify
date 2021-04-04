@@ -3,6 +3,7 @@ package unify.parsers.functions
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.ZeroOrMany
+import unify.parsers.TArithmeticAdjustmentParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.controlstractures.*
 import unify.parsers.expressions.FunctionCallParser
@@ -26,13 +27,12 @@ open class FunctionItemsParser : ParserStatic(
                         CallParser(),
                         CommentsParser(),
                         IfParser(),
-                        WhileParser(),
                         WhenParser(),
-                        DoWhileParser(),
                         DoThenParser(),
-                        ForParser(),
+                        LoopsParser(),
                         TVariableDeclarationParser(),
                         TAssignmentExpressionParser(),
+                        TArithmeticAdjustmentParser(),
                         FunctionParser()
                 )
         ),

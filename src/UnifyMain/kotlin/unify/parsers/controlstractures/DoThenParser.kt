@@ -14,31 +14,29 @@ class DoThenParser : ParserStatic() {
     override var sections: Array<out TestableStatic<String>>
         get() {
 
-            val secs = arrayOf(
-                    KeywordStatic("do"),
+            return arrayOf(
+                KeywordStatic("do"),
+                OptionalSection(
+                    LThan,
+                    TypeDeclarationParser(),
+                    GThan
+                ),
+                OptionalSection(
+                    LBracket,
+                    ReferenceParser(),
                     OptionalSection(
-                            LThan,
-                            TypeDeclarationParser(),
-                            GThan
+                        Coma,
+                        ReferenceParser()
                     ),
-                    OptionalSection(
-                            LBracket,
-                            ReferenceParser(),
-                            OptionalSection(
-                                    Coma,
-                                    ReferenceParser()
-                            ),
-                            RBracket
-                    ),
-                    FunctionBodyParser(),
-                    KeywordStatic("then"),
-                    OptionalSection(
-                            ArgumentsParser()
-                    ),
-                    FunctionBodyParser()
+                    RBracket
+                ),
+                FunctionBodyParser(),
+                KeywordStatic("then"),
+                OptionalSection(
+                    ArgumentsParser()
+                ),
+                FunctionBodyParser()
             )
-
-            return secs
         }
         set(value) {}
 }

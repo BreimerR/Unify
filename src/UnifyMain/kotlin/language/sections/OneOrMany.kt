@@ -1,4 +1,4 @@
 package language.sections
 
-class OneOrMany : RepetitiveSection(minCount = 1) {
-}
+import lib.matcher.sections.RepetitiveSectionStatic
+

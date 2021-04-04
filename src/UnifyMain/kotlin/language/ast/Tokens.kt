@@ -13,7 +13,7 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
     abstract val tokenClasses: Array<out TokenStatic>
 
-    abstract class Class(override val self: TokensStatic<out Token>) : ItemsStatic.Class<String>() {
+    abstract class Class(override val self: TokensStatic<out Token>) : ItemsStatic.Class<String>(), Iterable<Token> {
 
         override val items get() = tokens
 
@@ -79,7 +79,8 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
         private fun isTab(token: ItemStatic.Class<String>): Boolean = token is TabStatic.Class
 
-        private fun isSeparation(token: ItemStatic.Class<String>): Boolean = isSpace(token) || isTab(token) || isNewLine(token)
+        private fun isSeparation(token: ItemStatic.Class<String>): Boolean =
+            isSpace(token) || isTab(token) || isNewLine(token)
 
         abstract fun isNewLine(klass: TokenStatic): Boolean
 
@@ -118,8 +119,24 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
                 considerSpaces = stateHolder.considerSpaces
             }
 
-        internal data class StateHolder(val considerSeparation: Boolean, val considerSpaces: Boolean, val considerNewLine: Boolean)
+        internal data class StateHolder(
+            val considerSeparation: Boolean,
+            val considerSpaces: Boolean,
+            val considerNewLine: Boolean,
+        )
+
+        override fun iterator(): Iterator<Token> {
+
+            return object : Iterator<Token> {
+                override fun hasNext(): Boolean = hasRemItems
+
+                override fun next(): Token = nextItem as TokenStatic.Class
+
+            }
+        }
 
     }
+
+
 }
 

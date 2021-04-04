@@ -10,24 +10,24 @@ import unify.tokens.strings.KeywordStatic
 
 
 class ReferenceParser : ParserStatic(
-        AlternativeSection(
-                Section(
-                        RepetitiveSection(
-                                AlternativeSection(
-                                        Identifier,
-                                        Keyword
-                                ),
-                                Dot,
-                                name = "FULL_CLASS_REFERENCE",
-                                minCount = 1
-                        ),
-                        Identifier
+    AlternativeSection(
+        Section(
+            RepetitiveSection(
+                AlternativeSection(
+                    Identifier,
+                    Keyword
                 ),
-                Section(
-                        Identifier,
-                        name = "SIMPLE_CLASS_REFERENCE"
-                )
+                Dot,
+                minCount = 1
+            ),
+            Identifier,
+            name = "FULL_CLASS_REFERENCE"
+        ),
+        Section(
+            Identifier,
+            name = "SIMPLE_CLASS_REFERENCE"
         )
+    )
 ) {
 
 
