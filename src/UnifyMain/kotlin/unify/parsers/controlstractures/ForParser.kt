@@ -48,7 +48,7 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                         ),
                         Section(
                             OptionalSection(
-                                RepetitiveBySectionReMaster(
+                                RepetitiveBySection(
                                     Coma,
                                     AssignmentExpressionParser()
                                 ),
@@ -57,7 +57,7 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                             ExpressionParser(),
                             OptionalSection(
                                 SColon,
-                                RepetitiveBySectionReMaster(
+                                RepetitiveBySection(
                                     Coma,
                                     AlternativeSection(
                                         AssignmentExpressionParser(),

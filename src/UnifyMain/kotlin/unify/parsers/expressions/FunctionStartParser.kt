@@ -3,7 +3,7 @@ package unify.parsers.expressions
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.Section
-import unify.parsers.ArgumentsParser
+import unify.parsers.ParametersParser
 import unify.parsers.GenericTypeParser
 import unify.parsers.functions.FuncExceptionParser
 import unify.parsers.functions.FunctionReturnParser
@@ -16,7 +16,7 @@ class FunctionStartParser : ParserStatic(
         // function name
         Section(Identifier),
         // function arguments
-        ArgumentsParser(),
+        ParametersParser(),
         OptionalSection(
                 FunctionReturnParser()
         ),

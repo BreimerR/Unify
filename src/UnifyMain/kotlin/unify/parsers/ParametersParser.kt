@@ -1,21 +1,19 @@
-package unify.parsers.objects
+package unify.parsers
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import language.sections.RepetitiveBySection
 import unify.tokens.characters.Coma
-import unify.tokens.characters.LBrace
-import unify.tokens.characters.RBrace
-import unify.tokens.strings.Identifier
+import unify.tokens.characters.LBracket
+import unify.tokens.characters.RBracket
 
-
-class EnumBodyParser : ParserStatic(
-    LBrace,
+class ParametersParser : ParserStatic(
+    LBracket,
     OptionalSection(
         RepetitiveBySection(
             Coma,
-            Identifier
+            ParameterParser(),
         )
     ),
-    RBrace
+    RBracket
 )

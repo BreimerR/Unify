@@ -3,7 +3,7 @@ package unify.parsers.controlstractures
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
 import lib.matcher.TestableStatic
-import unify.parsers.ArgumentsParser
+import unify.parsers.ParametersParser
 import unify.parsers.TypeDeclarationParser
 import unify.parsers.functions.FunctionBodyParser
 import unify.parsers.literals.ReferenceParser
@@ -33,7 +33,7 @@ class DoThenParser : ParserStatic() {
                 FunctionBodyParser(),
                 KeywordStatic("then"),
                 OptionalSection(
-                    ArgumentsParser()
+                    ParametersParser()
                 ),
                 FunctionBodyParser()
             )

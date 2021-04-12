@@ -44,7 +44,7 @@ class VariableStartParser : ParserStatic() {
                                          * Thus given an Array A of length N we'd have N D array
                                          * var array:Type[...A] // N D Array
                                          * */
-                                        RepetitiveBySectionReMaster(
+                                        RepetitiveBySection(
                                             Coma,
                                             IntegerParser()
                                         )
@@ -73,14 +73,14 @@ class VariableStartParser : ParserStatic() {
                             AlternativeSection(
                                 Section(
                                     ExpressionParser(),
-                                    RepetitiveBySectionReMaster(
+                                    RepetitiveBySection(
                                         Coma,
                                         Dollar,
                                         ReferenceParser()
                                     )
                                 ),
                                 ExpressionParser(),
-                                RepetitiveBySectionReMaster(
+                                RepetitiveBySection(
                                     Coma,
                                     Dollar,
                                     ReferenceParser()
@@ -108,14 +108,14 @@ class VariableStartParser : ParserStatic() {
                             AlternativeSection(
                                 Section(
                                     ExpressionParser(),
-                                    RepetitiveBySectionReMaster(
+                                    RepetitiveBySection(
                                         Coma,
                                         Dollar,
                                         ReferenceParser(),
                                     )
                                 ),
                                 ExpressionParser(),
-                                RepetitiveBySectionReMaster(
+                                RepetitiveBySection(
                                     Coma,
                                     Dollar,
                                     ReferenceParser(),

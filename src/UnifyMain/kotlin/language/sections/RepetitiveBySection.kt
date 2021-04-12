@@ -1,86 +1,55 @@
 package language.sections
 
-import DEBUG_NEGATIVES
-import DEBUG_POSITIVES
-import DEBUG_POSITIVE_PARSERS
-import DEBUG_SECTIONS
-import Log
-import language.ast.TokensStatic
-import lib.collections.array.get
-import lib.collections.array.last
 import lib.matcher.TestableStatic
 import lib.matcher.items.ItemsStatic
-import lib.matcher.sections.RepetitiveSectionStatic
-import unify.Unify
-import DEBUG as SYS_DEBUG
-import lib.matcher.sections.RepetitiveBySection as BaseRepetitiveBySection
+import lib.matcher.sections.SectionStatic
 
-open class RepetitiveBySection : BaseRepetitiveBySection<String> {
+class RepetitiveBySection<T>(
+    val by: TestableStatic<T>,
+    vararg sections: TestableStatic<T>,
+    name: String = "RepetitiveBySectionReMaster",
+    val considerSeparations: Boolean = false,
+) : SectionStatic<T>(*sections, name = name) {
 
-    var considerSeparation = false
-    var considerSpaces = false
-    var considerNewLines = false
+    // Self
+    // AlternativeSection
+    // EndsWithSection
+    // MixedOrderSection
+    // NotSection
+    // OneOrManySection
+    // PassiveSection
+    // RepetitiveSection
+    // Section
+    // zeroOrMAny
 
-    constructor(
-            vararg sections: TestableStatic<String>,
-            considerSeparation: Boolean = false,
-            considerSpaces: Boolean = false,
-            considerNewLines: Boolean = false,
-            name: String? = null,
-            minCount: Int = 0,
-            maxCount: Int = RepetitiveSectionStatic.maxCount
-    ) : super(
-            section = Section(*sections[0..(sections.size - 2)].toTypedArray()),
-            by = sections.last, minCount = minCount, maxCount = maxCount, name = name
-    ) {
-        this.considerNewLines = considerNewLines
-        this.considerSeparation = considerSeparation
-        this.considerSpaces = considerSpaces
+    override fun test(items: ItemsStatic.Class<T>): Boolean {
+
+        /**TODO
+         * add spaces state
+         * */
+        var test = super.test(items)
+
+        /**TODO
+         * restore spaces state
+         * */
+        while (test) {
+            val indexBeforeShouldContinue = items.nextIndex
+            if (shouldContinue(items)) {
+                test = super.test(items)
+            } else {
+                items.nextIndex = indexBeforeShouldContinue
+                break;
+            }
+        }
+
+        return test
     }
 
-    constructor(
-            vararg sections: TestableStatic<String>,
-            name: String? = null,
-            minCount: Int = 0,
-            maxCount: Int = RepetitiveSectionStatic.maxCount
-    ) : this(
-            sections = *sections,
-            considerSeparation = false,
-            considerSpaces = false,
-            considerNewLines = false,
-            minCount = minCount,
-            maxCount = maxCount,
-            name = name
-    )
+    private fun shouldContinue(items: ItemsStatic.Class<T>): Boolean = by test items
 
-    constructor(section: TestableStatic<String>, by: TestableStatic<String>, name: String? = null) : super(section = section, by = by, name = name)
+    fun testRecurring(items: ItemsStatic.Class<T>): Boolean = by test items && super.test(items)
 
-    override fun test(items: ItemsStatic.Class<String>): Boolean {
-        return if (items is TokensStatic.Class) {
+    infix fun doTest(items: ItemsStatic.Class<T>): Boolean = doTest(items, this)
 
-            items.saveState
-
-            items.updateStates(
-                    considerSpaces,
-                    considerNewLines,
-                    considerSeparation
-            )
-
-            val test = super.test(items)
-
-            items.restoreState
-
-            debug(items, test)
-
-            test
-
-        } else false
-    }
-
-    val DEBUG
-        get() = SYS_DEBUG && DEBUG_SECTIONS
-
-    open fun debug(items: TokensStatic.Class, test: Boolean) {
-        Unify.debug(TAG, items, test)
-    }
 }
+

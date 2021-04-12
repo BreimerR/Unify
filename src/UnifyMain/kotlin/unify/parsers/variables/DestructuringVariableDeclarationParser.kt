@@ -17,7 +17,7 @@ class DestructuringVariableDeclarationParser : ParserStatic() {
             AlternativeSection(
                 Section(
                     LBrace,
-                    RepetitiveBySectionReMaster(
+                    RepetitiveBySection(
                         Coma,
                         Section(
                             OptionalSection(
@@ -30,7 +30,7 @@ class DestructuringVariableDeclarationParser : ParserStatic() {
                 ),
                 Section(
                     LSBracket,
-                    RepetitiveBySectionReMaster(
+                    RepetitiveBySection(
                         Coma,
                         Section(
                             OptionalSection(

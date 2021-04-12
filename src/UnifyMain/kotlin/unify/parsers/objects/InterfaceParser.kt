@@ -2,7 +2,7 @@ package unify.parsers.objects
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
-import language.sections.RepetitiveBySectionReMaster
+import language.sections.RepetitiveBySection
 import language.sections.Section
 import lib.matcher.TestableStatic
 import unify.parsers.GenericTypeParser
@@ -22,7 +22,7 @@ class InterfaceParser : ParserStatic() {
             ),
             OptionalSection(
                 Colon,
-                RepetitiveBySectionReMaster(
+                RepetitiveBySection(
                     Coma,
                     TypeDeclarationParser()
                 )

@@ -22,7 +22,7 @@ class DestructuringCenterParser : ParserStatic() {
                 considerNewLines = true
             )
 
-            val repetitiveBy = RepetitiveBySectionReMaster(
+            val repetitiveBy = RepetitiveBySection(
                 Coma,
                 OptionalMutabilityVariableDeclarationParser()
             )

@@ -3,8 +3,8 @@ package unify.parsers
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 
-class ArgumentParser : ParserStatic(
+class ParameterParser : ParserStatic(
         AlternativeSection(
-                SingleArgumentParser()
+                SingleParameterParser()
         )
 )

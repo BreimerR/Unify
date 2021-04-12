@@ -14,10 +14,10 @@ class SExpressionParser : ParserStatic(considerNewLines = true) {
         get() = arrayOf(
             AlternativeSection(
                 ArithmeticAdjustmentParser(),
+                FunctionCallParser(),
                 InfixExpressionParser(),
                 IfParser(),
                 ClassInitParser(),
-                CallParser(),
                 LiteralParser(),
                 GroupExpressionParser(),
                 considerNewLine = true
@@ -26,5 +26,6 @@ class SExpressionParser : ParserStatic(considerNewLines = true) {
         set(value) {}
 
     override val TAG = "SExpressionParser"
+
 
 }

@@ -2,7 +2,7 @@ package unify.parsers.expressions
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
-import language.sections.RepetitiveBySectionReMaster
+import language.sections.RepetitiveBySection
 import lib.matcher.TestableStatic
 import unify.parsers.literals.ReferenceParser
 import unify.tokens.characters.Coma
@@ -16,7 +16,7 @@ class ParameterFunctionCall : ParserStatic() {
                     ReferenceParser(),
                     LBracket,
                     OptionalSection(
-                            RepetitiveBySectionReMaster(
+                            RepetitiveBySection(
                                 Coma,
                                 Identifier
                             )

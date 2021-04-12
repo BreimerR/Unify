@@ -33,7 +33,7 @@ class ClassParser : ParserStatic() {
                 )
             ),
             OptionalSection(
-                ArgumentsParser()
+                ParametersParser()
             ),
             OptionalSection(
                 Section(Colon),
@@ -42,7 +42,7 @@ class ClassParser : ParserStatic() {
                 OptionalSection(
                     LBracket,
                     OptionalSection(
-                        RepetitiveBySectionReMaster(
+                        RepetitiveBySection(
                             Coma,
                             ExpressionParser()
                         )
@@ -53,7 +53,7 @@ class ClassParser : ParserStatic() {
             OptionalSection(
                 Section(
                     ReferenceOperatorParser(),
-                    RepetitiveBySectionReMaster(
+                    RepetitiveBySection(
                         Coma,
                         TypeDeclarationParser()
                     )

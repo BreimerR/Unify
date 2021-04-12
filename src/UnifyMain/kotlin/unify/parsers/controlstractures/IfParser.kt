@@ -9,7 +9,7 @@ import unify.tokens.strings.KeywordStatic
 class IfParser : ParserStatic(
         KeywordStatic("if"),
         ExpressionParser(),
-        RepetitiveBySectionReMaster(
+        RepetitiveBySection(
                 Section(
                         KeywordStatic("else"),
                         KeywordStatic("if"),

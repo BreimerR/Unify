@@ -1,13 +1,13 @@
-package unify.parsers.functions
+package unify.parsers.expressions
 
 import language.parsers.ParserStatic
 import language.sections.RepetitiveBySection
-import unify.parsers.expressions.ExpressionParser
 import unify.tokens.characters.Coma
 
-class SimpleParameterParser : ParserStatic(
+class ArgumentsParser : ParserStatic(
     RepetitiveBySection(
         Coma,
-        ExpressionParser()
+        ArgumentParser()
     )
 )
+
