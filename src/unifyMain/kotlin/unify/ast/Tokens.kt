@@ -19,27 +19,8 @@ import language.ast.TokensStatic.Class as LangTokens
 class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
     val tabSize = 4
 
-    operator fun invoke(fileName: String, fileEncoding: String): Class = Class(fileName, fileEncoding)
+    operator fun invoke(fileName: String, fileEncoding: String = "utf-8"): Class = Class(fileName, fileEncoding)
 
-    private val operators by lazy {
-        arrayOf<OperatorStatic>(
-                /*AndOperator,
-                DColon,
-                DoOperator,
-                Ellipsis,
-                ElvisOperator,
-                ReturnOperator,
-                EqualsToOperator,
-                MinusEquals,
-                MlCommentEndOperator,
-                MLCommentOperator,
-                NotEqual,
-                OrOperator,
-                PlusEquals,
-                SCommentOperator,
-                TimesEquals*/
-        )
-    }
     val stringTokens by lazy {
         arrayOf(
                 Keyword,
@@ -92,7 +73,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
     override val tokenClasses by lazy {
         arrayOf(
-                *operators,
                 *stringTokens,
                 *characters
         )

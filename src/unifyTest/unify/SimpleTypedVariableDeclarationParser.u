@@ -1,0 +1,4 @@
+var name:Type<SubType>
+var name:Type<SubType<SubSubType>>
+var name:Type<SubType<SubSubType<SubSubSubType>>>
+var name:Type<SubType<SubType<SubType<SubType<SubType<SubType<SubType<SubType<SubType>>>>>>>>>

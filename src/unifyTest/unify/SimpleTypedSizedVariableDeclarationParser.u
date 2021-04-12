@@ -1,0 +1,9 @@
+var variable: Type[3]
+var variable: Type[3:]
+var variable: Type[3:10]
+var variable: Type<Array>[3]
+var variable: Type<Array>[3:]
+var variable: Type<Array>[3:10]
+/// TODO var variable: Type<SubType[3]>
+/// TODO var variable: Type<SubType[3:]>
+/// TODO var variable: Type<SubType[3:10]>

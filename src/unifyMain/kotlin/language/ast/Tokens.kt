@@ -69,6 +69,56 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
                 }
             }
 
+        val peekPrevToken: ItemStatic.Class<String>?
+            get() {
+                val i = nextIndex
+                goBack()
+                val cToken = super.currentItem
+
+
+                @Suppress("RecursivePropertyAccessor")
+                val token = when {
+
+                    cToken == null -> null
+
+                    // skip nothing
+                    considerSeparation -> cToken
+
+                    // skip newLIne
+                    considerSpaces -> {
+                        if (isNewLine(cToken))
+                            peekPrevToken
+                        else
+                            cToken
+                    }
+
+                    considerNewLine -> {
+                        if (isTabSpace(cToken))
+                            peekPrevToken
+                        else
+                            cToken
+                    }
+
+                    // skip NewLine Tab or Space
+                    isSeparation(cToken) -> peekPrevToken
+
+                    else -> cToken
+                }
+
+                nextIndex = i
+                return token
+            }
+
+        val peekNextToken: ItemStatic.Class<String>?
+            get() {
+                val i = nextIndex
+                val token = nextToken
+                nextIndex = i
+                return token
+            }
+
+
+
         private fun isNewLine(token: ItemStatic.Class<String>): Boolean {
             return token is NewLineStatic.Class
         }
