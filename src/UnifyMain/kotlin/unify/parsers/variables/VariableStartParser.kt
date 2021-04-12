@@ -73,17 +73,17 @@ class VariableStartParser : ParserStatic() {
                             AlternativeSection(
                                 Section(
                                     ExpressionParser(),
-                                    RepetitiveBySection(
+                                    RepetitiveBySectionReMaster(
+                                        Coma,
                                         Dollar,
-                                        ReferenceParser(),
-                                        Coma
+                                        ReferenceParser()
                                     )
                                 ),
                                 ExpressionParser(),
-                                RepetitiveBySection(
+                                RepetitiveBySectionReMaster(
+                                    Coma,
                                     Dollar,
-                                    ReferenceParser(),
-                                    Coma
+                                    ReferenceParser()
                                 )
 
                             )
@@ -108,17 +108,17 @@ class VariableStartParser : ParserStatic() {
                             AlternativeSection(
                                 Section(
                                     ExpressionParser(),
-                                    RepetitiveBySection(
+                                    RepetitiveBySectionReMaster(
+                                        Coma,
                                         Dollar,
                                         ReferenceParser(),
-                                        Coma
                                     )
                                 ),
                                 ExpressionParser(),
-                                RepetitiveBySection(
+                                RepetitiveBySectionReMaster(
+                                    Coma,
                                     Dollar,
                                     ReferenceParser(),
-                                    Coma
                                 )
 
                             )

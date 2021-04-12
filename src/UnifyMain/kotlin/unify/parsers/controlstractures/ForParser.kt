@@ -1,10 +1,7 @@
 package unify.parsers.controlstractures
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
-import language.sections.Section
+import language.sections.*
 import lib.matcher.TestableStatic
 import unify.parsers.expressions.AssignmentExpressionParser
 import unify.parsers.expressions.ExpressionParser
@@ -51,21 +48,21 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                         ),
                         Section(
                             OptionalSection(
-                                RepetitiveBySection(
-                                    AssignmentExpressionParser(),
-                                    Coma
+                                RepetitiveBySectionReMaster(
+                                    Coma,
+                                    AssignmentExpressionParser()
                                 ),
                                 SColon
                             ),
                             ExpressionParser(),
                             OptionalSection(
                                 SColon,
-                                RepetitiveBySection(
+                                RepetitiveBySectionReMaster(
+                                    Coma,
                                     AlternativeSection(
                                         AssignmentExpressionParser(),
                                         ExpressionParser()
-                                    ),
-                                    Coma
+                                    )
                                 )
                             )
                         )

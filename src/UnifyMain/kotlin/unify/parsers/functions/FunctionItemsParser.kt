@@ -21,22 +21,22 @@ import unify.tokens.characters.RBrace
  * filtered out in cases like zeroOrMany
  * */
 open class FunctionItemsParser : ParserStatic(
-        LBrace,
-        ZeroOrMany(
-                AlternativeSection(
-                        CallParser(),
-                        CommentsParser(),
-                        IfParser(),
-                        WhenParser(),
-                        DoThenParser(),
-                        LoopsParser(),
-                        TVariableDeclarationParser(),
-                        TAssignmentExpressionParser(),
-                        TArithmeticAdjustmentParser(),
-                        FunctionParser()
-                )
-        ),
-        RBrace
+    LBrace,
+    ZeroOrMany(
+        AlternativeSection(
+            FunctionCallParser(),
+            CommentsParser(),
+            IfParser(),
+            WhenParser(),
+            DoThenParser(),
+            LoopsParser(),
+            TVariableDeclarationParser(),
+            TAssignmentExpressionParser(),
+            TArithmeticAdjustmentParser(),
+            FunctionParser()
+        )
+    ),
+    RBrace
 ) {
     override val TAG = "FunctionItemsParser"
 }

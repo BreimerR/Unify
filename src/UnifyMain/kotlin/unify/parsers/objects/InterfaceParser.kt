@@ -2,7 +2,6 @@ package unify.parsers.objects
 
 import language.parsers.ParserStatic
 import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
 import language.sections.RepetitiveBySectionReMaster
 import language.sections.Section
 import lib.matcher.TestableStatic
