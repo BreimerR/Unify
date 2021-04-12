@@ -3,6 +3,7 @@ package unify.parsers.functions
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
 import language.sections.ZeroOrMany
+import unify.parsers.TArithmeticAdjustmentParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.controlstractures.*
 import unify.parsers.expressions.FunctionCallParser
@@ -20,23 +21,22 @@ import unify.tokens.characters.RBrace
  * filtered out in cases like zeroOrMany
  * */
 open class FunctionItemsParser : ParserStatic(
-        LBrace,
-        ZeroOrMany(
-                AlternativeSection(
-                        CallParser(),
-                        CommentsParser(),
-                        IfParser(),
-                        WhileParser(),
-                        WhenParser(),
-                        DoWhileParser(),
-                        DoThenParser(),
-                        ForParser(),
-                        TVariableDeclarationParser(),
-                        TAssignmentExpressionParser(),
-                        FunctionParser()
-                )
-        ),
-        RBrace
+    LBrace,
+    ZeroOrMany(
+        AlternativeSection(
+            FunctionCallParser(),
+            CommentsParser(),
+            IfParser(),
+            WhenParser(),
+            DoThenParser(),
+            LoopsParser(),
+            TVariableDeclarationParser(),
+            TAssignmentExpressionParser(),
+            TArithmeticAdjustmentParser(),
+            FunctionParser()
+        )
+    ),
+    RBrace
 ) {
     override val TAG = "FunctionItemsParser"
 }

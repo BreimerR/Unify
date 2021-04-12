@@ -35,71 +35,9 @@ import unify.tokens.strings.Identifier
  * }
  * */
 class FunctionCallParser : ParserStatic(
-        ReferenceParser(),
-        LBracket,
-        OptionalSection(
-                Identifier,
-                ZeroOrMany(
-                        Coma,
-                        Identifier
-                ),
-                name = "PARAMS"
-
-        ),
-        RBracket
-) {
-
-    class ParameterFunctionCall : ParserStatic() {
-        override var sections: Array<out TestableStatic<String>>
-            get() = arrayOf(
-                    ReferenceParser(),
-                    LBracket,
-                    OptionalSection(
-                            RepetitiveBySection(
-                                    Identifier,
-                                    Coma,
-                                    considerNewLines = true
-                            )
-                    ),
-                    RBracket
-            )
-            set(value) {}
-    }
-
-    class InfixFunctionCallParser : ParserStatic(
-            ReferenceParser(),
-            ReferenceParser(),
-            // TODO this requires knowledge of the IR code
-            // as you can not describe this symbolic and
-            // come out with a reasonable
-            // conclusion of what it should be
-            AlternativeSection(
-                    // TODO problem might have been solved***
-                    // this is a problem
-                    // Alternative<Sleep>
-                    // can be reference lessThan Sleep and > is left hanging
-                    // parsing type declaration
-                    // sleep > 10
-                    // sleep is a TypeDeclaration and > 10 is left hanging
-                    TypeDeclarationParser(),
-                    ExpressionParser()
-            )
+    AlternativeSection(
+        CallParser(),
+        InfixFunctionCallParser()
     )
+)
 
-    class TFunctionCallParser : ParserStatic(
-            AlternativeSection(
-                    ParameterFunctionCall(),
-                    InfixFunctionCallParser()
-            ),
-            TerminatorParser()
-    )
-}
-
-class TFunctionCallParser : ParserStatic() {
-    override var sections: Array<out TestableStatic<String>>
-        get() = arrayOf(
-                CallParser(),
-                TerminatorParser()
-        )
-        set(value) {}
-}

@@ -3,17 +3,14 @@ package unify.parsers.controlstractures
 import language.parsers.ParserStatic
 import language.sections.*
 import lib.matcher.TestableStatic
-import unify.parsers.ArithmeticAdjustmentParser
-import unify.parsers.comments.CommentsParser
-import unify.parsers.expressions.*
-import unify.parsers.functions.ActFuncBodyParser
-import unify.parsers.functions.FunctionBodyParser
-import unify.parsers.functions.FunctionParser
-import unify.parsers.functions.ReturnFuncBodyParser
+import unify.parsers.expressions.AssignmentExpressionParser
+import unify.parsers.expressions.ExpressionParser
 import unify.parsers.literals.ReferenceParser
-import unify.parsers.variables.TVariableDeclarationParser
 import unify.parsers.variables.VariableDeclarationParser
-import unify.tokens.characters.*
+import unify.tokens.characters.Coma
+import unify.tokens.characters.LBracket
+import unify.tokens.characters.RBracket
+import unify.tokens.characters.SColon
 import unify.tokens.strings.IdentifierStatic
 import unify.tokens.strings.KeywordStatic
 
@@ -51,21 +48,21 @@ class ForParser : ParserStatic(name = "FOR_LOOP") {
                         ),
                         Section(
                             OptionalSection(
-                                RepetitiveBySection(
-                                    AssignmentExpressionParser(),
-                                    Coma
+                                RepetitiveBySectionReMaster(
+                                    Coma,
+                                    AssignmentExpressionParser()
                                 ),
                                 SColon
                             ),
                             ExpressionParser(),
                             OptionalSection(
                                 SColon,
-                                RepetitiveBySection(
+                                RepetitiveBySectionReMaster(
+                                    Coma,
                                     AlternativeSection(
                                         AssignmentExpressionParser(),
-                                        ArithmeticAdjustmentParser()
-                                    ),
-                                    Coma
+                                        ExpressionParser()
+                                    )
                                 )
                             )
                         )

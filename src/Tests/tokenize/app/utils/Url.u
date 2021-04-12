@@ -1,9 +1,0 @@
-// should extend a string class
-
-class Url {
-	static prefix parse String url => explode("\"", filter_var(url,FILTER_SANITIZE_URL))
-}
-
-class Int{
-
-}

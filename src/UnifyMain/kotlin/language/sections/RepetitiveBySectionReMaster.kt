@@ -8,6 +8,7 @@ class RepetitiveBySectionReMaster<T>(
     val by: TestableStatic<T>,
     vararg sections: TestableStatic<T>,
     name: String = "RepetitiveBySectionReMaster",
+    val considerSeparations: Boolean = false,
 ) : SectionStatic<T>(*sections, name = name) {
 
     // Self
@@ -23,8 +24,14 @@ class RepetitiveBySectionReMaster<T>(
 
     override fun test(items: ItemsStatic.Class<T>): Boolean {
 
+        /**TODO
+         * add spaces state
+         * */
         var test = super.test(items)
 
+        /**TODO
+         * restore spaces state
+         * */
         while (test) {
             val indexBeforeShouldContinue = items.nextIndex
             if (shouldContinue(items)) {
@@ -38,29 +45,11 @@ class RepetitiveBySectionReMaster<T>(
         return test
     }
 
-    fun shouldContinue(items: ItemsStatic.Class<T>): Boolean {
-        return by test items
-    }
+    private fun shouldContinue(items: ItemsStatic.Class<T>): Boolean = by test items
 
-    fun testRecurring(items: ItemsStatic.Class<T>): Boolean {
-        return by test items && super.test(items)
-    }
+    fun testRecurring(items: ItemsStatic.Class<T>): Boolean = by test items && super.test(items)
 
-    infix fun doTest(items: ItemsStatic.Class<T>): Boolean {
-
-        for (section in sections) {
-
-            Log.d(TAG, "Start token = " + items.currentItem.toString())
-
-            val test = section test items
-
-            Log.d(TAG, "End token = " + items.currentItem.toString())
-
-            if (!test) return false
-        }
-
-        return sections.isNotEmpty()
-    }
-
+    infix fun doTest(items: ItemsStatic.Class<T>): Boolean = doTest(items, this)
 
 }
+

@@ -1,9 +1,0 @@
-// aka methods and functions
-
-
-class UserModel{
-    deleteUserByName aka delUByName(String name) boolean{
-
-        return false
-    }
-}

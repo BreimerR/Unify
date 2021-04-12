@@ -12,31 +12,20 @@ import language.scopes.FileScope
 import language.scopes.Scope
 import language.sections.AlternativeSection
 import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
 import language.sections.ZeroOrMany
-import language.tokens.TokenStatic
 import lib.cli.CLIArguments
 import unify.ast.Tokens
 import unify.parsers.EOFParser
-import unify.parsers.GenericTypeParser
 import unify.parsers.comments.CommentsParser
-import unify.parsers.expressions.ExpressionParser
-import unify.parsers.expressions.FunctionCallParser
 import unify.parsers.expressions.TAssignmentExpressionParser
-import unify.parsers.functions.CallParser
 import unify.parsers.functions.FunctionParser
 import unify.parsers.headers.ImportsParser
 import unify.parsers.headers.PackageDefParser
-import unify.parsers.literals.ReferenceParser
 import unify.parsers.objects.ClassParser
 import unify.parsers.objects.EnumParser
 import unify.parsers.objects.InterfaceParser
 import unify.parsers.variables.MultiVariableDeclarationParser
 import unify.parsers.variables.TVariableDeclarationParser
-import unify.tokens.characters.Coma
-import unify.tokens.characters.LBracket
-import unify.tokens.characters.RBracket
-import unify.tokens.tokens.printLn
 import lib.cli.CLIArgumentsStatic.Class as CLIArgumentsClass
 
 
@@ -75,6 +64,7 @@ class Unify(args: CLIArgumentsClass) : Language(
                 if (test) {
                     if (DEBUG_POSITIVES) Log.d(tag, string)
                 } else if (DEBUG_NEGATIVES) Log.d(tag, string)
+
             }
 
         }

@@ -1,10 +1,7 @@
 package unify.parsers.variables
 
 import language.parsers.ParserStatic
-import language.sections.AlternativeSection
-import language.sections.OptionalSection
-import language.sections.RepetitiveBySection
-import language.sections.Section
+import language.sections.*
 import lib.matcher.TestableStatic
 import unify.parsers.MutableStateParser
 import unify.parsers.TypeDeclarationParser
@@ -20,27 +17,27 @@ class DestructuringVariableDeclarationParser : ParserStatic() {
             AlternativeSection(
                 Section(
                     LBrace,
-                    RepetitiveBySection(
+                    RepetitiveBySectionReMaster(
+                        Coma,
                         Section(
                             OptionalSection(
                                 MutableStateParser()
                             ),
                             SimpleVariableParser()
-                        ),
-                        Coma
+                        )
                     ),
                     RBrace
                 ),
                 Section(
                     LSBracket,
-                    RepetitiveBySection(
+                    RepetitiveBySectionReMaster(
+                        Coma,
                         Section(
                             OptionalSection(
                                 MutableStateParser()
                             ),
                             SimpleVariableParser()
-                        ),
-                        Coma
+                        )
                     ),
                     RSBracket
                 )

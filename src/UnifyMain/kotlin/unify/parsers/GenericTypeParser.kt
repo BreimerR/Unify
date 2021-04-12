@@ -2,7 +2,7 @@ package unify.parsers
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
-import language.sections.RepetitiveBySection
+import language.sections.RepetitiveBySectionReMaster
 import language.sections.Section
 import unify.tokens.characters.Colon
 import unify.tokens.characters.Coma
@@ -12,7 +12,8 @@ import unify.tokens.strings.Identifier
 
 class GenericTypeParser : ParserStatic(
         LThan,
-        RepetitiveBySection(
+        RepetitiveBySectionReMaster(
+                Coma,
                 AlternativeSection(
                         Section(
                                 Identifier,
@@ -23,8 +24,7 @@ class GenericTypeParser : ParserStatic(
                                 TypeDeclarationParser()
                         ),
                         TypeDeclarationParser()
-                ),
-                Coma
+                )
         ),
         GThan
 )
