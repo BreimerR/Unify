@@ -15,22 +15,7 @@ import unify.tokens.strings.KeywordStatic
 
 class ImportsParser : ParserStatic(
     RepetitiveSection(
-        KeywordStatic("import"),
-        ZeroOrMany(
-            AlternativeSection(
-                Identifier,
-                Keyword
-            ),
-            Dot
-        ),
-        AlternativeSection(
-            Identifier
-        ),
-        OptionalSection(
-            IdentifierStatic("as"),
-            Identifier
-        ),
-        TerminatorParser(),
-        minCount = 0
+        ImportParser()
     )
 )
+

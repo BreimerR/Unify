@@ -27,17 +27,38 @@ class ParametersParser : ParserStatic(
                 RepetitiveBySection(
                     Coma,
                     ParameterParser(),
+                ),
+                Coma,
+                Section(
+                    OptionalSection(
+                        MutableStateParser()
+                    ),
+                    Dot, Dot, Dot,
+                    SimpleVariableParser(),
+                ),
+            ),
+            Section(
+                Section(
+                    OptionalSection(
+                        MutableStateParser()
+                    ),
+                    Dot, Dot, Dot,
+                    SimpleVariableParser(),
+                ),
+                Coma,
+                RepetitiveBySection(
+                    Coma,
+                    ParameterParser(),
                 )
             ),
             Section(
-                RepetitiveBySection (
+                RepetitiveBySection(
                     Coma,
                     ParameterParser(),
                 ),
-                // TODO very big problem here
                 Coma,
-                Section (
-                    OptionalSection (
+                Section(
+                    OptionalSection(
                         MutableStateParser()
                     ),
                     Dot, Dot, Dot,

@@ -45,15 +45,13 @@ class ParseParametersParserTest : ParserTest() {
     }
 
     @Test
+    fun complexVarArgsMedian() {
+        file = "ComplexVarArgsMedian"
+    }
+
+    @Test
     fun simpleVarArgsTyped() {
         file = "SimpleVarArgsTyped"
     }
-
-    @AfterTest
-    fun afterEachTest() {
-        test()
-        testEOF()
-    }
-
 
 }

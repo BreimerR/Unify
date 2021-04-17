@@ -4,6 +4,7 @@ import unify.ast.Tokens
 import unify.ast.TokensStatic
 import unify.parsers.variables.VariableDeclarationParser
 import unify.tokens.tokens.EOF
+import kotlin.test.AfterTest
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -48,20 +49,18 @@ open class ParserTest {
         test("End Of File Parser")
     }
 
-    protected fun test(message: String = "Test Case", expected: Boolean = true) {
-        if (expected)
-            assertTrue(message) {
-                val startToken = tokens.peekNextToken
-                val test = parser test tokens
-                println("Start Token = $startToken\tNext Token ${tokens.peekPrevToken}")
-                test
-            }
-        else
-            assertFalse(message) {
-                val startToken = tokens.peekNextToken
-                val test = parser test tokens
-                println("Start Token = $startToken\tNext Token ${tokens.peekPrevToken}")
-                test
-            }
+    @AfterTest
+    open fun afterEachTest() {
+        test()
+        testEOF()
+    }
+
+    private fun test(message: String = "Test Case", expected: Boolean = true) {
+        assertTrue(message) {
+            val startToken = tokens.peekNextToken
+            val test = parser test tokens
+            println("Start Token = $startToken\tNext Token ${tokens.peekPrevToken}")
+            test
+        }
     }
 }
