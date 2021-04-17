@@ -1,3 +1,4 @@
+import language.parsers.ParserStatic
 import language.sections.Section
 import language.sections.ZeroOrMany
 import lib.cli.CLIArguments
@@ -12,6 +13,7 @@ import unify.parsers.variables.SimpleVariableParser
 
 import unify.parsers.variables.VariableDeclarationParser
 import unify.parsers.variables.VariableStartParser
+import unify.parsers.variables.VariableTypeDeclarationParser
 import unify.tokens.tokens.EOF
 import kotlin.test.Test
 import kotlin.test.assertFalse
@@ -38,7 +40,7 @@ class UnifyTest {
 
     private var filePath: String = ""
         get() = if (updated) {
-            field = file(file)
+            field = "/opt/Projects/Kotlin/Unify/master/src/unifyTest/unify/$file.u"
             field
         } else field
 
@@ -117,8 +119,7 @@ class UnifyTest {
          * test("8\tSubNested with min")
          * test("9\tSubNested with min&max")
          * */
-        parser = eofDeclarationParser
-        test("End Of File Parser")
+        testEOF()
     }
 
     @Test
@@ -139,10 +140,42 @@ class UnifyTest {
         assertTrue(!tk.hasRemItems)
     }
 
-    fun file(fileName: String) = "/opt/Projects/Kotlin/Unify/master/src/unifyTest/unify/$fileName.u"
 
+    @Test
+    fun variableTypeDeclarationParser() {
+        file = "VariableTypeDeclarationParser"
+        parser = VariableTypeDeclarationParser()
 
-    fun test(message: String = "Test Case", expected: Boolean = true) {
+        test("Simplest State")
+        test("Simplest Generic State")
+        test("Simplest Generic State")
+        test("Complex State")
+        test("Complex State Sized")
+        testEOF()
+    }
+
+    @Test
+    fun parametersParser() {
+        file = "ParametersParser"
+      // parser = ParametersParser()
+
+        test("Simplest var")
+        test("Simplest val")
+        test("Simplest var Typed")
+        test("Simplest val Typed")
+        test("Complex varargs Typed")
+        test("Complex varargs Typed Median")
+        test("Complex varargs Typed First")
+        test("Complex varargs Typed Last")
+        testEOF()
+    }
+
+    private fun testEOF() {
+        parser = eofDeclarationParser
+        test("End Of File Parser")
+    }
+
+    private fun test(message: String = "Test Case", expected: Boolean = true) {
         if (expected)
             assertTrue(message) {
                 val startToken = tokens.peekNextToken
