@@ -35,7 +35,7 @@ class ParametersParser : ParserStatic(
                     ParameterParser(),
                 ),
                 // TODO very big problem here
-                Pipe,
+                Coma,
                 Section (
                     OptionalSection (
                         MutableStateParser()

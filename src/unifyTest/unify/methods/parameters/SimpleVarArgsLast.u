@@ -1,1 +1,1 @@
-(a:String|...b:String)
+(a:String,...b:String)
