@@ -4,10 +4,59 @@ import lib.matcher.items.ItemStatic
 import lib.matcher.items.ItemsStatic
 import lib.text.asString
 
+// TODO make sure passed keyword string is a keyword by checking in array of keywords
 class KeywordStatic(private val keyword: String? = null) : IdentifierStatic(value = keyword ?: "") {
 
-    private var keywords: String =
-        "(package|protected|private|final|func|data|infix|prefix|act|class|abstract|closed|trait|public|static|void|null|when|for|if|elif|aka|else|switch|while|then|new|return|throw|do|TODO|todo|enum|var|val|const|impl|throws|returns|break|default|override)"
+    val _keywords = arrayOf(
+        "import",
+        "imports",
+        "package",
+        "protected",
+        "private",
+        "final",
+        "func",
+        "data",
+        "infix",
+        "prefix",
+        "act",
+        "class",
+        "abstract",
+        "closed",
+        "trait",
+        "public",
+        "static",
+        "void",
+        "null",
+        "when",
+        "for",
+        "if",
+        "elif",
+        "aka",
+        "else",
+        "switch",
+        "while",
+        "then",
+        "new",
+        "return",
+        "throw",
+        "do",
+        "TODO",
+        "todo",
+        "enum",
+        "var",
+        "val",
+        "const",
+        "impl",
+        "throws",
+        "returns",
+        "break",
+        "default",
+        "override",
+        "as",
+        "annotation"
+    )
+
+    private var keywords: String = "(${_keywords.joinToString("|")})"
 
     override fun invoke(tokenString: String, l: Int, col: Int): Class = Class(tokenString, l, col)
 

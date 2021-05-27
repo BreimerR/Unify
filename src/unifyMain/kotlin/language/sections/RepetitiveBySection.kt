@@ -22,7 +22,13 @@ class RepetitiveBySection<T>(
     // Section
     // zeroOrMAny
 
+    var count = 0
+
+    val validity
+        get() = count > 0
+
     override fun test(items: ItemsStatic.Class<T>): Boolean {
+
 
         /**TODO
          * add spaces state
@@ -33,16 +39,21 @@ class RepetitiveBySection<T>(
          * restore spaces state
          * */
         while (test) {
+            count += 1
             val indexBeforeShouldContinue = items.nextIndex
             if (shouldContinue(items)) {
                 test = super.test(items)
+                if (!test) {
+                    items.nextIndex = indexBeforeShouldContinue
+                    break
+                }
             } else {
                 items.nextIndex = indexBeforeShouldContinue
                 break;
             }
         }
 
-        return test
+        return validity
     }
 
     private fun shouldContinue(items: ItemsStatic.Class<T>): Boolean = by test items

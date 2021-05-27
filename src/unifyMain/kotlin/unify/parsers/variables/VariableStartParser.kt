@@ -24,34 +24,8 @@ class VariableStartParser : ParserStatic() {
                         Section(Identifier, name = "VAR_NAME"),
                         OptionalSection(
                             Colon,
-                            TypeDeclarationParser(),
-                            OptionalSection(
-                                LSBracket,
-                                AlternativeSection(
-                                    Section(
-                                        IntegerParser(),
-                                        Colon,
-                                        OptionalSection(
-                                            IntegerParser()
-                                        )
-                                    ),
-                                    OptionalSection(
-                                        /**@Description
-                                         * Supported array dimensions
-                                         * var array:Int[2] // 1D Array
-                                         * var array:Int[2,2] // 2D Array
-                                         * var array:Int[2,2,2] // 3d Array
-                                         * Thus given an Array A of length N we'd have N D array
-                                         * var array:Type[...A] // N D Array
-                                         * */
-                                        RepetitiveBySection(
-                                            Coma,
-                                            IntegerParser()
-                                        )
-                                    )
-                                ),
-                                RSBracket
-                            )
+                            VariableTypeDeclarationParser(),
+                            name ="VAR_TYPE"
                         ),
                         /**@Description
                          * This Section is here so that we can

@@ -11,4 +11,19 @@ Termination is done either by
 
 This are not fixed ends and depend on the situation in question
  
+Partials & Shadows
+---------------------------
+```unify
+class Foo{
+    partial func main(){
+    }
+}
 
+class Bar : Foo{
+    shadows func main(){
+    
+    }
+}
+
+
+```

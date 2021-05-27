@@ -1,0 +1,56 @@
+func main(){
+
+}
+
+func main(argument){
+}
+
+func main (argument:Type){
+
+}
+
+func main(argument0:Type0<Type1>){
+}
+
+func main(argument0: Type0<Type1<Type2,Type3>>){
+}
+
+func main(argument0: Type0<Type1>, argument1: Type2<Type3>){
+
+}
+
+func main(argument0 = 12){
+
+}
+
+func main(argument0: String = "Hello"){
+}
+
+func main (argument0: String:: "Hello"  = "Hello"){}
+
+
+
+func main(var argument){
+}
+
+func main(var argument:Type){
+}
+
+func main(var argument0:Type0<Type1>){
+}
+
+func main(var argument0: Type0<Type1>,var argument1: Type2<Type3>){
+
+}
+
+func main(var argument0:Type0<Type1<Type2,Type3>>){
+}
+
+func main(val argument){
+}
+
+func main(val argument: Type){
+}
+
+func main(val argument0:Type0<Type1>){
+}
