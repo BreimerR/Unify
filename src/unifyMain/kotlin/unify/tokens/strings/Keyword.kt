@@ -52,7 +52,8 @@ class KeywordStatic(private val keyword: String? = null) : IdentifierStatic(valu
         "break",
         "default",
         "override",
-        "as"
+        "as",
+        "annotation"
     )
 
     private var keywords: String = "(${_keywords.joinToString("|")})"

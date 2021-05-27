@@ -1,0 +1,1 @@
+class FunctionParserTest : ParserTest() {}
