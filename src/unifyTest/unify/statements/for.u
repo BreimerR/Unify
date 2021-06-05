@@ -1,0 +1,24 @@
+func main(){
+
+    // TODO add more robust changes here like
+    // This could be made possible by just updating the variable declaration
+    // parser
+    // var {name,age} in b
+    // var [name,...age] in b
+    for(var a: Int = 12 in b){
+        // print a
+    }
+
+}
+
+
+
+func looper(val items : Array<String>){
+
+    for(i = 0 ; i< 10; i+=1){
+        // print items[i]
+    }
+
+
+    
+}

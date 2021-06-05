@@ -1,0 +1,22 @@
+class Date{
+
+    Year year
+    Int dateOfWeek : 0 :: in 0..6
+    Int dateOfMonth : 1
+
+    val days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ]
+
+
+    private val static Date now
+        get() => {
+            // return last statement in this function
+        }
+}

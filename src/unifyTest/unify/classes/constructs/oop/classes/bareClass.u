@@ -1,0 +1,6 @@
+class Foo
+
+class Bar : Foo
+
+class FooBar : Bar
+

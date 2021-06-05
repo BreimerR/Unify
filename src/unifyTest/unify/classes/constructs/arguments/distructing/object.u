@@ -1,0 +1,2 @@
+var person{name:String,age:String :: ""} = person
+

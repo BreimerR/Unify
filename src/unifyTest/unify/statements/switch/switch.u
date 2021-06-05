@@ -1,0 +1,8 @@
+func main(){
+    // switch is replaced by when thus won't work
+    switch (expression) {
+
+    }
+
+
+}

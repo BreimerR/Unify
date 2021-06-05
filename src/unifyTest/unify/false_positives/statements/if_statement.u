@@ -1,0 +1,18 @@
+func age(){
+
+   if expression => expression_parser else -> action_parsed
+
+
+   if expression -> expression
+   if expression => expression else => expression
+   if expression -> expression else -> expression
+   if expression => expression else -> action
+   if expression -> expression else => expression
+
+    val b  = expression  ? age : false
+
+    // enable elvis expression parsing
+    val c = expression ?: expression
+
+}
+

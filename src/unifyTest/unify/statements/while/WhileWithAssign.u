@@ -1,0 +1,5 @@
+
+var age = while c {
+
+// else section runs if the loop never loops even once
+} else 12

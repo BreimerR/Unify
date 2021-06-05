@@ -1,0 +1,25 @@
+// destructs by division
+// i.e array [1,2,3,4,4,5,6]
+
+// name = [1,2]
+// age = [3,4]
+// month = [4,5,6]
+
+// in a case where the split is more than the number of items that are there
+// each split takes one item and the remaining arrays get null items inside them
+
+
+func main([...name, ...age, ...month]){
+    name = "breimer"
+}
+
+func main(User names{name,age,gender},){
+
+}
+
+func median(...,median,...) => median
+
+
+func main(User[] user[...,mid,...]){
+
+}

@@ -1,0 +1,9 @@
+func validatePackage(var Int) Boolean {
+
+}
+
+func validateFailHandler(var Input message = 12){
+
+}
+
+var  package :: validatePackage, validateFailHandler = 12

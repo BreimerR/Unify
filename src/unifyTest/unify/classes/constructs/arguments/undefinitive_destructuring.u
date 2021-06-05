@@ -1,0 +1,37 @@
+data class Person(val name, val age)
+
+data class Group(val people:Array<Person>)
+
+// this creates an extra variable map name, age
+func process(val group: Group{people: Array<Person>}){
+
+}
+
+
+//quarter separation false positive here stupid
+func processLast(val group : Group { val people:Array<Person>[ _ : _ : lastQuarter ]}){
+
+}
+
+//quarter separation
+func processLast(val group : Group {val people:Array<Person>[ first,...rest ]}){
+
+}
+
+
+//quarter separation
+func processLast(val group : Group {val people:Array<Person>[ ...first, last ]}){
+
+
+}
+
+//quarter separation
+func processLast(val group : Group {val people:Array<Person>[ first,...middle, last]}){
+
+}
+
+//quarter separation
+func processLast(val group : Group {val people:Array<Person>[ ...first,last ]}){
+
+}
+

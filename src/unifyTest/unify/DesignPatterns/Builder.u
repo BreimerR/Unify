@@ -1,0 +1,56 @@
+main(String[] args) {
+    $items: Creator[] =   [Human,Robot]
+
+   	$del =  Delegator(items);
+
+    del.create()
+
+
+}
+
+abstract class Creator {
+    abstract fun create()
+}
+
+open class BodyStructure : Creator() {
+
+    makeHead() {
+        println("making head")
+    }
+
+    fun makeLegs() {
+        println("making legs")
+    }
+
+    override fun create() {
+        this.makeHead()
+        this.makeLegs()
+    }
+}
+
+class Delegator(var items: Array<Creator>) {
+
+    create() {
+       items.each {
+               obj,key -> obj.create() && print(key)
+       }
+    }
+}
+
+class Robot : BodyStructure
+
+class Human : BodyStructure() {
+    makeFingers() {
+        println("Making fingers")
+    }
+
+	/*Similar to
+	functionName(name,age){
+
+	}
+
+	function2Name
+	*/
+    create <- super.create :: super.create  =>  this.makeFingers()
+}
+

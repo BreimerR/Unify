@@ -1,0 +1,17 @@
+package data.name
+
+class Age {
+
+
+    smile(): Boolean  => 12
+
+    smile(): Age -> false + false
+
+
+    smile(age:Age) {
+
+    }
+
+}
+
+/**/

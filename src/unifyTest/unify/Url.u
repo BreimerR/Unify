@@ -1,0 +1,14 @@
+// should extend a string class
+
+class Url {
+    // prefix method not supported
+	static  prefix parse(url:String) => explode("\"", filter_var(url,FILTER_SANITIZE_URL))
+}
+
+class Int{
+
+}
+
+
+
+

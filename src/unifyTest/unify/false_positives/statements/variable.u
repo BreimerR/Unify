@@ -1,0 +1,4 @@
+func getMedian([...,median,...]) => median
+
+
+

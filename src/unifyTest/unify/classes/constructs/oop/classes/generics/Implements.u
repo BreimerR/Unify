@@ -1,0 +1,8 @@
+interface Foo{
+    fun foo()
+}
+
+class FooImpl :: Foo
+
+
+class Bar<T :: Foo>

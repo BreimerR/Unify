@@ -1,0 +1,22 @@
+// Annotation values are runtime available or flagged parameters
+@While()
+
+
+// This will parse the id at compile time to have access to the parameters
+@Post("users/{id}")
+func getUser(@AnnotationParam id:Int)
+
+// This will also have the same effect but will be in a key value pair for arguments
+// for run time. any field registered as @AnnotationParam will be added to the arguments array of the annotation at
+// compile time
+@Get.users
+func getUser(@AnnotationParam id:Int)
+// If the fields of getUser are not marked as AnnotationParam
+// Then all passed params are used in the keyValue map
+
+@Get.users("{id}")
+func getUser(@AnnotationParam id:Int)
+
+@Post("users/{id}")
+func updateUser(@AnnotationParam id:Int)
+

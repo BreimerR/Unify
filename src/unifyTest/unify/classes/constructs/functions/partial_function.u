@@ -1,0 +1,30 @@
+/**
+Partial functions make more sense in classes since there is a workable scope to deal with
+but and an inheritance background to consider too
+*/
+
+partial func age(var age){
+    age *= 12
+}
+
+// this
+func personsAge : age (var age = 12){
+
+}
+
+class Person{
+
+
+
+    var Int age
+
+    // partial functions are called from internal since
+    // they are no full action functions
+    partial init(var age = 12) {
+    }
+
+
+    override init(var age = 12){
+
+    }
+}

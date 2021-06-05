@@ -1,0 +1,13 @@
+package main
+
+
+
+func hello(){
+
+}
+
+
+func main(parametersHere){
+    // simple hello parse test
+    hello()
+}
