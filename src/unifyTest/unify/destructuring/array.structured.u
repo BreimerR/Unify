@@ -1,0 +1,44 @@
+func main(string:String[]){
+}
+/**
+ * Check Array length
+ * Call appropriate method depending on array length
+ */
+// This means it's expecting an array of sting with the size of 1
+// being assigned to the first argument
+// this level of method overloading requires type casting at a run time as Elixir supports this
+func main([argument]:String[10:]){ // this would require you to make sure array size is 10 before passing it here
+
+}
+
+func main([argument]:User[10]){ // you can give users options for making this runtime check or compiler time check
+
+}
+
+
+//////////////////////////
+/////sample problem///////
+//////////////////////////
+
+class OddOccurance {
+
+    // sorts list by size
+    solution(list:Int) => recur(list.sort(a,b => a < b))
+
+    // How often does one use this [h, h]
+    // azn making sure first items are similar in an array
+    // this will determine if this is viable or not
+    // as code has to be somewhat generic and reusable not for a single use case
+    recur([h, h,...rest]: Int[2:]) => recur(rest)
+    /// There needs a way to represent non empty arrays so that you can have line recur([]) => 0
+    // representing empty arrays
+
+    // since the size check is done at run time the similarity check can also be done at run time
+
+    recur([h, b,...rest]: Int[2:]) => h
+
+    recur([h]: Int[1]) => h
+
+    recur([]) => 0
+
+}

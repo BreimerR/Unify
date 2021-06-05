@@ -1,0 +1,14 @@
+class String{
+    // this is an unclear declaration does not define a type but still parse positive
+    // val length
+    val length:Int
+        get() => items.size
+
+
+}
+
+func main(args:Array<String>){
+    do{
+
+    }while(age < 10)
+}

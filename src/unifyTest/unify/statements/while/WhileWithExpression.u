@@ -1,0 +1,4 @@
+func main(args:Array<String>){
+    while 0 < args.size -> printLn(arg)
+
+}

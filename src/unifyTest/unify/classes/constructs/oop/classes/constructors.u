@@ -1,0 +1,19 @@
+class Foo()
+
+class Foo{
+    constructor (){
+
+    }
+}
+
+class Foo{
+    /*
+     constructor : super()
+     this model does not allow for this properties changes before calling supper class
+     this.properties should be available inside the constructor since they are in house properties inherited
+    */
+    constructor ()  {
+
+    }
+}
+

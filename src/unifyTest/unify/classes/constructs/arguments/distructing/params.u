@@ -1,0 +1,31 @@
+func name( ages:String[]){
+    for(var age in ages){
+        when age  == {
+            value {
+                println("Language is sage by ")
+            }
+            value2 {
+
+            }
+        }
+    }
+
+}
+
+func distracted(var ...args:String){
+    for (var arg in args){
+        when age =={
+            value{
+                // Do something
+            }
+
+            val2 {
+                // do something else
+            }
+        }
+    }
+}
+
+
+
+

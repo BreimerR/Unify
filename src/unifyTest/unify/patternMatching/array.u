@@ -1,0 +1,7 @@
+func solution([h,h,...c]) => solution(c)
+
+func solution([h,a,...c]) => h
+
+func solution([h]) => h
+
+

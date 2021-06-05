@@ -1,0 +1,8 @@
+func  main(args:String[]){
+    // This will eiter mean fileSize will automatically be converted into
+    // an integer from a string if fileSize has .toInt method
+    // a more general approach would be to have .to(type)
+    // meaning Object.to(type:Any) method exists
+    var [fileName:String,fileSize:Int] = args
+}
+

@@ -1,0 +1,7 @@
+package unify.parsers.variables
+
+
+class TVariableDeclarationParser : ParserStatic(
+        VariableDeclarationParser(),
+        TerminatorParser()
+)

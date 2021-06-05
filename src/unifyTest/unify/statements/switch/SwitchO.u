@@ -1,0 +1,33 @@
+/**
+* Switch structure is
+* return? switch on infixFunction| default (==) {
+*
+* }
+switch lbracket? expression rbracket? defaultOperator {
+	(operator? expression (functionBody | simpleFunctionBody))*
+}
+
+* the example body provided may or may not have
+* a body if it is in a single line expression
+* in such a case it would mean we have end of line deliminator
+* or we have a body start definition and end which could be the natural : and end ;
+*
+*/
+
+
+
+
+
+class Parser{
+	makeSection(Parser|Token possibleSection){
+		$white = new Color(ffffff);
+		// TODO create hex number literal parser
+		$black = new Color(000000);
+
+
+		do{
+
+		}while(expression)
+	}
+}
+

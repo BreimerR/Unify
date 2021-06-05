@@ -1,0 +1,12 @@
+data class Person(val name,val age = 12)
+
+
+class Employee{
+    // this does not parse as name is an expression first and expressions can start on a new line
+    val person
+
+
+    name(name){
+
+    }
+}

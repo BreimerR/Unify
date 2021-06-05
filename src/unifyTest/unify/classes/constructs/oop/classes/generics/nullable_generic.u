@@ -1,0 +1,16 @@
+// This is not correct syntax since as far as we know
+// one might initialize the class as Lazy<String?>()
+// then having T??
+
+class Lazy<T>{
+
+    var value :T? = null
+
+    getValue(receiver:Any, property: KProperty<*>) : T {
+        try{
+           return value!!
+        }catch(e:Exception){
+           return
+        }
+    }
+}

@@ -1,0 +1,25 @@
+// should return an array of string with two items inside it
+func String[2] getNames(){
+
+}
+
+// should return an array of int between 2 to three items
+func Int[2,3] ages(){
+
+}
+
+size = 2
+
+// compiler throws no error
+func Class[size] sizeError() =>  [
+        new Class(),
+        new Class(),
+        new Class()
+    ]
+
+
+func Class[size] sizeNoError() => [
+        new Class(),
+        new Class()
+    ]
+

@@ -1,0 +1,15 @@
+func main([h,h,...c]){}
+// Simplest Viable State
+func main(user[a,b,...c]){}
+// Simple Type Integrated
+func main(var args:Type[a,b,...c]){}
+// Mid Type Integrated
+func main(var args: Type1[a:Type2,b:Type3,...c]){}
+// This kind of filters the array into strings and arrays
+// func main(var args:Any[a:String,b:Int,...c:String,...d:Int]){}
+// DefaultValue Integrated
+func main(var args: GeneralType[a: Type="Breimer",b:Type2 = 1,...c: Type3 = "SomeDefault"]){}
+// Mutability State Integrated
+func main(args: GeneralType[val a:Type, var b:Type1]){}
+// Complex Mutability State with Integrated Default Values
+func main(args: GeneralType[...c:Type, val a: Type1 = "Breimer", var b: Type2 = 12]){}

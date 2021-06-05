@@ -1,0 +1,3 @@
+val  Array<String> array =  ["Breimer","Jael","Steve","Sharon","Tim"]
+
+val names[f_name:String :: "Breimer", s_name:String :: "Jael"] = array;

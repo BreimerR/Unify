@@ -1,0 +1,9 @@
+var age = 12;
+
+var  age:Int
+
+/*TODO
+mutability sharing
+var age = 20, doa = 20;
+the var is shared between age and dao
+*/

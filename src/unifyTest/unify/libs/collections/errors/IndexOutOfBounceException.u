@@ -1,0 +1,1 @@
+class IndexOutOfBounceException(val age:String,var smile:True) : Exception(message)

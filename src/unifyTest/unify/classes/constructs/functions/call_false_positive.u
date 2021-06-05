@@ -1,0 +1,13 @@
+/*
+RepetitiveBySection(
+    Identifier,
+    Coma
+)
+*/
+func name(name){
+}
+
+
+func name(name,name){
+
+}

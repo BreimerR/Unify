@@ -1,0 +1,7 @@
+class Color
+
+
+class Green : Color
+
+class PassiveColor<T?>
+

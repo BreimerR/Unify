@@ -1,0 +1,10 @@
+// function b and are the same thing as they both declare a function with a final return,
+// in case there is nothing being done inside the function
+
+fun b(): Boolean {
+    return false
+}
+
+fun a(): Boolean = false {
+
+}
