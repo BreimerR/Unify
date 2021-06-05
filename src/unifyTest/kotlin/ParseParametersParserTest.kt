@@ -7,7 +7,7 @@ class ParseParametersParserTest : ParserTest() {
 
     override var parser: TestableStatic<String> = ParametersParser()
 
-    override val fileDir = "${super.fileDir}/methods/parameters/"
+    override val fileDir = "methods/parameters/"
 
     @Test
     fun simpleVal() {

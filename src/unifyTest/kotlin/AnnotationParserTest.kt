@@ -8,7 +8,7 @@ class AnnotationParserTest : ParserTest() {
 
     override var parser: TestableStatic<String> = AnnotationParser()
 
-    override val fileDir = "${super.fileDir}/directives/annotations/"
+    override val fileDir = "directives/annotations/"
 
 
     @Test
