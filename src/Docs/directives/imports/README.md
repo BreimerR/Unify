@@ -12,7 +12,7 @@ import packageName.<className>
 
 ## Import As
 ```unify
-import packageName.*
+import packageName.name as otherName
 ```
 
 ## Namespace Like design
