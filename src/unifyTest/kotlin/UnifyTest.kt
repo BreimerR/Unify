@@ -40,7 +40,7 @@ class UnifyTest {
 
     private var filePath: String = ""
         get() = if (updated) {
-            field = "/opt/Projects/Kotlin/Unify/master/src/unifyTest/unify/$file.u"
+            field = "src/unifyTest/unify/$file.u"
             field
         } else field
 

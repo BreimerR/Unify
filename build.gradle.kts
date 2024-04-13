@@ -1,8 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    kotlin("multiplatform") version "1.9.23"
 }
 group = "com.gmail.brymher"
-version ="0.10.0"
+version ="0.11.0"
 
 repositories {
     mavenCentral()
@@ -55,4 +55,3 @@ tasks.withType<Wrapper> {
     gradleVersion = "6.7.1"
     distributionType = Wrapper.DistributionType.BIN
 }
-

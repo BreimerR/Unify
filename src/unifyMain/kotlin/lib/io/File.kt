@@ -5,6 +5,7 @@ import lib.math.charVal
 import platform.posix.*
 import lib.oop.classes.Class
 import kotlinx.cinterop.CPointer
+import kotlinx.cinterop.ExperimentalForeignApi
 import lib.oop.classes.StaticClass
 
 open class FileStatic : StaticClass {
@@ -22,10 +23,12 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
     var end = SEEK_END
     var i = 0
 
+    @OptIn(ExperimentalForeignApi::class)
     var file: CPointer<FILE>? = null
 
     var currentChar: Char? = null
 
+    @OptIn(ExperimentalForeignApi::class)
     val nextChar: Char
         get() {
             currentChar = fgetc(file).charVal
@@ -38,6 +41,7 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
             return currentChar!!
         }
 
+    @OptIn(ExperimentalForeignApi::class)
     val prevChar: Char
         get() {
             fseek(file, -1, i)
@@ -46,12 +50,14 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
             return char
         }
 
+    @OptIn(ExperimentalForeignApi::class)
     val isOpen: Boolean
         get() = file != null
 
     var atEnd: Boolean = false
 
 
+    @OptIn(ExperimentalForeignApi::class)
     fun open(mode: String = "r") {
         file = fopen(fullFilePathWithExtension, mode)
         if (file == null) throw FileError("File $fullFilePathWithExtension does not exist")
@@ -73,6 +79,7 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
         }
     }
 
+    @OptIn(ExperimentalForeignApi::class)
     fun close(): Boolean {
         return if (isOpen) {
             fclose(file)
@@ -82,6 +89,7 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
 
 
     // SEEK_SET = beginning of the file
+    @OptIn(ExperimentalForeignApi::class)
     fun moveCursor(to: Int, from: Int = i) {
         fseek(file, from.long, to)
 
@@ -124,6 +132,7 @@ open class FileClass(private val fullFilePathWithExtension: String) : Class<File
             return FileSize(size)
         }
 
+    @OptIn(ExperimentalForeignApi::class)
     private val cursorPos: Long
         get() {
             return ftell(file)
