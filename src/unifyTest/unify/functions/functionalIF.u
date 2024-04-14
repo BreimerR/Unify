@@ -17,3 +17,4 @@ permision ? setName : throwError
 // decide on which looks better not understandable
 if (permision,setName,throwError)
 
+if permission is false setName else throwError

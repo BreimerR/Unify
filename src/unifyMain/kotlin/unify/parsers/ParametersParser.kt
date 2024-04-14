@@ -9,8 +9,6 @@ import unify.parsers.variables.SimpleVariableParser
 import unify.parsers.variables.VariableStartParser
 import unify.tokens.characters.*
 
-val dots = arrayOf(Dot, Dot, Dot)
-
 class ParametersParser : ParserStatic(
     LBracket,
     OptionalSection(

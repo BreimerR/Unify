@@ -8,6 +8,7 @@ import unify.Unify
 import unify.ast.Tokens
 import unify.ast.TokensStatic
 import unify.parsers.MutableStateParser
+import unify.parsers.ParametersParser
 import unify.parsers.comments.CommentsParser
 import unify.parsers.variables.SimpleVariableParser
 
@@ -157,16 +158,26 @@ class UnifyTest {
     @Test
     fun parametersParser() {
         file = "ParametersParser"
-      // parser = ParametersParser()
+        parser = ParametersParser()
 
-        test("Simplest var")
-        test("Simplest val")
-        test("Simplest var Typed")
-        test("Simplest val Typed")
-        test("Complex varargs Typed")
-        test("Complex varargs Typed Median")
-        test("Complex varargs Typed First")
-        test("Complex varargs Typed Last")
+        var testsOrders = listOf(
+            "Simplest var",
+            "Simplest val",
+            "Simplest var Typed",
+            "Simplest val Typed",
+            "Simplest val Typed",
+            "Complex varargs",
+            "Complex varargs Typed Median",
+            "Experimental: Complex varargs UnTyped Median",
+            "Complex varargs Typed First",
+            "Complex varargs Typed Last",
+            "Pick last var to be alone",
+        )
+
+        for ((i, testName) in testsOrders.withIndex()) {
+            println("Line ${i + 1}: $testName")
+            test("Line $i: $testName")
+        }
         testEOF()
     }
 

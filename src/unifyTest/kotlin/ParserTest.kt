@@ -64,7 +64,7 @@ abstract class ParserTest {
         testEOF()
     }
 
-    private fun test(message: String = "Test Case", expected: Boolean = true) {
+    private fun test(message: String = "Test Case") {
         assertTrue(message) {
             val startToken = tokens.peekNextToken
             val test = parser test tokens
