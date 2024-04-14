@@ -15,13 +15,10 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
     abstract class Class(override val self: TokensStatic<out Token>) : ItemsStatic.Class<String>(), Iterable<Token> {
 
-        override val items get() = tokens
-
         abstract val fileName: String
 
         abstract val fileEncoding: String
 
-        abstract val tokens: Array<out Token>
 
         // space tab or newLine
         var considerSeparation = true
@@ -189,4 +186,3 @@ abstract class TokensStatic<T : TokenStatic.Class> : ItemsStatic() {
 
 
 }
-
