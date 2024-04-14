@@ -18,7 +18,7 @@ abstract class ItemsStatic : StaticClass {
     abstract class Class<T>() : SClass<ItemsStatic>() {
 
         // THIS IS WRONG THIS IS VERY WRONG ITEMS SHOULD BE PASSED TO THE CLASS NOT LIKE THIS
-        abstract val items: Array<out ItemClass<T>>
+        abstract val items: MutableList<out ItemClass<T>>
 
         //open val items = arrayOf<ItemClass<T>>()
 
@@ -67,7 +67,7 @@ abstract class ItemsStatic : StaticClass {
         private val hasPrevItems get() = nextIndex >= 0 && !onFirstIndex
 
         public val hasRemItems: Boolean
-            get() = items.length != 0 && nextIndex < items.length
+            get() = items.size != 0 && nextIndex < items.size
 
         operator fun get(index: Int): ItemClass<T> = items[index]
 

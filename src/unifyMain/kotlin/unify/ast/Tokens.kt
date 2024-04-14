@@ -83,8 +83,8 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
         override val self: TokensStatic = Tokens
 
-        override val items: Array<out language.tokens.TokenStatic.Class> by lazy {
-            var field = arrayOf<language.tokens.TokenStatic.Class>()
+        override val items: MutableList<out language.tokens.TokenStatic.Class> by lazy {
+            var field = mutableListOf<language.tokens.TokenStatic.Class>()
 
             var col = 1
             var line = 1

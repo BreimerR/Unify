@@ -10,10 +10,10 @@ class CharactersStatic : ItemsStatic() {
     }
 
     class Class(
-        override val items: Array<CharItemStatic.Class>
+        override val items: MutableList<CharItemStatic.Class>
     ) : ItemsStatic.Class<Char>() {
 
-        constructor(items: List<CharItemStatic.Class>) : this(items.toTypedArray())
+        constructor(items: List<CharItemStatic.Class>) : this(items.toMutableList())
 
         override val self = Characters
     }
