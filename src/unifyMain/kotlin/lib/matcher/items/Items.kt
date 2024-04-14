@@ -18,7 +18,7 @@ abstract class ItemsStatic : StaticClass {
     abstract class Class<T>() : SClass<ItemsStatic>() {
 
         // THIS IS WRONG THIS IS VERY WRONG ITEMS SHOULD BE PASSED TO THE CLASS NOT LIKE THIS
-        abstract val items: MutableList<out ItemClass<T>>
+        abstract val items: List<out ItemClass<T>>
 
         //open val items = arrayOf<ItemClass<T>>()
 
