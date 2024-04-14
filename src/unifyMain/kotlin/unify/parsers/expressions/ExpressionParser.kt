@@ -2,6 +2,7 @@ package unify.parsers.expressions
 
 import language.parsers.ParserStatic
 import language.sections.AlternativeSection
+import lazy.mutableLazy
 import lib.matcher.TestableStatic
 
 
@@ -11,15 +12,16 @@ import lib.matcher.TestableStatic
  * grouped expression
  * */
 class ExpressionParser : ParserStatic(considerNewLines = true) {
-    override var sections: Array<out TestableStatic<String>>
-        get() = arrayOf(
-                AlternativeSection(
-                        // test elvis expression first as it can contain an sExpression doing a premature collection
-                        ElvisExpressionParser(),
-                        SExpressionParser(),
-                        considerNewLine = true
-                )
+
+    override var sections: Array<out TestableStatic<String>> by mutableLazy {
+        arrayOf(
+            AlternativeSection(
+                // test elvis expression first as it can contain an sExpression doing a premature collection
+                ElvisExpressionParser(),
+                SExpressionParser(),
+                considerNewLine = true
+            )
         )
-        set(value) {}
+    }
 
 }

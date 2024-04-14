@@ -1,0 +1,24 @@
+/**
+
+*/
+
+// age is type int and var
+// age defaults to type Any
+func person(age){
+
+}
+
+// age is type int and val
+func person(age:Int){
+
+}
+
+// age is type int and var
+func person(val age:Int){
+
+
+}
+
+func person (val age:Int){
+
+}

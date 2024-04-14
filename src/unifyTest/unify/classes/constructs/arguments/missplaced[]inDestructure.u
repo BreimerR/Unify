@@ -1,0 +1,13 @@
+data class Person(val name,val age = 12)
+
+
+class Employees{
+    //
+    val person;
+
+    add(person: Person{name: String[age = 12], age}){
+
+
+    }
+
+}

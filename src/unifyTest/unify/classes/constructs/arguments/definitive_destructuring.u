@@ -1,0 +1,24 @@
+data class Person(var name: String[val fCharacter: Char],val age: String )
+
+class Employees{
+
+    val person;
+
+
+    add(val person{val name}:: new Person()){
+        val age = 12
+
+    }
+
+    interface Laugh{
+
+    }
+}
+
+func main(var args: String){
+
+    val person:Person{val name,val fCharacter,val age} = Person()
+
+    println(name,fCharacter, age)
+
+}

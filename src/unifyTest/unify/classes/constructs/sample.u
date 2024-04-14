@@ -1,0 +1,25 @@
+class Person{
+
+    val name = "Breimer"
+
+    infix func delete(property:String) returns person {
+        name = null
+        return this
+    }
+
+}
+
+
+prefix func upload(p:Person) returns Boolean{
+   // upload upload action here
+}
+
+val person = Person()
+// this is a correct statement
+// but without knowledge that person is a class can you break this down to it's true meaning
+upload person delete "name"
+// ndio nasema unapata different cases
+// which could be upload person and delete gets flagged as a wrong statement
+// ama person delete "name" then upload is done
+
+

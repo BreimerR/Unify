@@ -1,0 +1,11 @@
+func spinner(){
+    var [var name] = []
+
+      // FOR IS IS WRONG
+      for(age < 10){
+
+      }
+}
+
+
+

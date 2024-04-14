@@ -1,0 +1,99 @@
+// a cast method is a method that has a shadow i.e the main caller
+// a cast function can not be called alone thus can share similar name with the shadow name
+// cast is called first then the shadow called
+class Db{
+
+    private val values = []
+    /*
+    col_name = [a-zA-Z0-9]*
+    column_name = (tableName.)?col_name(as Alias)?
+    extras = (selectSqlStatement|)
+    operator = (!=|=|<>|<=|>=|>|<)
+    boolean = (true|false)
+    value = (boolean|string)
+    condition  =  col_name operator value
+    conditions =  (boolean | condition(conjunction  condition)*)
+    columns = (\*|column_name(,column_name)*)
+
+
+    */
+
+    /*
+    SELECT columns
+    FROM tableName
+    WHERE conditions
+    GROUP BY columns
+    HAVING conditions
+    ORDER BY columns;
+    */
+
+    /*
+    SELECT columns FROM table1
+    UNION ALL
+    SELECT columns FROM table2;
+    */
+
+    /* copies data from one table into another table i.e INTO tableName
+    SELECT columns
+    INTO databaseName
+    FROM Customers
+    LEFT JOIN table2Name ON conditions
+    */
+
+
+
+    // SELECT column_name(,column_name)*  FROM tableName WHERE tests extras
+    // SELECT items FROM tableName WHERE conditions extras
+    // SELECT TOP columns FROM tableName WHERE conditions extras
+    // UPDATE tableName  SET key=value WHERE conditions extras
+    // DELETE FROM table_name WHERE conditions;
+
+
+   query(PDOStatement sql){
+
+   }
+
+   breaker(Array<String> wheres) : Array<String> {
+
+   }
+
+   prepare(String action,Array<String> where,Array<String>? items =  null){
+
+   }
+
+   bind(PDOStatement stmnt){
+
+   }
+
+
+
+    select(){
+
+    }
+
+
+    action(String name,where){
+
+    }
+
+
+    __call(actionName,arguments){
+
+        switch(actionName) {
+               "select" {
+
+
+               }
+
+               "selectTop"{
+
+               }
+
+               "delete" {
+                    http://localhost/home.co.ke/Home/index
+               }
+        }
+    }
+
+
+}

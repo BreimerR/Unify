@@ -1,6 +1,7 @@
 package language.lib.io
 
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import lib.math.charVal
 import lib.math.long
 import lib.text.asString
@@ -29,6 +30,7 @@ class FileClass(private var fullFilePathWithExtension: String, var encoding: Str
 
     override val self = File
 
+    @OptIn(ExperimentalForeignApi::class)
     val futureChar: Char
         get() {
             val cI = i.long
@@ -38,6 +40,7 @@ class FileClass(private var fullFilePathWithExtension: String, var encoding: Str
             return char.charVal
         }
 
+    @OptIn(ExperimentalForeignApi::class)
     val copy: FileClass
         get() {
             val copy = File(fullFilePathWithExtension)
@@ -65,4 +68,3 @@ class FileClass(private var fullFilePathWithExtension: String, var encoding: Str
 
 
 var File = FileStatic()
-

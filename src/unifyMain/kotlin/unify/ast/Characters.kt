@@ -9,7 +9,9 @@ class CharactersStatic : ItemsStatic() {
         })
     }
 
-    class Class(override val items: Array<CharItemStatic.Class>) : ItemsStatic.Class<Char>(items) {
+    class Class(
+        override val items: Array<CharItemStatic.Class>
+    ) : ItemsStatic.Class<Char>() {
 
         constructor(items: List<CharItemStatic.Class>) : this(items.toTypedArray())
 

@@ -15,12 +15,12 @@ abstract class ItemsStatic : StaticClass {
      * in our case it is a token from Unify tokenizer
      * other languages can have tokens as ItemClass<Char>
      * */
-    abstract class Class<T>(items: Array<out ItemClass<T>>) : SClass<ItemsStatic>() {
+    abstract class Class<T>() : SClass<ItemsStatic>() {
 
         // THIS IS WRONG THIS IS VERY WRONG ITEMS SHOULD BE PASSED TO THE CLASS NOT LIKE THIS
         abstract val items: Array<out ItemClass<T>>
 
-        constructor(vararg items: ItemClass<T>) : this(items)
+        //open val items = arrayOf<ItemClass<T>>()
 
         var nextIndex = 0
 
@@ -86,5 +86,3 @@ abstract class ItemsStatic : StaticClass {
     }
 
 }
-
-

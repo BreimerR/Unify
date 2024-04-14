@@ -1,0 +1,8 @@
+class Array<T> : Collection<>{
+
+    <T>  pop(Int index) returns Array<T> throws IndexOutOfBounceException {
+
+    }
+}
+
+

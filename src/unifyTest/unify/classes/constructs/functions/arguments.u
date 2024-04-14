@@ -1,0 +1,30 @@
+class Age{
+    var age = age
+
+    age(val age::'$'){
+        when age is {
+            "" =>{
+
+                    val age = faf
+
+                    age += 12
+            }
+            case{
+
+            }
+
+            case2{
+
+            }
+
+            a{
+
+            }
+
+        }
+    }
+
+}
+
+
+

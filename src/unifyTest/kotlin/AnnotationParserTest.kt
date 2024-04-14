@@ -8,7 +8,7 @@ class AnnotationParserTest : ParserTest() {
 
     override var parser: TestableStatic<String> = AnnotationParser()
 
-    override val fileDir = "${super.fileDir}/directives/annotations/"
+    override val fileDir = "directives/annotations/"
 
 
     @Test
@@ -22,7 +22,7 @@ class AnnotationParserTest : ParserTest() {
     }
 
     @Test
-    fun `Complex Annotation`() {
+    fun ComplexAnnotation() {
         file = "ComplexAnnotation"
     }
 

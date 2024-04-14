@@ -1,9 +1,11 @@
-var a
-val a
-var a:String
-val a:String
-val ...a
-val ...a:String
-val ...a:String, val a:String, val ...a:String
-val a:String,val ...a:String
-val ...a:String, val a
+(var a)
+(a)
+(var a:String)
+(val a: String)
+(a:String)
+(val ...a)
+(val ...a: String)
+(val ...a:String, val a:String, val ...a:String)
+(val ...a:String, val a, val ...a:String)
+(val a:String,val ...a:String)
+(val ...a:String, val a)

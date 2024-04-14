@@ -1,0 +1,7 @@
+val c  = {
+    // return type of this lambda has to be a boolean and this is a type reference error check case
+} ? {
+    // return type of this is dependant on the type of the variable provided
+} : {
+    // return type here also depends on the type provided for the variable
+}

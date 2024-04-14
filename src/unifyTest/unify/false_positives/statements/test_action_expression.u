@@ -1,0 +1,14 @@
+func main(var args:String){
+    var a = 12
+
+    a < 10 -> console.log("This action here is where items go.")
+    a < 10 => console.log("Expression is returned from this point.")
+
+}
+
+
+func someTestAction(test:String){
+
+
+}
+

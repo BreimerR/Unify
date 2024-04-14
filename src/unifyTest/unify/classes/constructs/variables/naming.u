@@ -1,0 +1,11 @@
+var age;
+
+var sleeping;
+
+var _sleeping;
+
+var aged;
+
+// should be const var or val
+const val age;
+

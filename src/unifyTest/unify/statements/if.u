@@ -1,0 +1,19 @@
+func main(){
+    if expression {
+        // do action
+    }
+
+    if (expression ) -> action
+
+    if expression -> action else -> expression
+
+    if expression => returnAction
+
+    if expression => returnAction else -> action
+
+    if expression => returnAction else => returnAction
+
+
+
+
+}

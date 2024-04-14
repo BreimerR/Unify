@@ -2,13 +2,10 @@ import lib.matcher.TestableStatic
 import unify.parsers.functions.FunctionParser
 import kotlin.test.Test
 
-const val age = 12;
-
-
 class FunctionParserTest : ParserTest() {
     override var parser: TestableStatic<String> = FunctionParser()
 
-    override val fileDir: String = "${super.fileDir}/functions/";
+    override val fileDir: String = "functions/";
 
     @Test
     fun `Simplest Function Declaration`() {

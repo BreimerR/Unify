@@ -9,7 +9,7 @@ class MethodsParserTest : ParserTest() {
 
     override var parser: TestableStatic<String> = MethodParser()
 
-    override val fileDir = "${super.fileDir}/methods/bodies/"
+    override val fileDir = "methods/bodies/"
 
     @Test
     fun simplestMethod() {

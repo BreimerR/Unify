@@ -1,0 +1,11 @@
+
+/**
+* On fail to set the value is reverted to the default value always to provide for safety
+*/
+var age :: 20 = 21
+/*also like here */
+var smile :: 1
+
+// In this case ::test is a validation function this is also quite not definitive and
+// could use delegation instead
+// var age : ::test
