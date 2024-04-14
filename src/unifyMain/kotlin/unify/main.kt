@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
 
     System.updateDebug(cli)
 
-    if (DEBUG_SHOW_TOKENS) for (token in unify.tokens.tokens) println(token)
+    if (DEBUG_SHOW_TOKENS) for (token in unify.tokens.items) println(token)
 
     Log.d("Unify.main", unify.test())
 

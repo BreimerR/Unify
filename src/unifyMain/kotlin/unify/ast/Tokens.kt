@@ -83,7 +83,7 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
 
         override val self: TokensStatic = Tokens
 
-        override val tokens: Array<out language.tokens.TokenStatic.Class> by lazy {
+        override val items: Array<out language.tokens.TokenStatic.Class> by lazy {
             var field = arrayOf<language.tokens.TokenStatic.Class>()
 
             var col = 1
@@ -135,12 +135,6 @@ class TokensStatic : LangTokensStatic<TokenStatic.Class>() {
         override fun isTab(klass: language.tokens.TokenStatic): Boolean = klass is TabStatic
 
         override fun isNewLine(klass: language.tokens.TokenStatic): Boolean = klass is NewLineStatic
-
-        private fun printTokens() {
-            for (token in tokens) {
-                printLn(token, token.value)
-            }
-        }
 
     }
 
